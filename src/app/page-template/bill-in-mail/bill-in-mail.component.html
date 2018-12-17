@@ -1,0 +1,86 @@
+<div class="lets_start">
+
+  <h1>חשבונית במייל</h1>
+
+</div>
+<app-regestrition-log-in></app-regestrition-log-in>
+<section class="user-content hideBefore">
+
+  <div class="fh8co-main container-fluid background2">
+
+    <div class="row form_pages">
+
+      <div class="form_section_1">
+
+        <div class="col-md-12 col-sm-12">
+
+          <div class="form_2 new_form">
+
+            <h2 class="counter_number">חשבונית במייל</h2>
+
+            <h3>הרשמה</h3>
+
+            <p>
+                לרישום לשירות  יש למלא את כתובת הדואר האלקטרוני  שאליה יישלחו השוברים.
+                <br>במידה ונתקלת בבעיה ניתן להירשם  גם במוקד הטלפוני באמצעות נציג שירות  
+           </p>
+            <div class="form1">
+              <input [(ngModel)]="user.FirstName" id="FirstName" name="FirstName" (focusout)="validFirstNameFun()" type="text" placeholder="* שם פרטי"
+                style="border-top: 1px solid #0000c5;" class="FirstName">
+              <div *ngIf="isValidFirstNameMesseg" id="VFND" class="validationMesseg">{{isValidFirstNameMesseg | lang }}</div>
+
+              <input [(ngModel)]="user.LastName" id="LastName" class="LastName" name="LastName" (focusout)="validLastNameFun()" type="text" placeholder="* שם משפחה">
+              <div *ngIf="isValidLastNameMesseg" id="VLND" class="validationMesseg">{{isValidLastNameMesseg | lang }}</div>
+
+              <input [(ngModel)]="user.TZ" id="TZ" name="TZ" class="TZ"  (focusout)="validTZFun()" type="text" placeholder="* ת.ז.">
+              <div *ngIf="isValidTZMesseg" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+
+              <input [(ngModel)]="user.Phone" id="cellphone_number" class="cellphone_number" name="Phone" (focusout)="validPhoneFun()" type="text" placeholder="* טלפון">
+              <div *ngIf="isValidPhoneMesseg" class="validationMesseg"> {{isValidPhoneMesseg | lang }}</div>
+
+              <input [(ngModel)]="user.Email" id="email_address"  class="email_address" name="Email" (focusout)="validEmailFun()" type="email" placeholder="* דואר אלקטרוני">
+              <div *ngIf="isValidEmailMesseg" class="validationMesseg">{{isValidEmailMesseg | lang }}</div>
+
+              <input [(ngModel)]="assetNumber" id="assetNumber" (focusout)="validAssetNumberFun()" name="assetNumber" type="text" placeholder="* מספר הנכס (פיזי)">
+              <!-- <span *ngIf="isErrorMessegAssetMatch" class="p_alertText">מספר הנכס לא תקין או הבחירה בין מספר הנכס לעיר לא תואמת</span> -->
+              <div *ngIf="isValidAssetNumberMesseg" class="validationMesseg">{{isValidAssetNumberMesseg | lang }}</div>
+         
+              <input [(ngModel)]="user.UserName" id="UserName" class="payerNumber" (focusout)="validUserNameFun()" name="UserName" type="text" placeholder="* מספר משלם">
+              <div *ngIf="isValidUserNameMesseg" class="validationMesseg">{{isValidUserNameMesseg | lang }}</div>
+
+              <div class="captcha_container">
+                <div #captcha nbRecaptcha class="g-recaptcha"></div>
+                <!-- <div class="g-recaptcha" data-sitekey="6LdNthAUAAAAAItribt1-VmPoOC_H5ZYrDxXaf3c"></div> -->
+            </div> 
+            <div *ngIf="isValidRecaptcha" class="validationMesseg">{{'notRobot'| lang }}</div>
+
+
+            </div>
+
+            <div class="form2" style="width: 100%">
+
+              <div class="form-group rememberMe">
+
+                <label for="regulations">מאשר הרשמה לשירותים הדיגיטליים וקבלת שירותים וחידושים נוספים לרבות מידע עירוני בכפוף ל- <a title="regulations" routerLink='/content/תקנון' >תקנון</a> ותנאי השימוש ומדיניות הפרטיות של החברה
+                         <input type="checkbox" class="regulations" [(ngModel)]="isValidRegulations" name="remember_me" id="remeber_me" checked="checked"></label>
+              </div>
+              <div *ngIf="isValidRegulationsMesseg" class="validationMesseg">{{'isValidRegulations' | lang }}</div>
+              <div *ngIf="isResultMesseg" class="validationMesseg">{{resultMesseg}}</div>
+
+              <p>
+                <a href="javascript:void(0)" (click)="insertUserToDB()" class="custom_sub_btn btn1" title="send">הצטרף</a>
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

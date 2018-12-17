@@ -1,0 +1,32 @@
+<div class="lets_start">
+  <h1>{{'forms'| lang}}</h1>
+</div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">     
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+        <section class="content-bx">  
+          <div class="container">  
+            <div class="row">  
+            
+              <div class="widthForContainerIframe" [ngClass]="commonService.isLogInUser ? 'float-left' : ''" >  
+                <div> 
+                  
+                  <h1 style="color:#0000c6; margin-right: 12vw; ">{{commonService.cityModel.name}} - {{'forms'| lang}} - {{formName}} </h1>
+                  <p style="color:#0000c6; margin-right: 12vw; ">לתמיכה במילוי הטופס, ניתן לפנות למספר: <a [href]="'tel:'+commonService.cityModel.formPhoneSupport">{{commonService.cityModel.formPhoneSupport}}</a> </p>                  
+                  <iframe onLoad="window.scrollTo(0, 0);" *ngIf="iframeSrc" id="frameDemo" [src]="iframeSrc | safe" style="position:relative;  left:0px; right:0px; width: 100%; border: none; margin:0; padding:0;  overflow: auto; height: 5000px; z-index:0; margin-top:0px; margin-right:0px;"></iframe>
+                  </div>
+                </div>  
+
+
+                
+            </div>
+            </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</div>

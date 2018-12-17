@@ -1,0 +1,65 @@
+<div class="lets_start">
+    <h1>{{'newsAndUpdates'| lang}}</h1>
+  </div>
+  <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+  <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+      <section class="user-content">
+      <div class="fh8co-main container-fluid">
+        <div class="row">     
+          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+
+  
+          <div id="tab-2"  [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'">
+              <div class="box-wrapper article_section">
+                 <div class="article_header">
+                    <div class="col-md-6 col-sm-6 pull-left">
+                       <div class="lef_img">
+                          <img class="img-responsive" title="{{commonService.cityModel.name}}" alt="{{commonService.cityModel.name}}" [src]="commonService.cityModel.logo">
+                       </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 pull-right">
+                       <div class="right_text">
+                          <img class="notepadImg" alt="" src="assets/img/notpad.png">
+                          <h3>{{commonService.cityModel.name}} - {{'newsAndUpdates'| lang}}</h3>
+                       </div>
+                    </div>
+                 </div>
+                 <div class="articles_list">
+                    <div class="">
+                       <div class="">
+                          <div *ngFor="let news of personalMessagesList" class="single_articles">
+                             <div [ngClass]="news.Image != null ? 'col-md-10 col-sm-10' : 'col-md-12 col-sm-12'">
+                                <h3>{{news.Title}} - {{news.UpdateDate}}</h3>
+                                <p [innerHTML]="news.Description"><br> 
+                                   <a [href]="news.Link" class="linkToLink"> {{news.Title}} </a>
+                                </p>
+                             </div>
+                             <div *ngIf="news.Image != null" class="col-md-2 col-sm-2">
+                                <img class="" alt="" [src]="news.Image">
+                             </div>
+                          </div>
+                          
+                          <div *ngFor="let news of cityMessagesList" class="single_articles">
+                            <div [ngClass]="news.Image != null ? 'col-md-10 col-sm-10' : 'col-md-12 col-sm-12'">
+                               <h3>{{news.Title}} - {{news.InsertDate | date: 'dd/MM/yyyy'}}</h3>
+                               <p [innerHTML]="news.Description"><br> 
+                                  <a [href]="news.Link" class="linkToLink"> {{news.Title}} </a>
+                               </p>
+                            </div>
+                            <div *ngIf="news.Image!=null" class="col-md-2 col-sm-2">
+                               <img class="" alt="" [src]="news.Image">
+                            </div>
+                         </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+            </div>
+          
+        
+  
+        </div>
+      </div>
+    </section>
+  </div>

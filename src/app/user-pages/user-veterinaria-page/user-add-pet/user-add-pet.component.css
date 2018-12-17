@@ -1,0 +1,11 @@
+input[type="text"],input[type="email"]
+{
+    width: 100%;
+}
+a.btn1{
+    float: left;
+    margin-left: 0%;
+}
+.content_section{
+    margin-bottom: 125px;
+}

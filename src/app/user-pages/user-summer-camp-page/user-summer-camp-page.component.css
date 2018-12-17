@@ -1,0 +1,254 @@
+.validationMesseg{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+}
+.wrap_header{
+    margin-bottom: 1%;
+    width: 100%;
+    margin-right: 6%;
+}
+.marg-reg{
+    margin-top: 3%;
+}
+
+ .h2-header{
+    text-align: center;
+    width: 70%;
+    color: #002baa;
+    margin: 0%;
+}
+.col-sm-4 , .col-sm-5{
+    float: right;
+
+}
+.column-3{
+    max-height: 300px;
+}
+.user-box{
+    margin-top: 3%;
+}
+
+.box{
+    width: 100%;
+    border: 1px solid silver;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    min-height: 500px;
+    padding-top: 40px;
+}
+
+.form-group {
+    margin-bottom: 35px;
+}
+input[type="text"],input[type="email"]
+{
+    
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #000A90;
+    border-radius: 8px;
+}
+.wrap_input{
+    border-color: rgb(169, 169, 169);
+    background: #fff;
+}
+
+
+select {
+    border: 1px solid #000A90;
+    border-radius: 8px;
+    height: 40px;
+    width: 100%;
+    text-align-last:center;
+}
+label{
+    padding-top: 5px;
+}
+
+.RequiredImg {
+    width: 8px;
+    height: 8px;
+}
+
+.submitBtn{
+    background: transparent;
+    border: 1px solid #0000c5;
+    border-radius: 5px;
+    float: right;
+    margin-top: 5%;   
+    padding: 10px 15px;
+}
+
+.rememberMe label {  
+    font-size: 18px; 
+    line-height: 25px;
+}
+.submitBtn:hover, .submitBtn:focus{background:#0000c5; color:#fff;}
+.desctop-logo{
+    height: 130px;
+    margin-top: -3.9%;
+    width: 80%;
+    margin-right: 14%;
+}
+.container_user_div .desctop-logo{  
+    margin-top: -3%;
+    width: 75%;
+    margin-right: -19px;
+}
+.mrg-right{
+    margin-left: 5%;
+}
+.showMobile {display: none; }
+.hideMobile { display: block}
+.container_user_div .wrap_header{
+    margin-right: 0%;
+}
+iframe{
+    position:relative; top:0px;  left:0px; right:0px; width: 100%; border: none; margin:0; padding:0; overflow: hidden; z-index:0; margin-bottom: 100px; min-height: 1448px;margin-top:0px; margin-right:0px;
+}
+
+.footer-messeg{
+    clear: both; 
+    position: relative; 
+    color: black;
+    margin-right: 5%;
+    width: 70%;
+}
+.no-active{
+    text-align: center;
+    font-size: 26px;
+    padding-right: 25%;
+    padding-left: 25%;
+    line-height: 30px;
+}
+
+@media(max-width:1600px){
+    .popup {
+        width: 90%;
+      }
+    .popup h2 {
+        font-size: 35px;       
+      }
+      .popup .content {      
+        font-size: 25px;
+      }
+
+}
+
+@media(min-width:1400px){
+iframe{
+    margin-top: 3%;
+    width: 133%;
+    margin-right: -115px;
+}
+}
+@media(max-width:1360px){
+    .box{       
+        min-height: 560px;        
+    }
+    .desctop-logo{
+        width: 94%;
+    }
+    .wrap_header{
+        margin-right: 12%;
+    }
+}
+
+@media(max-width:933px){
+    .popup h2 {
+        font-size: 25px;       
+      }
+      .popup .content {      
+        font-size: 15px;
+      }
+    .box{       
+        min-height: 637px;        
+    }
+    .desctop-logo{
+        width: 85%;
+    }
+    .wrap_header{
+        margin-right: 22%;
+    }
+}
+@media(max-width:767px){
+  
+    .showMobile {display: block; }
+    .hideMobile { display: none }
+     h2{
+        text-align: center;
+        color: #002ab2;
+     }
+    .col-sm-4 ,.col-sm-5{
+        float: none;
+    }
+    .box{
+        width: 90%;       
+        margin-right: 7%;
+    }
+    .submitBtn{
+    float: none;
+    margin-top: 0%;
+    margin-right: 35%;
+    }
+    .container_user_div .wrap_header{
+        margin-right: 5%;
+    }
+    .wrap_header{
+        width: 90%;
+        margin-right: 5%;
+    }
+      .h2-header{
+        margin-right: 14%;
+      } 
+    .wrap_header img{
+        float: none;
+        width: 100%;
+    }
+      
+    .popup{
+        width: 80%;
+        /* height: 90%; */
+        margin: 45px auto;
+    }
+    .popup h2{
+        font-size: 25px;
+    }
+    
+      .popup .content {      
+        font-size: 19px;
+      }
+    .small-popup.popup{
+        width: 90%;
+        /* height: 70%; */
+    }
+    .small-popup.popup .content {      
+        font-size: 13px;
+      }
+
+      .column-3{
+        max-height: 600px;
+    }
+    .footer-messeg{
+        width: 100%;
+    }
+    .no-active{
+        font-size: 20px;
+        padding-right: 10%;
+        padding-left: 10%;
+     
+    }
+}
+
+@media(max-height:600px){
+    .popup .content {      
+        font-size: 15px;
+      }
+}
+

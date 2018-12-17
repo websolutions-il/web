@@ -1,0 +1,63 @@
+<div class="lets_start">
+  
+           <h2>החלפת מספר טלפון</h2>
+  
+        </div>
+
+
+        <section class="user-content">
+          
+                   <div class="fh8co-main container-fluid">
+          
+                      <div class="row form_pages_new">
+          
+                         <div class="form_section_1">
+          
+                            <div class="col-md-12 col-sm-12">
+          
+                               <div class="form_2">
+          
+                                  <a href="javascript:void(0)" (click)="goToBackPage()" class="returnBtn cursorPointer" style="float:left;  margin-top:-40px;"><em class="fa fa-times-circle-o" aria-hidden="true"></em><span>  חזרה</span></a>
+          
+                                  <h1 class="counter_number">החלפת מספר טלפון</h1>
+          
+                                  <p> על מנת להחליף את מספר הטלפון, <br> יש להזין את פרטי הזיהוי הבאים לאימות</p>
+          
+                                  <!-- <label class="label_accessibility" for="oldNumber">  מספר טלפון ישן</label>  -->
+          
+                                  <input required class="mainContentForFocus cssForTelInput cellphone_number" [(ngModel)]="phone" (focusout)="validPhoneFun()" type="tel" value="* מספר טלפון ישן" placeholder="*  מספר טלפון ישן" id="oldNumber" style="border-top: 1px solid #0000c5;">
+                                  <div *ngIf="isValidPhoneMesseg" class="validationMesseg">  {{isValidPhoneMesseg | lang }}</div>
+                                  
+                                  <!-- <label class="label_accessibility" for="newNumber">  מספר טלפון ישן</label> -->
+          
+                                  <input required class="cssForTelInput cellphone_number_new" [(ngModel)]="newPhone"  (focusout)="validNewPhoneFun()" type="tel" value="* מספר טלפון חדש" placeholder="*  מספר טלפון חדש" id="newNumber"> 
+                                  <div *ngIf="isValidNewPhoneMesseg" class="validationMesseg">  {{isValidNewPhoneMesseg | lang }}</div>
+                                  
+                                  <label class="label_accessibility" for="Property_number"> מספר נכס</label>
+          
+                                  <input required class="cssForTelInput assetNumber" [(ngModel)]="assetNumber"  (focusout)="validAssetNumberFun()" type="tel" value="* מספר נכס" placeholder="*  מספר נכס" id="Property_number">
+                                  <div *ngIf="isValidAssetNumberMesseg" class="validationMesseg">{{isValidAssetNumberMesseg | lang }}</div>
+                                  <label class="label_accessibility" for="num_pays"> מספר משלם</label> 
+          
+                                  <input required class="cssForTelInput TZ" [(ngModel)]="payerid"  (focusout)="validTZFun()" type="tel" value="* מספר משלם" placeholder="*  מספר משלם" id="num_pays"> 
+                                  <div *ngIf="isValidTZMesseg" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+                                  
+                                  <div class="form-group homecapcha">
+                                        <div #captcha nbRecaptcha class="g-recaptcha"  style="transform:scale(0.7);-webkit-transform:scale(0.7);transform-origin:0 0;-webkit-transform-origin:0 0;"></div>
+                                    </div>
+                                    <div *ngIf="isValidRecaptcha" class="validationMesseg">אנא אשר שאינך רובוט</div>
+                                    <div *ngIf="isValidSum" class="validationMesseg">אחד הפרטים שהזנת אינם נכונים</div>
+
+                                  <a href="" class="custom_sub_btn btn1" (click)="changePhoneNumber($event)" style="margin-left:0px">אישור</a>                                                                                       
+          
+                               </div>
+          
+                            </div>
+          
+                         </div>
+          
+                      </div>
+          
+                   </div>
+          
+                </section>

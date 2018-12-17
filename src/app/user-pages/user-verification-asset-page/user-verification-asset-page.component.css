@@ -1,0 +1,30 @@
+.validationMesseg{
+    width: 75%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+}
+.asset_filed{
+    border-left: none;
+    width: 75% !important;
+    border-bottom: 1px solid #0000c5;
+    border-top: 1px solid #0000c5;
+    height: 40px;
+    background: rgba(255, 255, 255, 0);
+}
+.btn1:hover{
+    color: white;
+    background-color: #0000c5;
+}
+#alert_ErrorMessegAssetMatchReg{
+    color:red; line-height: 1em;
+}
+li{
+    color: #4c4848;
+}
+@media(max-width:767px)
+{
+.form_2.new_form{
+    margin-right: 15%;
+}
+}

@@ -1,0 +1,14 @@
+<!-- <div *ngIf="show" class="holder">
+    <div class="preloader" [style]="sanitize(styleLoader)">
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+   </div>
+</div> -->
+
+
+<div *ngIf="show">
+    <div >
+      <div class="wrap_loader">
+        <iframe [style]="sanitize(styleLoader)" src="assets/preloader/MAST-preloader.html" frameborder="0"></iframe>
+      </div>
+   </div>
+</div>

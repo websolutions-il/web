@@ -1,0 +1,37 @@
+<div class="content_section wrap_move">
+  <h2 class="content_section_heading">הוסף בעל חיים</h2>
+<div class="form_2">
+  <input name="Email" (focusout)="validChipFun()" [(ngModel)]="chip" class="email_address"  type="text" placeholder="* מספר שבב"  style="border-top: 1px solid #0000c5;">
+  <div *ngIf="isValidChipMesseg" id="VTZD" class="validationMesseg" style="clear: both;">{{isValidChipMesseg | lang }}</div>
+
+  <input name="UserName" (focusout)="validTZFun()"  [(ngModel)]="subTz" class="payerNumber" type="text" placeholder="* מספר תעודת זהות">
+  <div *ngIf="isValidTZMesseg" id="VTZD" class="validationMesseg" style="clear: both;">{{isValidTZMesseg | lang }}</div>
+
+  <a href="javascript:void(0)" (click)="getPetsPerUser()" class="custom_sub_btn btn1" style="font-family: 'Heebo', sans-serif" title="send">הוסף</a>
+</div>
+
+
+<div id="popup" class="overlay">
+  <div class="popup">
+      <h2>לקוחות יקרים!</h2>
+      <a class="close" (click)="closePopup()">&times;</a>
+      <div class="content">
+          <div>
+          לא נמצאו בעלי חיים התואמים את הנתונים שהוזנו           
+          </div>
+          <div style="margin-bottom: 10%">
+           אנא נסו שנית.
+           </div>
+           <div style="margin-bottom: 10%">
+         
+          </div>
+
+          <div class="buttons step-buttons">
+              <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
+          </div>
+
+      </div>
+
+  </div>
+</div>
+ 

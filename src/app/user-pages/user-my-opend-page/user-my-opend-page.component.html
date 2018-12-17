@@ -1,0 +1,94 @@
+<div class="lets_start">
+  <h1>{{'services'| lang}}</h1>
+</div>
+
+<div class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">     
+        <app-user-side-menu></app-user-side-menu>
+
+        
+
+        <div id="tab-2"  class="col-md-9 col-sm-9 padding-0 tab-content current">       
+    
+          <div class="box-wrapper">
+
+             <div class="col-md-12 col-sm-12">
+                <div id="tableMyOpend">
+
+                   <div class="sliderdiv">
+
+                      <div  style="margin-bottom:0px">
+
+                         <h2 class="blue_bg_title">{{commonService.cityModel.name}} - הפניות שלי</h2>
+
+                      </div>
+
+                   </div>
+
+                   <table id="refrence_table" class="table table-striped refrence_table">
+
+                       <thead>
+
+                         <tr>
+
+                            <th scope="col" id="tbl5">#</th>
+
+                            <th scope="col" id="tbl6"> תאריך</th>
+
+                            <th scope="col" id="tbl7">סטטוס</th>
+
+                            <th scope="col" id="tbl8">נושא</th>
+
+                            <th scope="col" id="tbl9">מספר</th>
+
+                         </tr>
+
+                      </thead>
+
+                      <tbody *ngFor="let opend of opendList">
+
+                         <tr >
+                            <th scope="col" id="tbl13" headers="tbl5">1</th>
+                            <td scope="row" headers="tbl6 tbl13">{{opend.CreateDate | date: 'dd/MM/yyyy'}}</td>
+                            <td scope="row" headers="tbl7 tbl13">{{opend.StatusName}}</td>
+                            <td scope="row" headers="tbl8 tbl13"> {{opend.Subject}}</td>
+                            <td scope="row" headers="tbl9 tbl13" class="refrenceSection"><a href="#" class="imgText">{{opend.CallNumber}} <i class="fa fa-caret-left" aria-hidden="true"></i></a> 
+                            <div  [id]="opend.CallNumber" style="display: none;">
+                              <!-- <a id="closePopUpMyOpend" class="b-close cursorPointer" style="z-index: 4" (click)="closeOpendImage($event, opend.CallNumber)">x</a> -->
+                              <!-- <iframe id="iframeMyOpend" [src]="opend.FilePathAttachment | safe" frameborder="0" style="box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3); z-index: 3"></iframe> -->
+                            </div>
+                            </td>
+                         </tr>
+
+                         <tr class="showtd">
+                          <td colspan="4">
+                              <div style="position: relative; padding-bottom: 100%; padding-top: 30px; height: 0; overflow: hidden;">
+                                    <iframe [src]="opend.FilePathAttachment | safe" frameborder="0" allowfullscreen
+                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                              </div>                                                                    
+                          </td>
+                         </tr>
+
+                           
+                      </tbody>
+
+                   </table>
+
+                   <div  (click)="openFormsPage()" style="margin-left: 60%; margin-bottom: 2%;" class="client-name cursorPointer"><span class="plus "><img src="assets/img/plus-icon.png" alt="הוסף פניה" class="" draggable="false"></span><span class="user-name">הוסף פניה</span></div>
+
+                </div>
+
+             </div>
+
+          </div>
+
+       </div>
+        
+      
+
+      </div>
+    </div>
+  </section>
+</div>

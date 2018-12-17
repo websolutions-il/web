@@ -1,0 +1,49 @@
+<div id="ex-navbar-collapse" class="collapse nav-collapse forMobile">
+  <div class="row">
+    <div class="col-xs-6 searchTop">
+      <div class="search"><input type="button" (click)="actionSearchEngine()" class="search-btn"> <input type="text" (keyup.enter)="actionSearchEngine()" [(ngModel)]="searchText" name="text" class="txt_searchbx" placeholder="חפש באתר"></div> 
+    </div>
+
+    <div *ngIf="!commonService.userDetails" class="user_profile_home">
+      <div class="user_img">
+        <img src="assets/img/icon_white.png" alt="משתמש">
+      </div>
+      <div class="user_info">
+        <a class="userName" >{{'helloGuest'| lang }}</a>
+        <a (click)="logIn()" class="profile_logout">{{'logIn'| lang }}</a>
+      </div>
+    </div>
+   
+    <div *ngIf="commonService.userDetails" class="user_profile_home">
+      <div class="user_img">
+        <img src="assets/img/icon_white.png" alt="משתמש">
+      </div>
+      <div class="user_info">
+        <a class="userName">{{'hello'| lang }} <span></span>{{commonService.userDetails[0].FirstName}} !</a>
+        <a class="profile_logout" (click)="logOut()">{{'logOut'| lang }}</a>
+      </div>
+    </div>
+
+
+    <div *ngIf="umbracoLinkPages" class="mobileMenu">   
+      <ul *ngFor="let page of umbracoLinkPages">
+        <li>
+            <a (click)="actionLink(page)" >{{page.name}}</a>     
+        </li>
+      </ul>
+    </div>
+
+<!-- 
+    <div class="langChange">
+      <select  class="form-contorl nav-right" id="language_option" (change)="selectLanguage($event.target.value)">
+        <option [attr.selected]="commonService.selectedLanguage == 'he' ? true : null" id="he" value="he">he</option>
+        <option [attr.selected]="commonService.selectedLanguage == 'en' ? true : null" id="en" value="en">en</option>
+       <option value="Рус">Рус</option>
+        <option value="عر">عر</option> 
+      </select>
+    </div>  -->
+
+
+
+  </div>
+</div>

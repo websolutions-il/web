@@ -1,0 +1,57 @@
+<div class="meeting_steps">
+
+
+    <div class="row wrap_move">
+        <div class="col-lg-10 col-lg-offset-1  col-sm-12 text-center">
+            <div class="container_logo">
+                <img *ngIf="commonService.cityModel" [src]="commonService.cityModel.logo" alt="" style="max-width: 100px;">
+            </div>
+            <h1>מהיום - לא ממתינים בתור!</h1>
+            <p>מתאמים תור בקליק במועד הנוח לכם, חוסכים זמן המתנה ומקבלים טיפול יעיל ומתקדם בפנייתכם</p>
+
+            <div class="row steps_row">
+                <div class="col-md-4 col-sm-12 pull-right step_col">
+                    <div class="department_wrapper text-center">
+                        <div class="img">
+                            <img src="assets/img/infog-1.png" alt="">
+                        </div>
+                        <div class="step_text">
+                            1. בוחרים את תחום השירות הרצוי
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 pull-right step_col">
+                    <div class="service_wrapper text-center">
+                        <div class="img">
+                            <img src="assets/img/infog-2.png" alt="">
+                        </div>
+                        <div class="step_text">
+                            2. בוחרים את השירות המבוקש
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12 pull-right step_col">
+                    <div class="date_wrapper text-center">
+                        <div class="img">
+                            <img src="assets/img/infog-3.png" alt="">
+                        </div>
+                        <div class="step_text">
+                            3. בוחרים מועד מבוקש וקובעים את התור
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button_plan text-center">
+                <a href="javascript:void(0)" (click)="appointmentsService.changeStep('tow')" class="btn">זימון תור</a>
+            </div>
+
+
+
+        </div>
+
+
+
+
+    </div>
+</div>

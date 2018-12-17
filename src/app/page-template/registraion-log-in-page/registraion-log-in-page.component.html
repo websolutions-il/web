@@ -1,0 +1,227 @@
+<div class="lets_start">
+
+    <h2>{{'regAndLogIn'| lang }}</h2>
+
+
+</div>
+
+<section class="content-bx">
+
+    <div class="register_form_1">
+        <h1 class="text-center page_Heading_Tag">{{'regAndLogIn'| lang }}</h1>
+        <div class="row form_outerside">
+
+            <div class="col-sm-6 col-md-6 padding-0 gray_bg register_forms">
+
+                <div class="form_inside_space">
+
+                    <div class="right_from">
+
+                        <h2 class="blue_bg_title">התחברות</h2>
+
+                        <form class="login_form_box_1 login_form_box_login" id="logInForm" style="display: block">
+                            <div class="form-group">
+                                <!-- <label class="label_accessibility" for="mobilenumber">{{'insertPhoneNumber'| lang }}</label> -->
+                                <input type="tel" (focusout)="validPhoneLoginUserFun()" [(ngModel)]="phoneNumberToLogIn" name="הזן מספר נייד" (keydown.enter)="logIn(false)"
+                                    id="mobilenumber" class="form-control mainContentForFocus cellphone_number" placeholder="{{'insertPhoneNumber'| lang }}"/>
+                            </div>
+                            <div class="validationMesseg" aria-labelledby="la_validPhoneLoginUser" id="validPhoneLoginUser" *ngIf="isvalidPhoneLoginUserMesseg"
+                                style="clear: both">{{isvalidPhoneLoginUserMesseg| lang }}</div>
+
+
+                            <div class="form-group">
+
+                                <button (click)="logIn(true)" class="blue_border_btn">הודעה קולית
+                                    <em class="fa fa-rss" aria-hidden="true"></em>
+                                </button>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p class="p_text">במידה ואין באפשרותך לקבל הודעה,
+                                    <br> תוכל/י לבחור לקבל את הקוד באמצעות
+                                    <br> הודעה קולית בלחיצה על הכפתור
+                                </p>
+
+                            </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0)" (click)="logIn(false)" style="background: #0000c5 none repeat scroll 0 0; color: #fff;"
+                                    class="submitBtn btn1 clickregister register_btn1 cursorPointer">{{'send'| lang }}</a>
+                            </div>
+                            <div class="validationMesseg" *ngIf="phoneNumberNotFoundInSystemMesseg" style="clear: both">{{'phoneNumberNotFoundInSystem'| lang }}
+                                <a href="javascript:void(0)" class="cursorPointer"
+                                    style="padding: 0px;" routerLink="/registraion-log-in-page">{{'here'| lang }}</a>
+                            </div>
+                            <div class="validationMesseg" id="alert_expiredSms" *ngIf="isExpiredSms" style="clear: both">{{expiredMesseg}} </div>
+
+                            <div class="form-group">
+                                <a href="javascript:void(0)" routerLink="/change-phone" title="I changed the phone number" style="display: inline-block; margin-left:0px; margin-right:0px;  margin-top: 34px; font-size:14px; text-decoration:underline; font-family: 'heebolight';">{{'iChangePhoneNumber'| lang }}</a>
+                            </div>
+
+                        </form>
+
+
+
+                        <!-- פורם לצורך הקוד שהתקבל באס אם אס -->
+                        <form class="login_form_box_1 login_form_box_smsCode" id="smsCodeForm" style="display: none">
+                            <div class="form-group">
+                                <input type="tel" id="smsCodeInput" (keyup)="hideIncorrectCodeMesseg()" (keyup.enter)="validateSmsCode()" [(ngModel)]="smsCode"
+                                    name="הזן מספר נייד" class="form-control" placeholder="{{'insertTheCode'| lang }}"
+                                />
+                            </div>
+                            <div class="validationMesseg" *ngIf="smsCodeIncorrectMesseg" style="clear: both">{{'codeDontCorrect'| lang }}</div>
+
+                            <div class="" style="clear: both; font-size: 14px;font-family: 'heebolight';">לא קיבלת את הקוד?
+                                <a href="javascript:void(0)" (click)="logIn(isVocalMesseg)" class="cursorPointer" style="padding: 0px; text-decoration: underline">לשליחה חוזרת</a>
+                            </div>
+
+
+                            <div class="form-group">
+                                <a href="javascript:void(0)" (click)="validateSmsCode()" class="submitBtn btn1 clickregister register_btn1 cursorPointer">{{'send'| lang }}</a>
+                            </div>
+
+                        </form>
+
+                        <!-- טופס המתנה -->
+                        <form class="login_form_box_1" id="loadingForm" style="display: none">
+                            <div style="color: #0000c5">{{'loading'| lang }}</div>
+
+                        </form>
+
+                        <!-- טופס בחירת עיר -->
+                        <form class="login_form_box_1" id="addCityForm" style="display: none">
+                            <div class="approvedRegulation">להמשך- אנא בחר רשות</div>
+                            <app-city-drop-down #CityDropDown2 [page]="'registraion-log-in-page'" ></app-city-drop-down>
+                      
+                            <div class="form-group">
+                                    <a href="javascript:void(0)" (click)="updateCity()" style="background: #0000c5 none repeat scroll 0 0; color: #fff;"
+                                        class="submitBtn btn1 clickregister register_btn1 cursorPointer">{{'send'| lang }}</a>
+                                </div>
+                      
+                      
+                        </form>
+
+                        <!--  טופס לאישור תקנון -->
+                        <form class="login_form_box_1 login_form_box_regulations" id="approvedRegulationForm" style="display: none">
+
+                            <div style="color: #0000c5; font-size: 17px;">להמשך- אנא אשר את התקנון</div>
+                            <br>
+                            <br>
+                            <div class="form-group rememberMe">
+                                <label for="regulations">
+                                    <input checked="checked" type="checkbox" [(ngModel)]="isValidRegulationsForRegUser" name="תקנון" id="regulations" /> מאשר תנאי השימוש בכפוף ל
+                                    <a href="javascript:void(0)" title="regulations" target="_blank" href="https://www.mast.co.il/content/תקנון">{{'regulations'| lang }}</a>
+                                </label>
+                                <div *ngIf="isValidRegulationsForRegUserMesseg" class="validationMesseg">{{'isValidRegulations' | lang }}</div>
+
+
+                            </div>
+                            <div class="form-group">
+
+                                <a href="javascript:void(0)" (click)="approvedRegulationFun()" class="submitBtn btn1 clickregister register_btn1 cursorPointer"
+                                    title="send">{{'send'| lang }}</a>
+                            </div>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-6 col-md-6 padding-0 gray_bg register_forms">
+
+                <div class="form_inside_space">
+
+                    <div class="right_from" style="float: right; margin-right: 13%;">
+
+                        <a href="javascript:void(0)" (click)="goToLastPage()" class="returnBtn cursorPointer" style="float:left;  margin-top:-16px;">
+
+                            <em class="fa fa-times-circle-o " aria-hidden="true"></em>
+                            <span> {{'back' | lang }}</span>
+                        </a>
+
+                        <h2 class="blue_bg_title">{{'reg'| lang }}</h2>
+
+
+
+                        <fieldset class="field1 login_form_box_1 current form_section_1" style="display: block;">
+                            <div class="form-group">
+
+                                <input type="text" required id="FirstName" (focusout)="validFirstNameFun()" [(ngModel)]="user.FirstName" name="*שם פרטי"
+                                    class="form-control FirstName" placeholder="*  {{'firstName'| lang }}" />
+                                <div *ngIf="isValidFirstNameMesseg" id="VFND" class="validationMesseg">{{isValidFirstNameMesseg | lang }}</div>
+
+                                <input type="text" required id="LastName" (focusout)="validLastNameFun()" [(ngModel)]="user.LastName" name="*שם משפחה" class="form-control LastName"
+                                    placeholder="*  {{'LastName'| lang }}" />
+                                <div *ngIf="isValidLastNameMesseg" id="VLND" class="validationMesseg">{{isValidLastNameMesseg | lang }}</div>
+
+                                <input type="email" required id="email_address" (focusout)="validEmailFun()" [(ngModel)]="user.Email" name="*דואר אלקטרוני"
+                                    class="form-control email_address" placeholder="*  {{'email'| lang }}" />
+                                <div *ngIf="isValidEmailMesseg" id="VED" class="validationMesseg">{{isValidEmailMesseg | lang }}</div>
+
+                                <input type="tel" required id="cellphone_number" (focusout)="validPhoneFun()" [(ngModel)]="user.Phone" name="*מספר נייד"
+                                    class="form-control cellphone_number" placeholder="*  {{'phone'| lang }}" />
+                                <div *ngIf="isValidPhoneMesseg" id="VPD" class="validationMesseg">{{isValidPhoneMesseg | lang }}</div>
+
+
+                                <div *ngIf="!TzOrPassport">
+                                    <select (change)="setTzOrPassport($event)" class="form-control" id="selectTZ" name="prefix_form">
+                                        <option value="" selected disabled hidden>* בחר אמצעי זיהוי</option>
+                                        <option value="tz">תעודת זהות</option>
+                                        <option value="pas">דרכון</option>
+                                    </select>
+                                    <i class="fa fa-chevron-down" aria-hidden="true" style="color: #0000c6;"></i>
+                                </div>
+                                <div *ngIf="TzOrPassport">
+                                    <input type="text" [disabled]="!TzOrPassport" required id="TZ" (focusout)="validTZFun()" [(ngModel)]="user.TZ" name="*תעודת זהות/ דרכון"
+                                        class="form-control TZ" placeholder="*  תעודת זהות\ דרכון" />
+                                    <i class="fa fa-remove cursorPointer" aria-hidden="true" (click)="setTzOrPassportToNull()" style="color: #0000c6;"></i>
+                                </div>
+                                <div class="borderBotoomClass" style="clear: both;"></div>
+                                <div *ngIf="isValidTZMesseg" id="VTZD" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+                              
+                                <app-city-drop-down [page]="'registraion-log-in-page'" [ngClass]="requestedCity  ? 'visibility-none' : ''" #CityDropDown ></app-city-drop-down>
+
+
+                                <br>
+                                <div class="form-group rememberMe">
+                                    <label for="regulationsReg">
+                                        <input checked="checked" (focusout)="validRegulationsFun()" required type="checkbox" [(ngModel)]="isValidRegulations" name="תקנון"
+                                            id="regulationsReg" class="regulations" /> {{'approvedCond' | lang }}
+                                        <a title="regulations" target="_blank" href="https://www.mast.co.il/content/תקנון">{{'regulations'| lang }}</a>
+                                    </label>
+
+                                    <div *ngIf="isValidRegulationsMesseg" id="alert_ValidRegulationsReg" class="validationMesseg">{{'isValidRegulations' | lang }}</div>
+                                    <div *ngIf="isValidExsistsPhone" id="alert_ValidExsistsPhoneReg" class="validationMesseg">{{'isValidExsistsPhone' | lang }}</div>
+
+
+                                </div>
+                                <div class="form-group homecapcha">
+                                    <div class="g-recaptcha" data-sitekey="6LdNthAUAAAAAItribt1-VmPoOC_H5ZYrDxXaf3c"></div>
+                                </div>
+                                <div *ngIf="isValidRecaptcha" class="validationMesseg">{{'notRobot'| lang }}</div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <a href="javascript:void(0)" (click)="insertUserToDB()" class="submitBtn btn1 clickregister register_btn1 cursorPointer"
+                                    style="margin-bottom: 57px;" title="send">{{'send'| lang }}</a>
+                            </div>
+                        </fieldset>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</section>

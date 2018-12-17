@@ -1,0 +1,8 @@
+<p class="footer_links" *ngIf="umbracoLinkPages.length>0" > 
+    
+<span class="linkList" *ngFor= "let page of umbracoLinkPages">
+   <a href="javascript:void(0)" tabindex="40" class="leftBorder cursorPointer"  (click)="actionLink(page)" >{{page.name}}</a> 
+</span>
+<a [href]="mastManagerLink" tabindex="40" class="leftBorder cursorPointer">MAST! Manager</a> 
+</p>
+

@@ -1,0 +1,46 @@
+
+  <div class="lets_start">
+      <h1>חיפוש</h1>
+    </div>
+    <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+  
+    <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+        <section class="user-content">
+        <div class="fh8co-main container-fluid">
+          <div class="row">     
+            <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu> 
+            <div id="tab-2"  [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'">
+                <div class="box-wrapper article_section">
+                   <div class="article_header">
+                       <div class="col-md-6 col-sm-6 pull-right">
+                         <div class="right_text">
+                            <img class="notepadImg" alt="" src="assets/img/notpad.png">
+                            <h3>תוצאות חיפוש</h3>
+                         </div>
+                      </div>
+                   </div>
+
+                   <div class="articles_list">
+                      <div>
+                         <h2 *ngIf="!itemsList && !commonService.showLoader">לא נמצאו תוצאות</h2>
+                         <div *ngIf="isLoad">
+                            <div *ngFor="let item of itemsList" class="single_articles">
+                               <div class="col-md-12 col-sm-12">
+                                  <h3><a href="javascript:void(0)" (click)="openLink(item.link)" >{{item.title}}</a></h3>
+                                  <p [innerHTML]="item.htmlSnippet"></p>
+                               </div>                             
+                            </div>    
+                            <a *ngIf="isPrevPage" (click)="prevPage()" href="javascript:void(0)" style="margin-left: 20px">דף קודם</a>                         
+                            <a *ngIf="isNextPage" (click)="nextPage()" href="javascript:void(0)">דף הבא</a> 
+                         </div>
+                      </div>
+                   </div>
+                  
+                </div>
+              </div>                
+          </div>
+        </div>
+      </section>
+    </div>
+
+   

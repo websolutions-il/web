@@ -1,0 +1,42 @@
+.responsive-img{
+    margin-left: 248px;
+    float: left;
+    max-width: 200px;
+    margin-top: 50px;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.optionColor:hover{
+  background-color: #0000c5;
+  color: white;
+  
+  }
+  .optionColor:focus-within{
+    background-color: cadetblue;
+  }
+
+  .mat-option.mat-active {
+    background-color: #0000c5 !important;
+    color: white;
+  }
+
+
+  @media(max-width:768px)
+  {
+    .auto_search{
+      margin-bottom:109px;
+    }
+  }
+
+
+.city-list-item{
+  font-size: 14px; line-height: 1.42857143;
+}

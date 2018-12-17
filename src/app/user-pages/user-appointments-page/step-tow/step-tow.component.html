@@ -1,0 +1,160 @@
+<section id="planning_section" class="planning_section">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="breadcrumb_container text-center">
+                <div class="progress center-block">
+                    <div class="progress-bar pull-right progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                        style="width: 33%">
+                    </div>
+                </div>
+                <ul id="breadcrumbs-three" class="step_by_step">
+                    <li class="active">
+                        <a href="javascript:void(0)">
+                            <span>1</span>
+                            <p>בחירת שירות</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <span>2</span>
+                            <p>פרטי מזמין התור</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <span>3</span>
+                            <p>בחירת מועד התור</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <span>
+                                <img class="flag-ico" src="assets/img/flag.png" alt="">
+                            </span>
+                            <p>סיום</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12 wrap_move">
+            <div class="select">
+                <div class="page-title">
+                    <span>בחרו את השירות המבוקש</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12 pull-right selectiondiv">
+                        <div class="column_wrapper wing">
+                            <div class="column_title">
+                                <span>תחום השירות</span>
+                            </div>
+                            <!-- *ngFor="let contact of filteredContactList  | searchfilter: 'Type' : cat.Type;  index as j; isContactFirst as first;" -->
+                            <div class="list_container" id="scrolling_list">
+                                <ul *ngIf="appointmentsService.department_list" class="column_list" id="SkrollThis">
+                                    <li *ngFor="let dep of appointmentsService.department_list" [id]="'dep'+dep.Id" (click)="selectDepartment(dep)">
+                                        <a href="javascript:void(0)">{{dep.UnitName}}
+                                            <span>
+                                                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 pull-right selectiondiv">
+                        <div class="column_wrapper department">
+                            <div class="column_title">
+                                <span>השירות המבוקש</span>
+                            </div>
+                            <div class="list_container list2" >
+                                <!-- id="scrolling_list2" -->
+                                <ul class="column_list heighetCube" id="SkrollThis" >
+                                    <div *ngIf="appointmentsService.selected_department">
+                                        <li (click)="selectSubDepartment(sub_dep)" [id]="'sub_dep'+sub_dep.Id"
+                                         *ngFor="let sub_dep of appointmentsService.sub_department_list |
+                                          searchfilter: 'ParentUnitId' : appointmentsService.selected_department.UnitId;">
+                                            <a href="javascript:void(0)">{{sub_dep.UnitName}}
+                                                <span>
+                                                    <i aria-hidden="true"></i>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </div>
+                                </ul>
+                                <div class="column_overlay">
+                                    <div class="img">
+                                        <img src="assets/img/building.png" class="bigarrow-ico">
+                                    </div>
+                                    <div class="subtext">
+                                        <span>בחרו מחלקה</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-4 col-sm-12 pull-right selectiondiv">
+                      <div class="column_wrapper service">
+                          <div class="column_title">
+                              <span>שירות מבוקש</span>
+                          </div>
+                          <div class="list_container" id="scrolling_list3">
+                              <ul class="column_list" id="SkrollThis">
+                                  <li><a href="javascript:void(0)">הזמנת מד מים<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">תשלומי אגרות מים וביוב<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">עדכון מספר נפשות המתגוררות בנכס<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">הטבות לאוכלוסיות מיוחדות<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">צריכת מים חריגה ונזילות<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">בירור חיוב מים<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                                  <li><a href="javascript:void(0)">בירור חיוב כללי<span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a></li>
+                              </ul>
+                              <div class="column_overlay">
+                                  <div class="img">
+                                      <img src="assets/img/user-16.png" class="bigarrow-ico">
+                                  </div>
+                                  <div class="subtext">
+                                      <span>בחרו שירות מבוקש</span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div> -->
+                </div>
+            </div>
+            <div class="buttons step-buttons text-left">
+                <a href="javascript:void(0)" (click)="appointmentsService.changeStep('one')" class="btn cancel" name="button">חזור</a>
+                <a href="javascript:void(0)" (click)="checkAvailableDates()" id="continueBtn" class="btn submit disabled">המשך
+                    <span>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="popup" class="overlay">
+    <div class="popup">
+        <h2>לקוחות יקרים!</h2>
+        <a class="close" (click)="closePopup()">&times;</a>
+        <div class="content">
+            <div>
+            זמנית אין תורים פנויים למחלקה זאת.           
+            </div>
+            <div style="margin-bottom: 10%">
+             אנא נסו במועד מאוחר יותר.
+             </div>
+             <div style="margin-bottom: 10%">
+              עמכם הסליחה.
+            </div>
+
+            <div class="buttons step-buttons">
+                <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
+            </div>
+
+        </div>
+
+    </div>
+</div>

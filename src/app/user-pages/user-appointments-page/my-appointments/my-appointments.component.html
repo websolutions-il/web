@@ -1,0 +1,37 @@
+
+<div class="lets_start">
+    <h1>התורים שלי</h1>
+  </div>
+  <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+  <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+    <section class="user-content">
+      <div class="fh8co-main container-fluid">
+        <div class="row">     
+          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+          <section class="content-bx">  
+            <div class="container">  
+              <div class="row">   
+                <div *ngIf="!commonService.isLogInUser">
+                    <input type="text" [(ngModel)]="phone">  
+                    <input type="button" value="send" (click)="getAppointments(phone)">          
+                </div>  
+                <div *ngIf="itemsList">
+                   <div *ngFor="let item of itemsList">
+                      <div>{{item.ServiceName}}</div>
+                      <div>{{item.AppointmentDate | date: 'shortDate'}}</div>                      
+                      <div>{{item.AppointmentDate | date: 'hh:mm'}}</div>                      
+                      <input type="button" value="delete" (click)="deleteAppointments(item)">  
+                   </div>
+                </div>  
+                <div *ngIf="!isAppointmentsExists">
+                  אין תורים זמינים להצגה
+                </div>       
+                        
+              </div>
+              </div>
+          </section>
+  
+        </div>
+      </div>
+    </section>
+  </div>

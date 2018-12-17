@@ -1,0 +1,16 @@
+#tab-1{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+.overlay {
+    display: block;
+}
+a.whatsapp:focus{
+    border: inherit !important;
+    background-color: inherit !important;
+}
+a.whatsapp{
+    border: inherit !important;
+    background-color: inherit !important;
+}

@@ -1,0 +1,99 @@
+<div class="lets_start">
+  <h1>{{'services'| lang}}</h1>
+</div>
+
+<div class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">     
+        <app-user-side-menu></app-user-side-menu>
+
+
+
+
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 gray_bg background3" style="padding:4% 6% 0 0;">
+      
+          <div class="box-wrapper">
+
+             <div class="col-md-12 col-sm-12">
+
+                <div class="right_table refrence_section">
+
+                   <div class="sliderdiv">
+
+                      <div style="margin-bottom:0px">
+
+                         <h2 class="blue_bg_title">{{cityName}} - דיווח למוקד עירוני</h2>
+
+                      </div>
+
+                   </div>
+
+                   <table class="table table-striped refrence_table accordian_table">
+
+                       <thead>
+
+                         <tr>
+
+                            <th scope="col" id="tbl5">#</th>
+
+                            <th scope="col" id="tbl6" width="140"> תאריך</th>
+
+                            <th scope="col" id="tbl7">סטטוס</th>
+
+                            <th scope="col" id="tbl8">מספר</th>
+
+                            <th scope="col" id="tbl9">רחוב</th>
+
+                         </tr>
+
+                      </thead>
+
+
+                        <tbody *ngFor="let rep of reportsList">
+                           <tr class="activeTr">
+                              <th scope="col" id="tbl13" headers="tbl5">1</th>
+                              <td scope="row" headers="tbl6 tbl13">{{rep.CreateDate | date: 'dd/MM/yyyy'}}</td>
+                              <td scope="row" headers="tbl7 tbl13">{{rep.MokedMessage}}</td>
+                              <td scope="row" headers="tbl8 tbl13">{{rep.StreetNumber}}</td>
+                              <td scope="row" headers="tbl9 tbl13" class="refrenceSection"><a href="" class="imgText">{{rep.StreetName}} <i class="fa fa-caret-left" aria-hidden="true"></i></a></td>
+                           </tr>
+                           <tr class="showtd">
+                            <td *ngIf="rep.ImageFullPath!=null" colspan="1">
+                                <div class="postImage">
+                                  <div class="camera_img"><img src="assets/img/icons4.png" width="30"></div> 
+                                  <img [src]="'https://s3-eu-west-1.amazonaws.com/mgar.kic.images/'+rep.ImageFullPath">
+                                  <img *ngIf="rep.ImageFullPath2!=null" [src]="'https://s3-eu-west-1.amazonaws.com/mgar.kic.images/'+rep.ImageFullPath2">
+                               
+                                </div>
+                              </td>
+                              <td  colspan="4" cellspacing="0">
+                                <div class="postContent">
+                                  <h3 class="postHeading"><img src="assets/img/icons3.png">{{rep.StreetName}}</h3>
+                                   <p  class="textrefrence"><img src="assets/img/icons5.png">{{rep.Description}}</p>
+                               </div>
+                              </td>
+                           </tr>
+                        </tbody>
+
+
+                   </table>
+
+                   <a (click)="addNewCall()" style="width: 100%;" class="client-name cursorPointer"><span class="plus"><img src="assets/img/plus-icon.png" alt="הוסף פניה" class="" draggable="false"></span><span class="user-name">הוסף דיווח למוקד עירוני</span></a>
+
+
+                </div>
+
+             </div>
+
+          </div>
+
+       </div>
+
+        
+      
+
+      </div>
+    </div>
+  </section>
+</div>

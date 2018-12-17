@@ -1,0 +1,239 @@
+    fieldset.field3 {
+        display: none;
+    }
+
+    fieldset.field2 {
+        display: none;
+    }
+
+    .blue_border_btn {
+        background: transparent none repeat scroll 0 0;
+        border: 1px solid;
+        border-radius: 6px;
+        clear: both;
+        float: left;
+        margin: 5px 0 10px 0;
+        padding: 5px;
+    }
+
+    .fa.fa-rss {
+        margin-right: 6px;
+        transform: rotate(257deg);
+    }
+
+    a.nextbtn {
+        margin-top: 10%;
+    }
+
+    i.fa.fa-info-circle.fa-lg.fa-li {
+        position: absolute;
+        left: 6%;
+        font-size: 24px;
+        top: 35%;
+    }
+
+    i.fa.fa-chevron-down {
+        float: left;
+        position: absolute;
+        font-size: 24px;
+        margin-top: 8px;
+        left: 20px;
+        /* top: unset; */
+    }
+
+     i.fa.fa-remove {
+        left: 12px;
+        margin-top: 8px;
+        width: 12%;
+        color: #0000c6;
+        position: absolute;
+        float: left;
+        font-size: 24px;
+    }
+    a.submitBtn {
+        margin-top: 10%;
+    }
+
+    .arrow-left {
+        width: 30px;
+        height: 30px;
+        border-top: 30px solid transparent;
+        border-bottom: 30px solid transparent;
+        border-right: 50px solid #fff;
+        position: absolute;
+        top: 26%;
+        left: 22.3%;
+        z-index: 9999;
+    }
+
+    .form-control.input-alert {
+        border-bottom: 2px solid red;
+        border-color: red;
+        border-top: 2px solid red;
+        color: red;
+        margin-top: 1px;
+        margin-top: 20px;
+    }
+
+    .form-control.input-alert::placeholder {
+        color: red;
+    }
+
+
+
+/* Overrides */
+.optionColor:hover ,.mat-option.mat-active{
+    background-color: rgb(35, 35, 255);
+    color: white;    
+    }
+
+ 
+
+
+.form_section_3 .fa-info-circle {
+    top: -148% !important;
+}
+
+#insertAssetLogInForm .fa-info-circle {
+    top: -148% !important;
+}
+
+
+
+
+.validationMesseg{
+    /* color: red;     
+    font-size: 80%; */
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+    /* border-bottom: 1px solid #000A90;  */
+    
+}
+.inputError{
+    color: red;     
+}
+.borderTopClass{
+    border-top: 1px solid #000A90;   
+}
+
+.borderBotoomClass  {
+    border-bottom: 1px solid #000A90; 
+    /* padding-top: 10px; */
+}
+
+.searchCorporationInput{
+    height: 42px;
+    width: 80%;
+    border: medium none;
+    outline: none;
+    background-color: #f2f2f2;
+}
+
+
+
+
+.clear-both{
+    clear: both;
+}
+
+.recive-the-code{
+    clear: both; font-size: 14px;font-family: 'heebolight';
+}
+.change-phone-number{
+    clear: both; font-size: 14px;font-family: 'heebolight'; padding-top: 15px;
+}
+.a-change-phone-number{
+    padding: 0px; text-decoration: underline
+}
+.iChangePhoneNumber{
+display: inline-block; margin-left:0px; margin-right:0px;  margin-top: 34px; font-size:14px; text-decoration:underline; font-family: 'heebolight';
+}
+.padding-zero{
+padding: 0px;
+}
+.approvedRegulation{
+    color: #0000c5; font-size: 17px;
+}
+.loading-form{
+    color: #0000c5; font-size: 30px;
+}
+.font-size-ten{
+font-size:10px;
+}
+.display-inline{
+    display: inline
+}
+#CheckBoxstayRegCorporationLogIn{
+    width: 16px; height: 16px;
+}
+#alert_ErrorMessegAssetMatchLogIn{
+    color:red; line-height: 1em;
+}
+.g-recaptcha{
+    transform:scale(0.7);-webkit-transform:scale(0.7);transform-origin:0 0;-webkit-transform-origin:0 0;
+}
+
+.width16px-height16px{
+    width: 16px; height: 16px;
+}
+#alert_ErrorMessegAssetMatchReg{
+    color:red; line-height: 1em;
+}
+
+
+
+select{
+    border-top : none !important;
+    border-bottom: none !important;
+    float: right;
+    border: none;
+    background: transparent;
+    width: 100%;
+    color: #0000c6;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+  select::-ms-expand {
+    display: none;
+  } 
+
+  #chevronTZ{
+    padding: 10px;
+    float: left;
+    position: relative;
+  }
+
+  #TZ{
+      float: right;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0);
+      border: none;
+  }
+  #TZ:focus{
+    border: none;
+    
+
+  }
+  .dropdown_data .form-control{
+    border-top: none;
+  }
+  .dropdown_data .form-control:first-child{
+    border-top: 1px solid #000A90;
+  }
+
+  #addCityForm .approvedRegulation{
+      margin: 10%;
+  } 
+
+
+  @media screen and (max-width: 480px){
+   i.fa.fa-chevron-down {
+    left: 23%;
+    }
+
+    i.fa.fa-remove{
+        left: 16%;
+    }
+  
+ }

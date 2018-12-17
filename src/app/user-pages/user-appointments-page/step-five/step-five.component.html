@@ -1,0 +1,104 @@
+    <section id="planning_section" class="planning_section">
+
+          <div class="row">
+              <div class="col-sm-12">
+                  <div class="breadcrumb_container text-center">
+                      <div class="progress center-block">
+                          <div class="progress-bar pull-right progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%">
+                          </div>
+                      </div>
+                      <ul id="breadcrumbs-three" class="step_by_step">
+                          <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('tow')"><span>1</span><p>בחירת שירות</p></a></li>
+                          <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('four')"><span>2</span><p>פרטי מזמין התור</p></a></li>
+                          <li class="active"><a href="javascript:void(0)"><span>3</span><p>בחירת מועד התור</p></a></li>
+                          <li><a href="javascript:void(0)"><span><img class="flag-ico" src="assets/img/flag.png" alt=""></span><p>סיום</p></a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-sm-12 text-center step3form wrap_move ">
+                <div class="page-title">
+                  <span>נא בחרו את יום ההגעה הרצוי וכן את שעת ההגעה המועדפת עליכם</span>
+                </div>
+                <div class="row">
+
+                        <div class="col-md-7 col-sm-12 pull-right appointment_schedule">
+                              <div class="column_wrapper calendar_container">
+                                  <div class="column_title">
+                                      <span>תאריך ההגעה הרצוי</span>
+                                  </div>
+
+                                  <div class="calendar">
+                                      <div style="overflow:hidden;">
+                                          <!-- <div class="form-group">
+                                              <div id="datetimepicker12"></div>
+                                          </div> -->
+                                          <form>
+                                            <div class="input-group">
+                                                <input class="form-control"  style="visibility: hidden;" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                                                    [(ngModel)]="model" [options]="myOptions" #dp="ngx-mydatepicker"  (dateChanged)="onDateChanged($event)"/>
+                                        
+                                                <span class="input-group-btn">           
+                                                    <button type="button" id="openCalendar" style="visibility: hidden;" class="btn btn-default" (click)="dp.toggleCalendar()">
+                                                        <i class="glyphicon glyphicon-calendar"></i>
+                                                    </button>
+                                                </span>
+                                            </div>
+                                        </form>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+                          
+                          <div class="col-md-5 col-sm-12 appointment_schedule">
+                              <div class="column_wrapper hour_container">
+                                  <div class="column_title">
+                                      <span>שעת ההגעה הרצויה</span>
+                                  </div>
+                                  <div class="hour text-center">
+
+                                      <div class="clock-image">
+                                           <img src="assets/img/clock.png" class="big-clock-ico">
+                                      </div>
+                                      <div class="subtext">
+                                          <span>נא לבחור תאריך להצגת התורים הפנוים</span>
+                                      </div>
+                                      <div class="hour_overlay">
+
+                                          <div class="date">
+                                              <span id="selectedDate">{{appointmentsService.selected_date}}</span>
+                                          </div>
+                                          <div class="select_date">
+                                              <span>בחר תור</span>
+                                          </div>
+                                          <ul class="hour_list">
+                                              <li *ngFor="let time of availableTime">
+                                                  <div class="radio">
+                                                      <label (click)="setSelectedTime(time, $event)">{{time}}</label>
+                                                  </div>
+                                              </li>                                             
+                                          </ul>
+
+                                      </div>
+                                  </div>
+
+                              </div>
+
+                          </div>
+<!--                           
+                          <div class="col-sm-12 filter_checkbox">
+                            <div class="legend">
+                                <input type="checkbox" id="filterCheck">
+                                <label  for="filterCheck"> ימים בהם ישנם תורים פנויים</label>
+                            </div>
+                        </div> -->
+                      </div>
+
+                      <div class="buttons step-buttons text-left">
+                      <a href="javascript:void(0)" (click)="appointmentsService.changeStep('four')" class="btn cancel" name="button">חזור</a>
+                      <a href="javascript:void(0)" (click)="appointmentsService.changeStep('six')" class="btn submit disabled">המשך <span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                  </div>
+
+              </div>
+          </div>
+  </section>

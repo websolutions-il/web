@@ -1,0 +1,160 @@
+<div class="cs-loader" style="display: none;">
+  <div class="cs-loader-inner">
+    <label> ●</label>
+    <label> ●</label>
+    <label> ●</label>
+    <label> ●</label>
+    <label> ●</label>
+    <label> ●</label>
+  </div>
+</div>
+
+<app-spinner-loader [show]="commonService.showLoader" [styleLoader]="commonService.styleLoader" ></app-spinner-loader>
+
+
+
+
+
+<div class="alertSign" style="display: none;">
+  <img src="assets/img/alert.png">
+</div>
+<a href="javascript:voud(0)" tabindex="1" *ngIf="toShowStopAnimation" class="skip-link screen-reader-text" (click)="stopAnimation()"
+  (keyup.enter)="stopAnimation()" id="stop_animation" title="Stop Animation">הפסקת הנפשה</a>
+<a href="javascript:voud(0)" tabindex="2" class="skip-link screen-reader-text" (click)="moveToMainContent()" (keyup.enter)="moveToMainContent()"
+  title="jump to main">עבור לתוכן מרכזי</a>
+
+<header *ngIf="normalHeader" id="homeHeader" class="header">
+ <div class="header_top">
+  <div class="container-fluid">
+    <div class="header-content">
+
+      <div class="logo-rw">
+        <img src="assets/img/mast-logo.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
+          class="hideMobile" />
+        <img src="assets/img/mast-logo_blue.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
+          class="showMobile" />
+        <div class="slogan_text">שירותים דיגיטליים </div>
+      </div>
+
+      <button type="button" (click)="hamborgerScript()"
+       class="navbar-toggle collapsed" data-toggle="collapse"
+        data-target="#ex-navbar-collapse"
+        aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar line1"></span>
+        <span class="icon-bar line2"></span>
+        <span class="icon-bar line3"></span>
+      </button>
+
+      <app-hamburger-menu></app-hamburger-menu>
+
+    </div>
+  </div>
+</div>
+  <video autoplay="true" muted="muted" loop="" id="myVideo">
+      <source src="assets/img/header_video.mp4" type="video/mp4">
+  </video>
+
+</header>
+
+
+<div id="header" class="lessHeightBanner">
+  <header  *ngIf="headerForPageWithoutReg || contentHeader" class="header" [ngClass]="{'inner_banner' : !isMobileUser , 'contentHeader' : contentHeader , 'headerForPageWithoutReg': headerForPageWithoutReg  } " >
+    <div class="container-fluid">
+      <div class="header-content">
+        <div class="userheaderimg">
+          <a *ngIf="commonService.cityModel.logo">
+            <img [src]="commonService.cityModel.logo">
+          </a>
+        </div>
+        <div class="logo-rw" id="topLogoImage">
+          <a routerLink="/" class="cursorPointer">
+            <img src="assets/img/mast-logo.png" alt="MAST! {{'MunicipalServices'| lang }}" class="hideMobile" />
+            <img src="assets/img/mast-logo_blue.png" alt="MAST! {{'MunicipalServices'| lang }}" class="showMobile" />
+            <div class="slogan_text">שירותים דיגיטליים</div>
+          </a>
+        </div>
+
+        <button type="button" id="hamborger_button" (click)="hamborgerScript()" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#ex-navbar-collapse" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar line1"></span>
+          <span class="icon-bar line2"></span>
+          <span class="icon-bar line3"></span>
+        </button>
+        <app-hamburger-menu></app-hamburger-menu>
+
+      </div>
+    </div>
+  </header>
+</div>
+
+<router-outlet (activate)="onRouteChange()"></router-outlet>
+
+<!-- style="position: fixed;" -->
+<footer class="footer">
+  <!-- <div (click)="goToChatPage()" *ngIf="isChatIconShow" class="chat_icon_outer cursorPointer">
+    <div class="chat_icon">
+      <img src="assets/img/chat-icon.png" alt="צאט">
+    </div>
+  </div> -->
+  <div class="foot1">
+    <div class="container">
+      <div class="spac_foot">
+        <div class="boxes">
+          <a class="closeApp">
+            <em class="fa fa-times" aria-hidden="true"></em>
+          </a>
+          <div class="col-md bx3">
+            <div class="mast_foot_lst">
+              <h2>יותר מהר באפליקציה </h2>
+            </div>
+            <h3 class="download">לחץ להורדה</h3>
+          </div>
+          <div class="col-md bx2">
+            <ul>
+              <li>
+                <a tabindex="-1" href="https://itunes.apple.com/us/app/mast/id1353905834?ls=1&mt=8">
+                  <img src="assets/img/apple_store.png" title="apple store חנות האפליקציות אפל " alt="apple store חנות האפליקציות אפל "> </a>
+              </li>
+              <li>
+                <a tabindex="-1" href="https://play.google.com/store/apps/details?id=com.mgar.mast.mastapp">
+                  <img src="assets/img/google_store.png" title="חנות האפליקציות אנדרואיד" alt="חנות האפליקציות אנדרואיד"> </a>
+              </li>
+            </ul>
+            <h3 class="download_fast">לחץ להורדה</h3>
+          </div>
+        </div>
+        <div class="col-md bx1">
+          <div class="mast_foot_rw">
+            <img src="assets/img/mast-foot.png" alt="MAST! גם בנייד"> </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="foot2" style="background: #f2f2f2;">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p class="footer_description">
+            <img src="assets/img/mast_footer_logo.png" class="mast_footer_logo" /> לשירותים דיגיטליים לרשויות ותאגידים – תשלומים, טפסים, זימון תורים, ניהול פניות, דווח מפגעים, שוברים במייל ועוד. בכמה שלבים פשוטים.
+          </p>
+          <app-footer-menu></app-footer-menu>
+        </div>
+      </div>
+    </div>
+<!--  (click)="openPageFromFooter($event,'נגישות')" -->
+    <div class="accessibilityIcon"> 
+      <a href="javascript:void(0)" tabindex="50" routerLink="/content/{{'accessbility'| lang }}" >
+        <img src="assets/img/icon-negishut.png" alt="accessibility icon" />
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+<img src="assets/img/mobile_bg.jpg" style="display: none">
+<a id="openLinkInNewWindow" tabindex="-1" href="" target="_blank"></a>

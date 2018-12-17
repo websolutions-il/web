@@ -1,0 +1,106 @@
+<div class="lets_start">
+  <h1>אימות נכס</h1>
+</div>
+<div class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+        <app-user-side-menu></app-user-side-menu>
+
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
+
+          <div class="form_section_1">
+
+            <div class="col-md-12 col-sm-12">
+
+              <div class="form_2 new_form">
+
+                <h2 class="counter_number">אימות נכס</h2>
+               
+                <div class="form1">
+                  <input [(ngModel)]="assetNumber"  class="asset_filed" (focusout)="validAssetNumberFun()" type="tel"
+                    placeholder="* מספר נכס" name="assetNumber" >
+                    <div *ngIf="isValidAssetNumberMesseg" id="alert_assetNumberReg" class="validationMesseg">{{isValidAssetNumberMesseg | lang }}</div>
+                     
+                    <p style="margin-left: 25%;">
+                        <a href="javascript:void(0)" (click)="insertAsset()" class="custom_sub_btn btn1" title="send">שלח</a>
+                   </p>        
+                 
+                </div>               
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+<div id="popup" class="overlay">
+    <div class="popup">
+        <h2>אימות נתונים</h2>
+        <a class="close" (click)="closePopup()">&times;</a>
+        <div class="content">
+          <div *ngIf="popUpType == 'verify'">
+            <div>
+           על מנת לאפשר צפייה בנתונים שביקשת עליך לבצע אימות של נתוני המשתמש.
+           <br>
+           לצורך ביצוע האימות תתבקש להזין את מספר הנכס כפי שמופיע בחשבונית התקופתית של בעל החשבון.
+           <br>
+           במידה ואין ברשותך את מספר הנכס ניתן לקבל את עזרת במוקד הטכני של MAST
+
+            </div>
+           <ul>
+             <li style="margin-top: 2%;">
+       
+              <span *ngIf="commonService.isMobileUser">לחץ <a  href="tel:0723390809"> כאן</a> לחיוג למוקד </span>
+              <span *ngIf="!commonService.isMobileUser"> לפניה למוקד חייג 0723390809 </span>
+          
+
+            </li>
+            <li style="margin-bottom: 2%;">   
+                לחץ   <a  href="javascript:void(0)" (click)="insertRequestToStutosNetForm('1b190640-21b5-4420-b237-efa734bf30a7')"  > כאן</a> ונציגנו יחזרו אליך בהקדם
+            </li>
+           </ul>
+          </div>
+          <div *ngIf="popUpType == 'representative'">
+              <h3>
+                 נציגנו יחזרו אליך בהקדם           
+                </h3>
+                  <h3 style="margin-bottom: 2%">
+              תודה!
+                  </h3>   
+          </div>
+
+          <div *ngIf="popUpType == 'assetNotMatch'">
+              <div>
+              לא נמצאה התאמה לנתונים שהוזנו
+              </div>
+              <ul style="margin-top: 10%;">
+                <li >
+                      לחץ <a  href="javascript:void(0)" (click)="closePopup()"  >כאן</a> להקלדה חוזרת של מספר הנכס
+                </li>
+                <li >                   
+                        <span *ngIf="commonService.isMobileUser">לחץ <a  href="tel:0723390809"> כאן</a> לחיוג למוקד לתמיכה טכנית </span>
+                        <span *ngIf="!commonService.isMobileUser"> לפניה למוקד חייג  <a href="tel:0723390809">  0723390809 </a>  </span>
+               </li>
+               <li style="margin-bottom: 2%; ">
+                  לחץ   <a  href="javascript:void(0)" (click)="insertRequestToStutosNetForm('c560fa7b-74df-4365-8b63-c12fc611a911')"  > כאן</a> ונציגנו יחזרו אליך בהקדם
+               </li>
+              </ul>         
+            </div>
+
+          <div class="buttons step-buttons">
+              <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
+          </div>
+        </div>
+
+    </div>
+</div>

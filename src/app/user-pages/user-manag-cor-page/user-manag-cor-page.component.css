@@ -1,0 +1,84 @@
+.overlay {
+    display: block;
+}
+
+.validationMesseg{
+    width: 100%;
+    border: none;
+    font-size: 13px;
+
+}
+.mat-option.mat-active, .mat-option:hover {
+    background-color: #0000c5;
+    color: white;
+}
+.bordre_box{
+    overflow: auto;
+}
+.wrap_addAsset{
+    overflow: auto;
+    border-top: none;
+    padding: 2%;    
+}
+.addAssetLable{
+    float: right;
+    width: 35%;
+}
+.addAssetInput{
+    float: right;
+  }
+.addAssetBtn{
+    margin: auto;
+    margin-left: 0px;
+    float: left;
+    padding-bottom: 5px;
+}
+.img-credit{
+    float: right;
+}
+.lable-credit{
+    padding-right: 10px;
+    padding-top: 7px;
+    float: right;
+}
+.btn-credit{
+    margin-right: 20px;
+    margin-left: 0px;
+    margin-top: 5px;
+}
+.tooltip-credit-icon{
+    width: 30px;
+    margin-bottom: 30px;
+}
+.credit-tool-tip{
+    text-align: center;
+    width: 212px;
+    background-color: silver;
+    position: absolute;
+    border: 1px solid blue;
+    border-radius: 10px;
+    overflow: auto;
+    padding: 10px;
+}
+
+input::placeholder{
+    color: rgb(128, 128, 128);
+}
+.left_table span{
+    padding: 9px 25px 9px 0;
+    font-size: 17px;
+}
+
+@media(max-width:767px){
+   
+    .proper_page .bordre_box {
+        width: inherit;
+    }
+    .addAssetLable{       
+        width: 100%;
+    }
+    .addAssetInput{
+        width: 55%;
+    }
+}
+

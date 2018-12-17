@@ -1,0 +1,77 @@
+    <section id="planning_section" class="planning_section">
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="breadcrumb_container text-center">
+                  <div class="progress center-block">
+                      <div class="progress-bar pull-right progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%">
+                      </div>
+                  </div>
+                  <ul id="breadcrumbs-three" class="step_by_step">
+                      <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('tow')"><span>1</span><p>בחירת שירות</p></a></li>
+                      <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('four')"><span>2</span><p>פרטי מזמין התור</p></a></li>
+                      <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('five')"><span>3</span><p>בחירת מועד התור</p></a></li>
+                      <li class="active"><a href="javascript:void(0)" ><span><img class="flag-ico" src="assets/img/flag_white.png" alt=""></span><p>סיום</p></a></li>
+                  </ul>
+              </div>
+          </div>
+          <div *ngIf="!isSuccess && !isError" class="col-sm-12 text-center">
+            <div class="page-title">
+              <span>אישור קביעת התור</span>
+              <p>אנא עברו על פרטי הזמנת התור בטרם אישור קביעת התור. לאחר האישור תשלח הודעה לתיבת הדוא”ל שלך וכן מסרון המכיל את כל המידע הדרוש והקישורים הרלוונטיים לפגישתך.</p>
+            </div>
+           
+            <div class="confirmation_list wrap_move">
+              <div  class="rezervation_details">
+                <h3>מזמין התור:</h3>
+                <ul>
+                    <li>שם מלא: {{appointmentsService.userDetails.FirstName + ' ' + appointmentsService.userDetails.LastName}}</li>
+                    <li>ת.ז: {{appointmentsService.userDetails.UserName}}</li>
+                    <li>טל: {{appointmentsService.userDetails.Phone}}</li>
+                    <li>אימייל: {{appointmentsService.userDetails.Email}}</li>
+                </ul>
+              </div>
+              <div  class="rezervation_details">
+                <h3>פרטי התור:</h3>
+                <ul>
+                    <li>תחום השירות: {{appointmentsService.selected_department.UnitName}}</li>
+                    <li>מחלקה: {{appointmentsService.selected_sub_department.UnitName}}</li>
+                    <li>תאריך:  {{appointmentsService.selected_date}}</li>
+                    <li>שעה: {{appointmentsService.selected_time}} </li>
+                </ul>
+              </div>
+            </div>
+                      
+            
+
+            <div class="buttons step-buttons text-left">
+                <a href="javascript:void(0)" (click)="appointmentsService.changeStep('five')" class="btn cancel" name="button">חזור</a>
+                <a href="javascript:void(0)" (click)="SaveAppointmentsDate()" class="btn submit">קבע תור <span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+            </div>
+
+          </div>
+
+          <div *ngIf="isSuccess" class="col-sm-12 text-center">                         
+            <div class="success_container">
+              <div class="success_image">
+                  <img src="assets/img/infog-3.png">
+              </div>
+                  <h1>תודה! התור נקבע בהצלחה</h1>
+                  <p>בדקו את תיבת הדוא”ל שלך ואת הסלולרי להנחיות בנוגע לתור שקבעתם.</p>
+              <a href="javascript:void(0)" [routerLink]="(appointmentsService.isLogInUser ? '/user/' : '/' )+appointmentsService.currentCityID+'/services'" class="btn retry" name="button">חזור לרשימת השירותים</a>                                
+            </div>
+          </div>
+          <div *ngIf="isError" class="col-sm-12 text-center">                         
+            <div class="success_container">
+              <div class="success_image">
+                  <img src="assets/img/alerticon.png">
+              </div>
+                  <h1>לא ניתן לקבוע את התור</h1>
+                  <p *ngIf="errorMsg == 'ERROR'">לא ניתן לקבוע את התור, אנא נסו שנית או בחרו מועד אחר</p>
+                  <p  *ngIf="errorMsg == 'EXISTS'">לא ניתן לקבוע את התור, היות ותור אחר כבר קיים למחלקה זו.</p>
+              <a href="javascript:void(0)" (click)="appointmentsService.changeStep('one')" class="btn retry" name="button">נסו שנית</a>                                
+            </div>
+          </div>
+
+      </div>
+  </section>
+ 

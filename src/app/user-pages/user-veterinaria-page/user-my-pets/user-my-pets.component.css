@@ -1,0 +1,26 @@
+.petImgEdit{
+    width: 100px;
+    height: 100px;
+}
+.petimg img{
+    max-width: 100px;
+    max-height: 100px;
+}
+.silverBtn{
+    background-color: #686f75;
+}
+/* לטובת הכפתור החדש. להחלפת תמונה מחוץ למסך עדכון פרטים */
+.upload_imgbtn{
+    margin-top: 5%;
+    margin-right: -2%;
+    left: auto;
+    bottom: auto;
+}
+
+@media(max-width:767px)
+{
+    .upload_imgbtn{
+        margin-top: 19%;
+        margin-right: -7%;
+    }
+}

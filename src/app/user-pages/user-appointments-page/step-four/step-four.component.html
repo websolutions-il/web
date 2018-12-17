@@ -1,0 +1,108 @@
+    <section id="planning_section" class="planning_section">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="breadcrumb_container text-center">
+                <div class="progress center-block">
+                    <div class="progress-bar pull-right progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
+                    </div>
+                </div>
+                <ul id="breadcrumbs-three" class="step_by_step">
+                    <li class="active"><a href="javascript:void(0)" (click)="appointmentsService.changeStep('tow')"><span>1</span><p>בחירת שירות</p></a></li>
+                    <li class="active"><a href="javascript:void(0)"><span>2</span><p>פרטי מזמין התור</p></a></li>
+                    <li><a href="javascript:void(0)"><span>3</span><p>בחירת מועד התור</p></a></li>
+                    <li><a href="javascript:void(0)"><span><img class="flag-ico" src="assets/img/flag.png" alt=""></span><p>סיום</p></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 step3form wrap_move">
+          <div class="page-title">
+            <span>פרטים אישיים</span>
+            <p>נא מלאו את פרטיכם</p>
+          </div>
+          <form *ngIf="isFirstForm" class="form_id tz_form wrap_move" method="post">
+               
+            <!-- <div class="form-group newdropdown selectholder">
+                  <label>אופן הזדהות *</label>
+                    <select class="form-control" >
+                        <option value="תעודת זהות">תעודת זהות</option>
+                        <option value="דרכון"></option>
+                    </select>
+                </div> -->
+
+                <label>יש להזין תעודת זהות</label>
+
+                  <label class="label_accessibility" for="form_id">תעודת זהות *</label>
+                  <input *ngIf="appointmentsService.userDetails" (focusout)="validTZFun()" name="payId" type="text" class="form-control TZ" id="form_id" [(ngModel)]="appointmentsService.userDetails.UserName" placeholder="* תעודת זהות">
+                  <div *ngIf="isValidTZMesseg" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+
+                  <!-- add class error to the input for validation -->
+                  <div class="buttons step-buttons text-left">
+                    <a (click)="appointmentsService.changeStep(stepToBack)" class="btn cancel" name="button">חזרה</a>
+                    <a (click)="showNextForm()" class="btn submit">המשך <span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                </div>
+          </form>
+
+          <form *ngIf="!isFirstForm" class="form_id det_form wrap_move" method="post">
+                              
+              <label class="label_accessibility" for="firstname_form">שם פרטי *</label>
+              <input type="text" (focusout)="validFirstNameFun()" [(ngModel)]="appointmentsService.userDetails.FirstName" class="form-control inputTopBrdr FirstName" id="firstname_form" name="firstname_form" placeholder=" שם פרטי">
+              <div *ngIf="isValidFirstNameMesseg" id="VFND" class="validationMesseg">{{isValidFirstNameMesseg | lang }}</div>
+ 
+              <label class="label_accessibility" for="lastname_form">שם משפחה *</label>
+              <input type="text" (focusout)="validLastNameFun()" [(ngModel)]="appointmentsService.userDetails.LastName" class="form-control LastName" id="lastname_form" name="lastname_form" placeholder=" שם משפחה">
+              <div *ngIf="isValidLastNameMesseg" id="VLND" class="validationMesseg">{{isValidLastNameMesseg | lang }}</div>
+
+              <label class="label_accessibility" for="email_form">דוא”ל *</label>
+              <input type="email" (focusout)="validEmailFun()" [(ngModel)]="appointmentsService.userDetails.Email" class="form-control email_address" id="email_form" name="email_form" placeholder=" כתובת דוא”ל">
+              <div *ngIf="isValidEmailMesseg" class="validationMesseg">{{isValidEmailMesseg | lang }}</div>
+
+              
+              <div class="phonenumber_container">
+                <div class="form-group prefix_form  newdropdown selectholder">               
+                    <label *ngIf="appointmentsService.prefix == ''">קדומת</label>
+                   <select class="form-control brdrTopNone" id="prefix_form"  name="prefix_form">
+                       <option [value]="pre" *ngFor="let pre of prefixList">{{pre}}</option>
+                   </select>
+               </div>
+              
+                <div class="form-group phonenumber_form">
+                  <label class="label_accessibility" for="phonenumber_form">טלפון *</label>
+                  <input type="tel" [(ngModel)]="appointmentsService.rest_phone" name="rest_phone" (focusout)="validPhoneFun()"  class="form-control cellphone_number" id="phonenumber_form" placeholder="מספר טלפון">
+                </div>   
+              </div>
+              <br><br>
+              <div *ngIf="isValidPhoneMesseg" class="validationMesseg"> {{isValidPhoneMesseg | lang }}</div>
+              <div *ngIf="isValidPrefixMesseg" class="validationMesseg">{{isValidPrefixMesseg}}</div>
+
+              <div *ngIf="!appointmentsService.isRegUser" class="form-group rememberMe">
+                  <label for="regulationsReg"> 
+                      <input checked="checked" (focusout)="validRegulationsFun()" required type="checkbox" [(ngModel)]="isValidRegulations" name="תקנון" id="regulationsReg"  class="regulations"  />
+                      {{'approvedCond' | lang }} <a title="regulations" routerLink="/content/תקנון" >{{'regulations'| lang }}</a> 
+                 </label>
+               
+                 <div *ngIf="isValidRegulationsMesseg" id="alert_ValidRegulationsReg" class="validationMesseg">{{'isValidRegulations' | lang }}</div>
+                 
+              </div>
+
+              
+             <div class="captcha_container">
+                  <div class="g-recaptcha" data-sitekey="6LdNthAUAAAAAItribt1-VmPoOC_H5ZYrDxXaf3c"></div>
+              </div> 
+              <div *ngIf="isValidRecaptcha" class="validationMesseg">{{'notRobot'| lang }}</div>
+
+
+              <!-- add class error to the input for validation -->
+              <div class="buttons step-buttons text-left">
+                <a href="javascript:void(0)" (click)="backToFirstForm()" class="btn cancel" name="button">חזור</a>
+                <a href="javascript:void(0)" (click)="regUserOrGoNextStep()" class="btn submit">המשך <span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+            </div>
+          </form>
+
+
+        </div>
+    </div>
+
+
+
+</section>

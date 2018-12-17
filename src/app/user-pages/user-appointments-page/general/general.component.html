@@ -1,0 +1,55 @@
+<div class="lets_start">
+  <h1>זימון תורים</h1>
+</div>
+
+<div *ngIf="appointmentsService.isLogInUser" class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">     
+        <app-user-side-menu></app-user-side-menu>
+
+        <div id="tab-2" [ngClass]="appointmentsService.isLogInUser ? 'col-md-9 col-sm-9' : 'col-md-12 col-sm-12'" class="padding-0 right_part table_part tab-content current">
+
+        <div id="servicesAreaDiv" [ngSwitch]="appointmentsService.activeStep">  
+          <app-step-one *ngSwitchCase="'one'"></app-step-one>
+          <app-step-tow *ngSwitchCase="'tow'"></app-step-tow>
+          <app-step-three *ngSwitchCase="'three'"></app-step-three>
+          <app-step-four *ngSwitchCase="'four'"></app-step-four>
+          <app-step-five *ngSwitchCase="'five'"></app-step-five>
+          <app-step-six *ngSwitchCase="'six'"></app-step-six>
+        </div>
+
+         </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+   
+<app-regestrition-log-in *ngIf="!appointmentsService.isLogInUser"></app-regestrition-log-in>
+    
+<section *ngIf="!appointmentsService.isLogInUser" class="content-bx">
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <div id="servicesAreaDiv" [ngSwitch]="appointmentsService.activeStep">  
+          <app-step-one *ngSwitchCase="'one'"></app-step-one>
+          <app-step-tow *ngSwitchCase="'tow'"></app-step-tow>
+          <app-step-three *ngSwitchCase="'three'"></app-step-three>
+          <app-step-four *ngSwitchCase="'four'"></app-step-four>
+          <app-step-five *ngSwitchCase="'five'"></app-step-five>
+          <app-step-six *ngSwitchCase="'six'"></app-step-six>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+ 
+</section>

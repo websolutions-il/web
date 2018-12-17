@@ -1,0 +1,14 @@
+.validationMesseg{
+    /* color: red; */
+    width: 80%;
+    /* font-size: 80%; */
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+    /* border-bottom: 1px solid #000A90;  */
+    
+}
+input[type="text"], input[type="email"]
+{
+    width: 80%;
+}

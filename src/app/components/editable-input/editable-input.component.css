@@ -1,0 +1,25 @@
+.wraper:hover{
+    background: #f3f3ff;
+}
+input:hover{
+    background: #f3f3ff;
+}
+.wraper{
+    height: 25px;    
+    width: 70%;
+}
+.field_action{
+    width: 10%;
+    float: right;
+    padding-right: 7px;
+    padding-top: 2px;
+}
+.field_action img{
+    width: 16px;
+}
+input{
+    width: 83%;
+    background-color: transparent;
+    border: none;
+    float: right;
+}

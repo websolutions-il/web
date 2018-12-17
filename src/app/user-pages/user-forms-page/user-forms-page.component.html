@@ -1,0 +1,52 @@
+<div class="lets_start">
+  <h1>{{'forms'| lang}}</h1>
+</div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+
+        <div id="tab-2" [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'" class="padding-0">
+          <div class="box-wrapper">
+
+            <div [ngClass]="commonService.isLogInUser ? 'col-md-4 col-sm-4 col-xs-6 col-xxs-6 d-none' : 'col-md-3 col-sm-3 col-xs-6 col-xxs-6 '"
+              class="padding-0 border-right border-bottom pull-right ">
+              <div class="img-grid">
+                <img [src]="commonService.cityModel.logo" title="{{commonService.cityModel.name}} לוגו" alt="{{commonService.cityModel.name}} לוגו" class="img-responsive" style="max-height: 80%;">
+                <span style="font-size:22px;" class="fh5co-meta">{{'forms'| lang}}</span>
+
+              </div>
+            </div>
+
+
+            <div *ngFor="let form of formsList; let isFirstRow=first" (click)="goToformPage(form)" [ngClass]="commonService.isLogInUser ? 'col-md-4 col-sm-4 col-xs-6 col-xxs-6 ' : 'col-md-3 col-sm-3 col-xs-6 col-xxs-6'"
+              class="pull-right padding-0 border-right border-bottom cursorPointer">
+              <div id="123" class="img-grid single_service_box">
+                <!-- <h2 class="fh5co-title">בבני שמעון</h2> -->
+                <span class="fh5co-meta"> {{form.FormTitle}}</span>
+                <a href="javascript:void(0)" [ngClass]="{'mainContentForFocus' : isFirstRow}" class="transition id-3 ">
+                  <div>
+                    <h2 class="fh5co-title">
+                      <img src="/assets/img/user-12-sh_b-03.png" [alt]="form.FormTitle" [title]="form.FormTitle" class="img-responsive">
+                    </h2>
+                    <span class="fh5co-meta">{{form.FormTitle}} </span>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,17 @@
+<form class="display-inline" [ngClass]="[page == 'manag' ? 'wrap_managCor' : '' , page == 'registraion-log-in-page' ? 'wrap_registration' : '', page == 'registraion-log-in' ? 'wrap_home' : '']" >
+    <div>
+        <input required id="searchInput" [(ngModel)]="selectedCity"  class="searchCorporationInput city_list"
+             mdInput [placeholder]="page == 'manag' ? 'בחירת רשות/תאגיד' :'* בחר עיר\\רשות'" focus="true" aria-label="State"
+            (focusout)="validCitiNameFun()" (ngModelChange)="setRegCorporationTextFun($event)"
+            [mdAutocomplete]="auto" [formControl]="stateCtrl">
+        <i class="fa fa-chevron-down" aria-hidden="true" (click)="onChevronClicked();$event.stopPropagation()"></i>
+    </div>
+
+    <md-autocomplete #cityAutoComplete #auto="mdAutocomplete">
+        <md-option  class="optionColor" *ngFor="let state of filteredStates | async" [value]="state.AppName">
+            <span>{{state.AppName}}</span>
+        </md-option>
+    </md-autocomplete>
+    <div [ngClass]="[page == 'manag' ? 'hide' : '']" class="borderBotoomClass"></div>
+    <div *ngIf="isValidCityNameMesseg" class="validationMesseg">{{isValidCityNameMesseg | lang }}</div>
+</form>

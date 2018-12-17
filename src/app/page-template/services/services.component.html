@@ -1,0 +1,127 @@
+<div class="lets_start">
+
+  <h2>{{'services'| lang}}!</h2>
+</div>
+<!--ADDITION MIKI ADDED FOR USER AREA   CAN BE REPASTED  -->
+
+<app-regestrition-log-in></app-regestrition-log-in>
+
+<!-- <div class="user-section">
+<div class="usersmall">
+  <div  class="user-section-img"><img src="img/icon.png"></div> <span>שרותים!</span></div>			
+</div>
+-->
+<section class="user-content servicesUserContent">
+  <div class="fh8co-main container-fluid">
+    <div class="row">
+      <div class="">
+      </div>
+      <div id="tab-2" class="col-md-12 col-sm-12 padding-0">
+        <div class="box-wrapper">
+          <div class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right d-none">
+            <div class="img-grid">
+              <img class="img-responsive" alt="{{commonService.cityModel.name}}" title="{{commonService.cityModel.name}}" src="{{commonService.cityModel.logo}}">
+              <h1 class="fh5co-meta" style="font-size:22px;">{{'whichServicesYouWantToGet'| lang}}</h1>
+             
+            </div>
+          </div>
+         
+          <!-- ********bolck method******* -->
+
+           <!-- parents -->
+           <div *ngFor="let parent of parent_blocks" [ngStyle]="{'order': parent.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]= "parent.logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{parent.caption}}</span>
+              <a href="javascript:void(0)" [routerLink]="['/',currentCityID ,'services', parent.id]" [ngStyle]="{'background-image': 'url(' + parent.background + ')'}"  rel="nofollow" class="transition">
+                <!-- (click)="parent_blocksFun(parent.id)" -->
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]= "parent.background_logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{parent.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- external_blocks -->
+          <div *ngFor="let external of external_blocks" [ngStyle]="{'order': external.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]="external.logo" alt="{{external.caption}}" title="{{external.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{external.caption}}</span>
+              <a [href]="external.link" rel="nofollow" tabindex="40" [target]="external.openLinkInNewWindow== 1 ? '_blank' : ''" class="transition"
+              [ngStyle]="{'background-image': 'url(' + external.background + ')'}">
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]="external.background_logo" title="{{external.caption}}" alt="{{external.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{external.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- internal -->
+          <div *ngFor="let internal of intetnal_blocks" [ngStyle]="{'order': internal.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]= "internal.logo" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{internal.caption}}</span>
+              <a href="javascript:void(0)" (click)="internalLinkFun(internal)"  [ngStyle]="{'background-image': 'url(' + internal.background + ')'}"  rel="nofollow" class="transition">
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]= "internal.background_logo" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{internal.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+           <!-- content -->
+           <div *ngFor="let content of content_page_blocks" [ngStyle]="{'order': content.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]= "content.logo" alt="{{content.caption}}" title="{{content.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{content.caption}}</span>
+              <a href="javascript:void(0)" [routerLink]="['/',currentCityID ,'city-content', content.id]" [ngStyle]="{'background-image': 'url(' + content.background + ')'}"  rel="nofollow" class="transition">
+              <!-- (click)="content_pageFun(content.id)" -->
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]= "content.background_logo" title="{{content.caption}}" alt="{{content.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{content.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+
+          <div id="MailForm" *ngIf="fast_Mast"  [ngStyle]="{'order': fast_Mast.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right ">
+            <div id="main" class="img-grid img-grid-search">
+              <img class="img-responsive" alt="code identification" src="assets/img/user-head.png">
+              <span class="fh5co-meta fh5co-meta-m" style="font-size:12px;"></span>
+              <form action="" id="searchform" method="get">
+                <label class="assistive-text" for="s">
+                  <img src="assets/img/user-name.png" alt="edit the form">
+                </label>
+                <div class="brdr main-search">
+
+                  <input type="text" [(ngModel)]="fast_Mast.code" placeholder="{{'setIdentificationCode'| lang}}" id="s" name="s" class="field fastMastInput">
+                </div>
+                <button (click)="GetUserDetailByFastMastCode()" class="submit-btn btn btn-lg btn-primary btn-block" type="submit">{{'OK'| lang}}</button>
+              </form>
+              <span class="fh5co-meta" style="font-size:12px;"> אם יש בידיכם שובר או טופס מהדואר</span>
+              <div id="validFastMastDiv" *ngIf="isCorrectFastMastCode" style="color: red; margin-right: 40%; width: 20%;" >קוד אינו נכון</div>
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
