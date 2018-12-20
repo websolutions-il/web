@@ -40,7 +40,7 @@ export class UserMyDocumentsPageComponent implements OnInit {
   cityName:string;
   currentCityID:string;
   verifyAssetsSubscription: Subscription;
-
+  isVerifyAsset:boolean;
   constructor(private route: ActivatedRoute,private router: Router, public commonService: CommonService, private jsonService: GetJsonService) {
     
 
@@ -50,11 +50,11 @@ export class UserMyDocumentsPageComponent implements OnInit {
     });
   
     this.isMobilUser = this.commonService.getIsMobileUser();    
-     this.commonService.isVerifyAsset.first().subscribe(
+     this.commonService.isVerifyAsset.subscribe(
       (isVerifyAsset) => {
         if (isVerifyAsset) {
-          this.commonService.showLoader = true;
-      
+          this.isVerifyAsset = true;
+          this.commonService.showLoader = true;      
           if(this.commonService.cityModel.Id!=this.currentCityID)
           this.commonService.getCityDetailFromUmbraco(this.currentCityID,"otherServices" ,"המסמכים שלי");  
           else
@@ -63,8 +63,9 @@ export class UserMyDocumentsPageComponent implements OnInit {
           this.GetPdfFiles();
         }
         else {
-          this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/my-documents', '');
-          this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
+          this.isVerifyAsset = false;
+         // this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/my-documents', '');
+        //  this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
         }
       })
   }

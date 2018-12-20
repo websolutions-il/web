@@ -145,9 +145,10 @@ export class CommonService {
   }
 
 
-  getCityDetailFromUmbraco(cityId, servicesType, otherInfo) {
+  getCityDetailFromUmbraco(cityId, servicesType, otherInfo = "") {
     let data = this.EwaPost.getCityDetailFromUmbraco(cityId);
     this.jsonService.sendData(data).subscribe(res => {
+      this.cityModel = new CityModel(); 
       res.forEach(element => {
         if (element.Name == 'error') {// אם התאגיד לא קיים באומברקו, חזרה לדף הבית
           this.logOut();
@@ -167,6 +168,9 @@ export class CommonService {
         if (element.Name == 'isPaymentParentShow') {
           if (element.Value == "1")
             this.cityModel.isPaymentParentShow = true;
+        }
+        if (element.Name == 'billImgExample') {
+          this.cityModel.billImgExample = element.Value;
         }
       });
 

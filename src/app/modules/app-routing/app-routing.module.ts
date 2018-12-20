@@ -47,6 +47,7 @@ import { ManagerLogInComponent } from '../../page-template/manager-log-in/manage
 import { MagicCitizensComponent } from '../../page-template/magic-citizens/magic-citizens.component';
 import { SearchEngineResultsComponent } from '../../components/search-engine-results/search-engine-results.component';
 import { MyAppointmentsComponent } from '../../user-pages/user-appointments-page/my-appointments/my-appointments.component';
+import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.component';
 
 
  const routes: Routes = [    
@@ -122,6 +123,7 @@ import { MyAppointmentsComponent } from '../../user-pages/user-appointments-page
     { path: 'user/:city/bill-in-mail', component: UserBillInMailComponent },
     { path: 'user/:city/point-of-intrest', component: UserPointsOfIntrestPageComponent },  
     { path: 'user/:city/veterinaria/:step', component: UserVetrerinariaGeneralPageComponent },  
+    { path: 'user/:city/life-belt', component: LifeBeltComponent },  
 
     { path: '**', redirectTo: '' }
   

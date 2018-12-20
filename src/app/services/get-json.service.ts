@@ -71,6 +71,7 @@ export class GetJsonService {
         this.BASE_CREDIT_DETAIL_URL = "https://www.pay24.co.il/payDesign/Registration/Registration";  
     } 
     this.BASE_PAY24_URL = "https://www.pay24.co.il/payDesign/SearchPay/SearchPay";
+    this.BASE_CREDIT_DETAIL_URL = "https://pay.mast.co.il/payDesign/Registration/Registration";
 
    }
 

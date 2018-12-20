@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidationService } from '../../services/validation.service';
-import { InputParams, ActionInputParams, FullActionInputParams } from '../../../Models/ParamsModel';
- 
+import { InputParams, ActionInputParams, FullActionInputParams } from '../../../Models/ParamsModel'; 
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonService } from '../../services/common.service';
 import { GetJsonService } from '../../services/get-json.service'
@@ -38,18 +37,16 @@ export class UserVerificationAssetPageComponent implements OnInit {
   ngOnInit() { 
    // $("#popup").fadeIn(200);
   }
-  insertAsset() {   
-
-    this.dataToSend = new Array<ActionInputParams>();
-    this.params = new Array<InputParams>();
+  insertAsset() {      
     this.validAssetNumberFun()
     if (this.isValidAssetNumberMesseg != null)
     {
     this.valid.setFocusToLastAlertForAccessibility("form1",2); 
     return false;    
     }
-    this.actionName = '1B0D4655-C5A0-42B1-870E-122D6785135B';
-    
+    this.dataToSend = new Array<ActionInputParams>();
+    this.params = new Array<InputParams>();
+    this.actionName = '1B0D4655-C5A0-42B1-870E-122D6785135B';    
     this.param= new InputParams("@company_id",this.currentCityID);
     this.params.push(this.param);
     this.param= new InputParams("@PayerId","12");
@@ -64,15 +61,18 @@ export class UserVerificationAssetPageComponent implements OnInit {
        
        if(res[0].VERRIFY_ASSET == 1)
        {
-        this.commonService.sideMenuCityList = null;// איפוס הרשימה כדי שהיא תטען מחדש אם הנתונים החדשים
+       // this.commonService.sideMenuCityList = null;// איפוס הרשימה כדי שהיא תטען מחדש אם הנתונים החדשים
         this.commonService.updatedIsVerifyAssetSubject(true);
-        this.router.navigate([this.jsonService.getCookie("pageAfterVerifyAsset")]);          
+       // this.router.navigate([this.jsonService.getCookie("pageAfterVerifyAsset")]);          
        }
        else
-       {
-         this.popUpType = "assetNotMatch"
-         $("#popup").fadeIn(200);
-       }
+       this.isAssetNotValid = true;
+
+      //  else
+      //  {
+      //    this.popUpType = "assetNotMatch"
+      //    $("#popup").fadeIn(200);
+      //  }
 
     }, err => {
       //alert(err);
@@ -139,5 +139,7 @@ insertRequestToStutosNetForm(formId:string) {
 
   validAssetNumberFun() { 
     this.isValidAssetNumberMesseg = this.valid.validAssetNumberFun(this.assetNumber);
+    if(this.isValidAssetNumberMesseg)
+      this.isAssetNotValid = false;
   }
 }

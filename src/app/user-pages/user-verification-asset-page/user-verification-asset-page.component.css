@@ -22,6 +22,13 @@
 li{
     color: #4c4848;
 }
+.form_2.new_form p{
+    width: 75%;
+    font-size: 20px;
+}
+p a{
+    font-weight: bold;
+}
 @media(max-width:767px)
 {
 .form_2.new_form{

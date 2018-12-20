@@ -60,6 +60,7 @@ export class UserWaterDetailsPageComponent implements OnInit {
   svgGraphVM: SvgGraph[] = new Array<SvgGraph>();
   avaerge24Line: number;
 
+  isVerifyAsset:boolean;
 
   constructor(public commonService: CommonService, private jsonService: GetJsonService, private router: Router, private route: ActivatedRoute) {
 
@@ -74,15 +75,17 @@ export class UserWaterDetailsPageComponent implements OnInit {
     this.commonService.setTitleAndDescription("otherServices", this.commonService.cityModel.name,"נתוני מים");
     this.commonService.showLoader = true;
 
-    this.commonService.isVerifyAsset.first().subscribe(
+    this.commonService.isVerifyAsset.subscribe(
      (isVerifyAsset) => {
-       if (isVerifyAsset) {         
+       if (isVerifyAsset) {    
+        this.isVerifyAsset = true;     
          this.GetClientCodeForWaterDetails();
        }
        else {
-         this.commonService.showLoader = false;
-         this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.companyId + '/water-details', '');
-         this.router.navigate(['user/' + this.companyId + '/verification-asset']);
+        this.isVerifyAsset = false;
+        this.commonService.showLoader = false;
+       //  this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.companyId + '/water-details', '');
+       //  this.router.navigate(['user/' + this.companyId + '/verification-asset']);
        }
      })   
   }

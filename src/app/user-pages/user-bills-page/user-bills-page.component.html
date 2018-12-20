@@ -9,7 +9,7 @@
         <app-user-side-menu></app-user-side-menu>
 
         <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content right_part table_part current">
-          <div class="box-wrapper">
+          <div *ngIf="isVerifyAsset" class="box-wrapper">
             <div class="">
               <div class="">
                 <div class="col-md-6 col-sm-6 pull-left">
@@ -139,10 +139,10 @@
               </div>
             </div>
           </div>
+
+          <app-user-verification-asset-page *ngIf="!isVerifyAsset">  </app-user-verification-asset-page>
+
         </div>
-
-
-
 
       </div>
     </div>

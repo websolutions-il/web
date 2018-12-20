@@ -4,4 +4,5 @@ export class CityModel{
     public logo:string;
     public formPhoneSupport:string="072-339-0809";
     public isPaymentParentShow:boolean;
+    public billImgExample:string;
 }

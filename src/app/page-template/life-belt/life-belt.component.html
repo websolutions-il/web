@@ -1,0 +1,80 @@
+<div class="lets_start">
+  <h1>גלגל הצלה</h1>
+</div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+        <section class="content-bx">
+          <div class="container">
+            <div class="row">
+
+              <div class="under_row">
+                <div class="wrap_topImg">
+                  <img class="topImg" src="assets/img/MAST-ICONS-GALGAL.png" alt="">
+                </div>
+                <hr>
+                <p>
+                  בחרו באחת מהאפשרויות המתאימות ואנו נעזור או נדאג לחזור
+                </p>
+
+                <div class="flex-center">
+                  <div (click)="popUpSubject = 'billImgExample'" class="wrap_btmImg">
+                    <img src="assets/img/MAST-ICONS-DOCUMENT.png" alt="">
+                    <div class="textImg">דוגמת שובר</div>
+                  </div>
+                  <div class="wrap_btmImg" >
+                    <a target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">
+                    <img src="assets/img/MAST-ICONS-WHATSAPP.png" alt="">
+                    <div class="textImg">ווטסאפ</div>
+                  </a>
+                  </div>
+                  <div class="wrap_btmImg">
+                    <a [href]="'tel:'+commonService.cityModel.formPhoneSupport">
+                      <img src="assets/img/MAST-ICONS-CHAT.png" alt="">
+                      <div class="textImg">פניה למוקד</div>
+                    </a>
+                  </div>
+                  <div (click)="insertRequestToStutosNetForm()" class="wrap_btmImg">
+                    <img src="assets/img/MAST-ICONS-IPHONE.png" alt="">
+                    <div class="textImg">חיזרו אלי</div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+
+
+
+<div *ngIf="popUpSubject" id="popup" class="overlay">
+  <div class="popup">
+    <div *ngIf="popUpSubject == 'successFormRequest'">
+      <img class="topImg" src="assets/img/MAST-ICONS-GALGAL.png" alt="">
+      <h2>פנייתך התקבלה בהצלחה!</h2>
+    </div>
+    <a class="close" (click)="popUpSubject = null">&times;</a>
+    <div class="content">
+      <div *ngIf="popUpSubject == 'successFormRequest'">
+        מספר פנייתך לצורך מעקב הינו : {{requestId}}
+      </div>
+      <div *ngIf="popUpSubject == 'billImgExample'">
+        <img [src]="commonService.cityModel.billImgExample" style="width: 100%;" alt="לא נמצאה תמונה">
+      </div>
+      <div class="buttons step-buttons">
+        <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel"
+          name="button">סגירה</a>
+      </div>
+    </div>
+  </div>
+</div>

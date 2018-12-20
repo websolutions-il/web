@@ -1,69 +1,69 @@
+<ul class="user-tab">
+  <li (click)="showPersonalArea()" class="tab-link" data-tab="tab-1">{{'personalArea'| lang}}</li>
+  <li (click)="showServices()" class="tab-link current" data-tab="tab-2">{{'services'| lang}}</li>
+</ul>
+
+<div class="">
+</div>
+<div id="tab-1" class="col-md-3 col-sm-3 pull-right padding-0 userinfotab tab-content details_info" style="min-height: 1px; overflow: visible; box-sizing: border-box;">
+  <!-- *ngIf="commonService.userDetails" -->
+  <div class="info_box">
+    <h1 *ngIf="commonService.userDetails">
+      <img src="assets/img/icon.png" alt="{{'personalArea'| lang}} MAST!" draggable="false"> {{priodeDay}} {{commonService.userDetails[0].FirstName}}!</h1>
+    <div class="link-page">
+      <a href="javascript:void(0)" class="cursorPointer" (click)="commonService.logOut()">{{'logOut'| lang}}</a>
+    </div>
+  </div>
 
 
-      <ul class="user-tab">
-        <li (click)="showPersonalArea()" class="tab-link" data-tab="tab-1">{{'personalArea'| lang}}</li>
-        <li (click)="showServices()" class="tab-link current" data-tab="tab-2">{{'services'| lang}}</li>
-      </ul>
-   
-      <div class="">
-      </div>
-      <div id="tab-1"  class="col-md-3 col-sm-3 pull-right padding-0 userinfotab tab-content details_info" style="min-height: 1px; overflow: visible; box-sizing: border-box;">
-            <!-- *ngIf="commonService.userDetails" -->
-          <div class="info_box">
-            <h1 *ngIf="commonService.userDetails">
-              <img src="assets/img/icon.png" alt="{{'personalArea'| lang}} MAST!"  draggable="false"> {{priodeDay}} {{commonService.userDetails[0].FirstName}}!</h1>
-            <div class="link-page">
-              <a href="javascript:void(0)" class="cursorPointer" (click)="commonService.logOut()">{{'logOut'| lang}}</a>
-            </div>
-          </div>
-         
-         
-        <div *ngIf="isFlexSlider">
-          <div [style.visibility]="!isInitFlexSlider ? 'hidden' : 'visible'" class="sliderdiv">
-              <div class="flexslider">
-                <div class="flex-viewport" style="overflow: hidden; position: relative;"> </div>          
-                <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                  <ul class="slides" style="width: 1600%; transition-duration: 0s; transform: translate3d(-178.344px, 0px, 0px);">
-                    <li *ngFor="let asset of commonService.sideMenuCityList" style="width: 178.344px; margin-right: 0px; float: left; display: block;" class="clone" aria-hidden="true">
-                      <div *ngIf="commonService.sideMenuCityList.length > 1">
-                        <a (click)="updateActiveCompany(asset)" class="add" href="javascript:void(0);">החלף</a>
-                      </div>
-                      <div>
-                        <p>{{asset.AppName}}</p>
-                      </div>
-                    </li>   
-                  </ul>
-                </div>
+  <div *ngIf="isFlexSlider">
+    <div [style.visibility]="!isInitFlexSlider ? 'hidden' : 'visible'" class="sliderdiv">
+      <div class="flexslider">
+        <div class="flex-viewport" style="overflow: hidden; position: relative;"> </div>
+        <div class="flex-viewport" style="overflow: hidden; position: relative;">
+          <ul class="slides" style="width: 1600%; transition-duration: 0s; transform: translate3d(-178.344px, 0px, 0px);">
+            <li *ngFor="let asset of commonService.sideMenuCityList" style="width: 178.344px; margin-right: 0px; float: left; display: block;"
+              class="clone" aria-hidden="true">
+              <div *ngIf="commonService.sideMenuCityList.length > 1">
+                <a (click)="updateActiveCompany(asset)" class="add" href="javascript:void(0);">החלף</a>
               </div>
-            </div>
-          </div>
-            <div class="add_permission bottom_section" style="border: none;">  
-                <a href="javascript:;" class="">
-                    <img (click)="showToolTip2 = !showToolTip2" class="tooltip_btn2" src="assets/img/information-blue.png" />
-                    <span>הוספת רשות/תאגיד</span>
-                  </a>
-                  <div *ngIf="showToolTip2" class="tooltip_info2 tooltip_paragraph tooltip_paragraph_menu">
-                    <img (click)="showToolTip2 = false" class="close_tooltip2" src="assets/img/close.png" />
-                    <p>הוספת רשות\תאגיד מאפשרת לכם מעבר קל ונוח בין הרשויות שתרצו לקבל עבורם שירות.
-                        <br>
-                        לאחר הוספת הרשות\תאגיד ניתן להחליף לרשות הרצויה באמצעות הסרגל בפינה הימנית
-                    </p>
-                  </div>             
-                <div class="edit_delete">
-                  <a *ngIf="selectedCity" class="add" (click)="insertAsset(cityList.selectedCity, cityList.getSelectedCityId())" href="javascript:void(0);">הוסף</a>
-                  <div class="select_box">
-                      <app-city-drop-down (getSelectedCity)="onCityDropDownChange($event)" [page]="'manag'"></app-city-drop-down>
-                  </div>
-                </div>
-           </div>
+              <div>
+                <p>{{asset.AppName}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add_permission bottom_section" style="border: none;">
+    <a href="javascript:;" class="">
+      <img (click)="showToolTip2 = !showToolTip2" class="tooltip_btn2" src="assets/img/information-blue.png" />
+      <span>הוספת רשות/תאגיד</span>
+    </a>
+    <div *ngIf="showToolTip2" class="tooltip_info2 tooltip_paragraph tooltip_paragraph_menu">
+      <img (click)="showToolTip2 = false" class="close_tooltip2" src="assets/img/close.png" />
+      <p>הוספת רשות\תאגיד מאפשרת לכם מעבר קל ונוח בין הרשויות שתרצו לקבל עבורם שירות.
+        <br> לאחר הוספת הרשות\תאגיד ניתן להחליף לרשות הרצויה באמצעות הסרגל בפינה הימנית
+      </p>
+    </div>
+    <div class="edit_delete">
+      <a *ngIf="cityList.selectedCity" class="add" (click)="prev_insertAsset(cityList.selectedCity,cityList.getSelectedCityId())"
+        href="javascript:void(0);">הוסף</a>
+      <div class="select_box">
+        <app-city-drop-down [page]="'manag'"></app-city-drop-down>
+        <!-- (getSelectedCity)="onCityDropDownChange($event)" -->
+      </div>
+    </div>
+  </div>
 
-         
-         
 
 
 
 
-          <!-- <div class="sliderdiv">
+
+
+  <!-- <div class="sliderdiv">
             <div class="client-name drop_click" (click)="$event.stopPropagation();sliderCityScript()">
            
               <span class="plus">
@@ -102,32 +102,52 @@
 
 
 
-          <ul class="user_list" style="padding-top: 12%">
-            <li class="staticMenu" (click)="actionSideMenu('services')"><a href="javascript:void(0)">{{'services'| lang}}</a></li>
-            <li class="staticMenu" (click)="actionSideMenu('news')"><a href="javascript:void(0)">{{'newsAndUpdates'| lang}}</a></li>
-            <li class="staticMenu" (click)="actionSideMenu('bills')"><a href="javascript:void(0)">{{'paymentVouchers'| lang}}</a></li>
-            <!-- <li class="staticMenu" (click)="actionSideMenu('update-details')"><a href="javascript:void(0)">{{'updatePersonalDetails'| lang}}</a></li> -->
-            <li class="staticMenu" (click)="actionSideMenu('manag')"><a href="javascript:void(0)">הגדרות אישיות</a></li>
-            <!-- <li *ngIf="isMyDocuments" class="staticMenu"  (click)="setLastComponent('myDocuments')"><a href="javascript:void(0)">{{'myDocuments'| lang}}</a></li> -->
-           
-          </ul>
-          <a class="whatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">
-            <img src="assets/img/whatsapp.png" style="height: 65px;">
-          </a>
-        <!-- </div> -->
+  <ul class="user_list" style="padding-top: 12%">
+    <li class="staticMenu" (click)="actionSideMenu('services')">
+      <a href="javascript:void(0)">{{'services'| lang}}</a>
+    </li>
+    <li class="staticMenu" (click)="actionSideMenu('news')">
+      <a href="javascript:void(0)">{{'newsAndUpdates'| lang}}</a>
+    </li>
+    <li class="staticMenu" (click)="actionSideMenu('bills')">
+      <a href="javascript:void(0)">{{'paymentVouchers'| lang}}</a>
+    </li>
+    <!-- <li class="staticMenu" (click)="actionSideMenu('update-details')"><a href="javascript:void(0)">{{'updatePersonalDetails'| lang}}</a></li> -->
+    <li class="staticMenu" (click)="actionSideMenu('manag')">
+      <a href="javascript:void(0)">הגדרות אישיות</a>
+    </li>
+    <!-- <li *ngIf="isMyDocuments" class="staticMenu"  (click)="setLastComponent('myDocuments')"><a href="javascript:void(0)">{{'myDocuments'| lang}}</a></li> -->
+
+  </ul>
+  <a class="whatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">
+    <img src="assets/img/whatsapp.png" style="height: 65px;">
+  </a>
+  <!-- </div> -->
+</div>
+
+
+<div *ngIf="popUpSubject" id="popup" class="overlay">
+  <div class="popup">
+    <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
+    <h2 style="color:red" *ngIf="popUpSubject == 'approve-regulation-add-asset'">הודעת מערכת !</h2>
+    <a class="close" (click)="popUpSubject = null">&times;</a>
+    <div class="content">
+      <div *ngIf="popUpSubject == 'add-asset'">
+        ניתן להחליף לרשות הרצוייה באמצעות כפתור החלף שבסרגל הימני
       </div>
-  
-      <div *ngIf="popUpSubject" id="popup" class="overlay">
-          <div class="popup">
-            <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
-            <a class="close" (click)="closePopup()">&times;</a>
-            <div class="content">
-              <div *ngIf="popUpSubject == 'add-asset'">
-              ניתן להחליף לרשות הרצוייה באמצעות כפתור החלף שבסרגל הימני
-            </div>           
-              <div class="buttons step-buttons">
-                <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div *ngIf="popUpSubject == 'approve-regulation-add-asset'">
+        שימו לב!
+        <br> הנכם מאשרים את הוספת {{selectedCityName}} למועדפים בכפוף ל
+        <a style="font-weight: bold" target="_blank" href="https://www.mast.co.il/content/תקנון">תקנון</a>
+
+      </div>
+      <div *ngIf="popUpSubject == 'add-asset'" class="buttons step-buttons">
+        <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel" name="button">סגירה</a>
+      </div>
+      <div *ngIf="popUpSubject == 'approve-regulation-add-asset'" class="buttons step-buttons">
+        <a href="javascript:void(0)" (click)="insertAsset()" id="closePopup" class="btn cancel" name="button">אישור</a>
+        <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel" name="button">ביטול</a>
+      </div>
+    </div>
+  </div>
+</div>

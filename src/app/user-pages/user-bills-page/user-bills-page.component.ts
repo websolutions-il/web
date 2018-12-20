@@ -39,7 +39,7 @@ export class UserBillsPageComponent implements OnInit {
   stubList: any = new Array();
 
   isMobileUser: boolean;
-
+  isVerifyAsset:boolean;
   constructor(private route: ActivatedRoute, private router: Router,
      public commonService: CommonService, private jsonService: GetJsonService,
      ) {
@@ -48,9 +48,10 @@ export class UserBillsPageComponent implements OnInit {
       this.currentCityID = params['city'];
     });
 
-    this.commonService.isVerifyAsset.first().subscribe(
+    this.commonService.isVerifyAsset.subscribe(
       (isVerifyAsset) => {
         if (isVerifyAsset) {
+          this.isVerifyAsset = true;
           this.commonService.styleLoader = "position: absolute; right: 23%;";
           this.commonService.showLoader = true;
           this.isMobileUser = this.commonService.getIsMobileUser();
@@ -63,8 +64,9 @@ export class UserBillsPageComponent implements OnInit {
           this.GetImageBills();
         }
         else {
-          this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/bills', '');
-          this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
+          this.isVerifyAsset = false;
+        //  this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/bills', '');
+         // this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
         }
       })
 

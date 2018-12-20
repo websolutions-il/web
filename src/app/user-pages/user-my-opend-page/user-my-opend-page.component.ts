@@ -28,7 +28,7 @@ export class UserMyOpendPageComponent implements OnInit {
 
   cityName: string;
   currentCityID: string;
-  verifyAssetsSubscription: Subscription;
+  isVerifyAsset:boolean;
 
   constructor(private route: ActivatedRoute, private router: Router, public commonService: CommonService, private jsonService: GetJsonService) {
 
@@ -44,14 +44,17 @@ export class UserMyOpendPageComponent implements OnInit {
     });
 
 
-    this.commonService.isVerifyAsset.first().subscribe(
+    this.commonService.isVerifyAsset.subscribe(
       (isVerifyAsset) => {
         if (isVerifyAsset) {
+          this.isVerifyAsset = true;
           this.getOpend();
         }
         else {
-          this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/my-opend', '');
-          this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
+          this.isVerifyAsset = false;
+
+         // this.jsonService.createCookie("pageAfterVerifyAsset", '/user/' + this.currentCityID + '/my-opend', '');
+         // this.router.navigate(['user/' + this.currentCityID + '/verification-asset']);
         }
       })
 

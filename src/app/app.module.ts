@@ -93,6 +93,7 @@ import { FormValidationService } from './services/form-validation.service';
 import { SearchEngineResultsComponent } from './components/search-engine-results/search-engine-results.component';
 import { LangPipe } from './pipes/lang.pipe';
 import { MyAppointmentsComponent } from './user-pages/user-appointments-page/my-appointments/my-appointments.component';
+import { LifeBeltComponent } from './page-template/life-belt/life-belt.component';
 
 
 declare var System: any; 
@@ -180,7 +181,8 @@ var messagesRu;
       DynamicFormComponent,
       DynamicFormQuestionComponent,
       SearchEngineResultsComponent,
-      MyAppointmentsComponent
+      MyAppointmentsComponent,
+      LifeBeltComponent
 
   ],
   imports: [    

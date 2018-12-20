@@ -135,7 +135,6 @@ export class UserManagCorPageComponent implements OnInit {
     this.dataToSend.push(this.singleDataObj);
     this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_Pay24', 'GetCreditDetailByPayerId')
     this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
-      console.log(res);
       if(res[0] != null)
         this.isCreditDetails = true;
     }, err => {
@@ -150,9 +149,9 @@ export class UserManagCorPageComponent implements OnInit {
 
 
   insertAsset() {      
-    this.SideMenu.insertAsset(this.cityList.selectedCity,
+    this.SideMenu.prev_insertAsset(this.cityList.selectedCity,
                       this.cityList.getSelectedCityId());
-                 //     document.getElementsByClassName("mat-autocomplete-panel")[0].scroll(0,10)
+    this.cityList.selectedCity = null;
                      
     }
 

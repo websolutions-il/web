@@ -44,7 +44,9 @@ export class UserSideMenuComponent implements AfterViewInit {
   popUpSubject: string;
 
   showToolTip2:boolean;
-  selectedCity:string;
+
+  selectedCityName:string;
+  selectedCityId:string;
   constructor(private route: ActivatedRoute, private router: Router,
     private jsonService: GetJsonService, public commonService: CommonService,
     private humborger_men: HamburgerMenuComponent, private parent: MainTemplateComponent,
@@ -74,7 +76,6 @@ export class UserSideMenuComponent implements AfterViewInit {
       this.getFilterdUserCityForSliderMenu();
     else
       this.setFlexSlider();
-      //this.setFilterdUserCityForSliderMenu(this.commonService.sideMenuCityList);
   }
 
   init() {
@@ -109,15 +110,19 @@ export class UserSideMenuComponent implements AfterViewInit {
     if (houre > 22 && houre < 6)
       this.priodeDay = "לילה טוב";
   }
-  onCityDropDownChange(event){
-   this.selectedCity = event;
+  // onCityDropDownChange(event){
+  //  this.selectedCityName = event;
+  // }
+  prev_insertAsset(name, id){
+    this.selectedCityName = name;
+    this.selectedCityId = id;
+    if (this.valid.validItemInListFun(this.commonService.cityList, name, "AppName"))
+    return false;
+    this.popUpSubject = "approve-regulation-add-asset";
   }
-  insertAsset(name, id) {
-    if (this.valid.validItemInListFun(this.commonService.cityList,
-      name, "AppName"))
-      return false;
+  insertAsset() {   
 
-    let compId = id;
+    let compId = this.selectedCityId;
     let data = this.EwaPost.BuildDataStructure('1b0d4655-c5a0-42b1-870e-122d6785135b',
       [{ Name: "@company_id", Value: compId },
       { Name: "@PayerId", Value: "327" },
@@ -132,15 +137,14 @@ export class UserSideMenuComponent implements AfterViewInit {
       let exists = this.commonService.sideMenuCityList.filter(x=>x.company_id == compId);
       if(exists.length == 0)
       this.commonService.sideMenuCityList.push(
-        new AssetModel(compId, name, false)
+        new AssetModel(compId, this.selectedCityName, false)
       );
+      this.cityList.selectedCity = null;
       this.setFlexSlider();
     }, err => {
     });
   }
-  closePopup() {
-    this.popUpSubject = null;
-  }
+
   getFilterdUserCityForSliderMenu() {
     this.actionName = 'abcc7d70-8545-45b2-8f94-3215f89e9a4a';
     this.dataToSend = new Array<ActionInputParams>();
