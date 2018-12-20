@@ -119,7 +119,7 @@
     <!-- <li *ngIf="isMyDocuments" class="staticMenu"  (click)="setLastComponent('myDocuments')"><a href="javascript:void(0)">{{'myDocuments'| lang}}</a></li> -->
 
   </ul>
-  <a class="whatsapp" target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">
+  <a class="whatsapp" (click)="popUpSubject = 'whatsapp-msg'" >
     <img src="assets/img/whatsapp.png" style="height: 65px;">
   </a>
   <!-- </div> -->
@@ -130,6 +130,8 @@
   <div class="popup">
     <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
     <h2 style="color:red" *ngIf="popUpSubject == 'approve-regulation-add-asset'">הודעת מערכת !</h2>
+    <h2 *ngIf="popUpSubject == 'whatsapp-msg'">לקוח יקר !</h2>
+
     <a class="close" (click)="popUpSubject = null">&times;</a>
     <div class="content">
       <div *ngIf="popUpSubject == 'add-asset'">
@@ -139,7 +141,10 @@
         שימו לב!
         <br> הנכם מאשרים את הוספת {{selectedCityName}} למועדפים בכפוף ל
         <a style="font-weight: bold" target="_blank" href="https://www.mast.co.il/content/תקנון">תקנון</a>
-
+      </div>
+      <div *ngIf="popUpSubject == 'whatsapp-msg'" >
+          שירות הלקוחות באמצעות Whatsapp מיועד לצורך תמיכה טכנית בפלטפורמת הדיגיטל MAST!   
+          לצורך קבלת שירות בנושאים אחרים יש לפנות באמצעות טופס ייעודי באריח הטפסים, פניות שאינן תמיכה טכנית לא יטופלו או יועברו לגורם מטפל אחר.
       </div>
       <div *ngIf="popUpSubject == 'add-asset'" class="buttons step-buttons">
         <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel" name="button">סגירה</a>
@@ -147,6 +152,11 @@
       <div *ngIf="popUpSubject == 'approve-regulation-add-asset'" class="buttons step-buttons">
         <a href="javascript:void(0)" (click)="insertAsset()" id="closePopup" class="btn cancel" name="button">אישור</a>
         <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel" name="button">ביטול</a>
+      </div>
+      <div *ngIf="popUpSubject == 'whatsapp-msg'" class="buttons step-buttons">
+          <a href="javascript:void(0)" id="closePopup" class="btn cancel" name="button"
+          target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">עבור ל whatsapp</a>
+          <a style="margin-top: 3px;" href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel" name="button">ביטול</a>
       </div>
     </div>
   </div>

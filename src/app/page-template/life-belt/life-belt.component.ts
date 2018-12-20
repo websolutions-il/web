@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonService } from '../../services/common.service';
 import { EvaDataStructure } from '../../../Models/ParamsModel';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { GetUserIpService } from '../../services/get-user-ip.service';
 import { GetJsonService } from '../../services/get-json.service';
+import { UserSideMenuComponent } from '../../components/user-side-menu/user-side-menu.component';
 declare var $:any;
 
 @Component({
@@ -18,7 +19,7 @@ export class LifeBeltComponent implements OnInit {
   userIP:string;
   popUpSubject:string;
   requestId:number;
-
+  @ViewChild(UserSideMenuComponent) sideMenu:UserSideMenuComponent;
   constructor(public commonService: CommonService,private ipService:GetUserIpService,
     private route: ActivatedRoute, private router: Router, private jsonService:GetJsonService) {
       this.route.params.subscribe((params: Params) => {     
@@ -26,7 +27,7 @@ export class LifeBeltComponent implements OnInit {
       });
       if(this.commonService.cityModel.Id!=this.currentCityID) 
          this.commonService.getCityDetailFromUmbraco(this.currentCityID,"otherServices");
-
+ 
      }
 
   ngOnInit() {

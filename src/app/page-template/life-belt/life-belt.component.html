@@ -25,11 +25,9 @@
                     <img src="assets/img/MAST-ICONS-DOCUMENT.png" alt="">
                     <div class="textImg">דוגמת שובר</div>
                   </div>
-                  <div class="wrap_btmImg" >
-                    <a target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">
+                  <div class="wrap_btmImg" (click)="sideMenu.popUpSubject = 'whatsapp-msg'">                  
                     <img src="assets/img/MAST-ICONS-WHATSAPP.png" alt="">
-                    <div class="textImg">ווטסאפ</div>
-                  </a>
+                    <div class="textImg">ווטסאפ</div>                 
                   </div>
                   <div class="wrap_btmImg">
                     <a [href]="'tel:'+commonService.cityModel.formPhoneSupport">

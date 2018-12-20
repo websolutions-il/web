@@ -319,7 +319,7 @@ export class UserManagCorPageComponent implements OnInit {
       if (res[0].result == 'errorAction') {
         alert("אירעה שגיאה לא צפויה. ")
       }
-
+//
     }, err => {
       //alert(err);
     });

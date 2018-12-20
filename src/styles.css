@@ -271,7 +271,14 @@ tbody tr td div span{
     font-weight: bold;
     border-radius: 15px;
   }
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 1440px){
+    .popup{
+      padding: 45px 15px 15px 15px;
+      width: 45%;
+    }
+   
+  }
+  @media screen and (max-width: 768px){
     .box{
       width: 70%;
     }
