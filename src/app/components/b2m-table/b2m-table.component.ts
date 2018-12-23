@@ -11,7 +11,7 @@ import { EditableInputComponent } from '../editable-input/editable-input.compone
   styleUrls: ['./b2m-table.component.css']
 })
 export class B2mTableComponent implements OnInit {
-
+//
   b2mList: any;
   EwaPost: EvaDataStructure = new EvaDataStructure();
   editableInputComponent : EditableInputComponent;
