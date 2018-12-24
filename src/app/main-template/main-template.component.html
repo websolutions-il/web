@@ -12,9 +12,6 @@
 <app-spinner-loader [show]="commonService.showLoader" [styleLoader]="commonService.styleLoader" ></app-spinner-loader>
 
 
-
-
-
 <div class="alertSign" style="display: none;">
   <img src="assets/img/alert.png">
 </div>
@@ -59,7 +56,9 @@
 
 
 <div id="header" class="lessHeightBanner">
-  <header  *ngIf="headerForPageWithoutReg || contentHeader" class="header" [ngClass]="{'inner_banner' : !isMobileUser , 'contentHeader' : contentHeader , 'headerForPageWithoutReg': headerForPageWithoutReg  } " >
+  <header  *ngIf="headerForPageWithoutReg || contentHeader" class="header" 
+  [ngClass]="{'inner_banner' : !commonService.isMobileUser , 'contentHeader' : contentHeader ,
+              'headerForPageWithoutReg': headerForPageWithoutReg  } " >
     <div class="container-fluid">
       <div class="header-content">
         <div class="userheaderimg">
@@ -158,3 +157,33 @@
 
 <img src="assets/img/mobile_bg.jpg" style="display: none">
 <a id="openLinkInNewWindow" tabindex="-1" href="" target="_blank"></a>
+
+
+<div *ngIf="popUpSubject" id="popup" class="overlay">
+    <div class="popup">
+      <div *ngIf="popUpSubject == 'firstMsg'">        
+        <h2>ברוכים הבאים לפלטפורמת הדיגיטל -MAST  </h2>
+      </div>
+      <div class="content">
+        <div *ngIf="popUpSubject == 'firstMsg'">
+      <hr>
+    <div class="text">
+        הינכם מועברים לשירות המבוקש.
+
+    </div>
+
+
+         <div class="timer">
+            {{stopPopUpTimer}}    
+
+         </div>
+
+         <div class="text">
+            השירות ניתן בכפוף לתקנון האתר  
+
+         </div>
+            
+        </div>              
+      </div>
+    </div>
+  </div>

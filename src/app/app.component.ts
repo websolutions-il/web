@@ -22,6 +22,7 @@ export class AppComponent {
       this.commonService.updateIsLogInUserSubject(true);
     else
       this.commonService.updateIsLogInUserSubject(false);
+   
     this.commonService.isMobileUser = this.deviceService.isMobile();  // ישן. צריך להחליף את כל מי שעובד עם זה לעבוד עם השורה הבאה ואז למחוק את זאת
 
     this.commonService.updateIsMobileUserSubject(this.deviceService.isMobile());

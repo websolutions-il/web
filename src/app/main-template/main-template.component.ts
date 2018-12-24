@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
  
 import { GetJsonService } from '../services/get-json.service';
 import { Router, NavigationStart, ActivatedRoute, Params } from '@angular/router';
@@ -11,7 +11,7 @@ declare function playHeaderVideo()
   styleUrls: ['./main-template.component.css']
 })
 
-export class MainTemplateComponent implements OnInit,AfterViewInit {
+export class MainTemplateComponent implements AfterViewInit {
    
   lenguage: any = { text: 'he' };
   public items: Array<string> = ['he', 'en', 'Рус', 'عر',]
@@ -29,16 +29,31 @@ export class MainTemplateComponent implements OnInit,AfterViewInit {
  
   EwaPost: EvaDataStructure = new EvaDataStructure();
 
-
+  popUpSubject : string;
+  stopPopUpTimer:number = 3;
   constructor(public commonService: CommonService,private router: Router, 
       private jsonService: GetJsonService, private route: ActivatedRoute) {
-        
+      
+               
   }
 
-  ngOnInit() {
-    this.isMobileUser= this.commonService.getIsMobileUser();   
-  } 
-ngAfterViewInit(){
+ngAfterViewInit(){ 
+  setTimeout(() => {
+    let referrer = document.referrer;
+//    referrer = "234"
+    if(referrer != "" && !referrer.includes("google") 
+    && this.router.url != "/")
+    this.popUpSubject = "firstMsg";  
+    var interval = setInterval(()=> { 
+      this.stopPopUpTimer-- ;
+      if(this.stopPopUpTimer == 0)
+      {
+        clearInterval(interval);
+        this.popUpSubject = null;
+      }
+    },1500);  
+  }, 100);
+ 
 }
  
   hamborgerScript() {

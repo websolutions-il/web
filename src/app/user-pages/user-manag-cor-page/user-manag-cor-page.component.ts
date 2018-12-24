@@ -35,53 +35,46 @@ export class UserManagCorPageComponent implements OnInit {
   EwaPost: EvaDataStructure = new EvaDataStructure();
 
   isExistsItemsForB2M:boolean = true;
+  isCityInB2M:boolean;
   //assetList: any;
-  userDetailsList: any;
+  //userDetailsList: any;
   mainUser: any;
-  anotherUser: any;
-  creditDetail: any;
+  //anotherUser: any;
+  //creditDetail: any;
   isCreditDetails:boolean;
   currentCityID: string;
-  isMobileUserApp: boolean;
+  //isMobileUserApp: boolean;
   //insert asset
 
 
-  isCheakBoxstayRegCorporation: boolean = false;
-
-  fullCorporationList: any = new Array();
-  filteredStates: Observable<any[]>;
-  stateCtrl: FormControl;
-
-  chevronToggle: boolean = true;
-  stayRegCorporationText: string;
-  assetNumberInsertAsset: string = "";
-  selectedCityInsertAsset: string;
-  selectedCityInsertAssetID: string;
-  isErrorMessegAssetMatchHide: boolean = true;
+  // assetNumberInsertAsset: string = "";
+  // selectedCityInsertAsset: string;
+  // selectedCityInsertAssetID: string;
+  // isErrorMessegAssetMatchHide: boolean = true;
   //validate insert asset
-  isValidAssetNumberMesseg: string;
-  isValidCityNameMesseg: string;
-  isValidAssetNotExsist: boolean = false;
-  isValidRecaptcha: boolean;
-  isRecpaptchaAlredyApprovedOneTime: boolean = false;
-  selectedCity: string;
+  // isValidAssetNumberMesseg: string;
+  // isValidCityNameMesseg: string;
+  // isValidAssetNotExsist: boolean = false;
+  // isValidRecaptcha: boolean;
+  // isRecpaptchaAlredyApprovedOneTime: boolean = false;
+  //selectedCity: string;
   //insertAnotherPhone
-  fullNameInsertAnotherPhone: string;
+  //fullNameInsertAnotherPhone: string;
   phoneInsertAnotherPhone: string = "";
   isInsertAnotherPhoneButton: boolean;
-  actionInsertAnotherPhone: string;
-  smsCodeIncorrectMesseg: boolean;
+  //actionInsertAnotherPhone: string;
+  //smsCodeIncorrectMesseg: boolean;
   smsCodeInsertAnotherPhone: string = "";
-  smsSessionGuidInsertAnotherPhone: string;
-  isPhonExsistInSystem: boolean;
+  //smsSessionGuidInsertAnotherPhone: string;
+  //isPhonExsistInSystem: boolean;
   //validate insert another phone
-  isValidPhone: boolean;
+  //isValidPhone: boolean;
   isValidPhoneMesseg: string;
 
-  leftToolTip:string;
-  topToolTip:string;
-  showToolTip : string= 'hidden';
-  @ViewChild('info') info : ElementRef;
+  //leftToolTip:string;
+  //topToolTip:string;
+  //showToolTip : string= 'hidden';
+  //@ViewChild('info') info : ElementRef;
   popUpSubject:string;
 
   showToolTip1:boolean;
@@ -94,36 +87,23 @@ export class UserManagCorPageComponent implements OnInit {
       this.currentCityID = params['city'];
     });
     allowOnlyNumbers();
-    this.stateCtrl = new FormControl();
    
     //this.getUserAssets();
-    
+    this.checkIfCityInB2M();
     this.setCreditDetail();
  
     this.commonService.userDetailsReceivedSource.first().subscribe(ud=>{
       this.setUserDetails(ud);
      })
    
-  
+    
     this.commonService.setTitleAndDescription("otherServices","","ניהול רשות ותאגיד");
   }
 
   ngAfterViewInit() {
 
   }
-  openToolTip(e){
-  
-    if(window.innerWidth > 676){
-    this.showToolTip = 'visible';
-    this.topToolTip = e.clientY - 238 + "px";
-    this.leftToolTip = e.clientX - 212 +  "px";
-    }
-    else
-      this.popUpSubject = "credit";
-  }
-  closeToolTip(){
-    this.showToolTip = 'hidden';
-  }
+ 
   setCreditDetail() {
     this.actionName = '622ce347-650f-4fd5-bae9-dea6d5fc7d00';
     this.dataToSend = new Array<ActionInputParams>()
@@ -140,11 +120,6 @@ export class UserManagCorPageComponent implements OnInit {
     }, err => {
       //alert(err);
     });
-  }
-
-  filterStates(name: string) {
-    return this.fullCorporationList.filter(state =>
-      state.AppName.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
 
@@ -358,12 +333,19 @@ export class UserManagCorPageComponent implements OnInit {
   //   this.router.navigate(["user/" + this.currentCityID + "/change-credit-details"]);
   // }
 
-
-  closePopup()
-  {
-     this.popUpSubject = null;
-  }  
-
+  checkIfCityInB2M() {
+    let data = this.EwaPost.BuildDataStructure('8dd324be-c207-4afb-ab1b-0476dc094c59',
+     [{Name : "@MgarId" , Value : this.currentCityID}],
+     'MastApi_Pay24', 'validCityInB2M');
+    this.jsonService.sendData(data).subscribe(res => {
+      if (res.length == 0){
+          this.isCityInB2M = false;
+          return false;      
+        }
+          if (res[0].IsB2M == true)
+          this.isCityInB2M = true;
+    }, err => {  });
+  }
   // add asset validate
   // validAssetNumberFun() {
   //   this.isValidAssetNumberMesseg = this.valid.validAssetNumberFun(this.assetNumberInsertAsset);

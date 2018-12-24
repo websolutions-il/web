@@ -62,24 +62,15 @@ export class UserBillInMailComponent implements OnInit {
   }
 
   validCityInB2M() {
-    this.dataToSend = new Array<ActionInputParams>()
-    this.params = new Array<InputParams>();
-    this.actionName = '8dd324be-c207-4afb-ab1b-0476dc094c59';
-    this.param = new InputParams("@MgarId", this.currentCityID);
-    this.params.push(this.param);
-
-    this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
-    this.dataToSend.push(this.singleDataObj);
-    this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_Pay24', 'validCityInB2M');
-    this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
+    let data = this.EwaPost.BuildDataStructure('8dd324be-c207-4afb-ab1b-0476dc094c59',
+     [{Name : "@MgarId" , Value : this.currentCityID}],
+     'MastApi_Pay24', 'validCityInB2M');
+    this.jsonService.sendData(data).subscribe(res => {
       if (res.length == 0)
         this.router.navigate(['']);
       if (res[0].IsB2M != true)
         this.router.navigate(['']);
-    }, err => {
-      //alert(err);
-    });
-
+    }, err => {  });
   }
   getUserDetail() {
     let data = this.EwaPost.getUserDetail();

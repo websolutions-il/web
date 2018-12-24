@@ -87,7 +87,7 @@
   
                 <div class="left_table">
                   <h3>רישום לשירות חשבונית במייל</h3>
-
+             <div *ngIf="isCityInB2M">
                   <app-b2m-table *ngIf="isExistsItemsForB2M" (getItems)="isExistsItemsB2M($event)"></app-b2m-table>
                   <div *ngIf="!isExistsItemsForB2M">
                      <div class="add_permission">
@@ -97,6 +97,11 @@
                      </div>
                     </div>
                 </div>
+              </div>
+              <div *ngIf="!isCityInB2M" style="padding: 6px;">
+                  אין שירות חשבונית במייל לרשות
+                  {{commonService.cityModel.name}}
+              </div>
                 </div>
   
               </div>
@@ -236,7 +241,7 @@
 <div *ngIf="popUpSubject" id="popup" class="overlay">
   <div class="popup">
     <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
-    <a class="close" (click)="closePopup()">&times;</a>
+    <a class="close" (click)="popUpSubject == null">&times;</a>
     <div class="content">
       <div *ngIf="popUpSubject == 'add-asset'">
       ניתן להחליף לרשות הרצוייה באמצעות כפתור החלף שבסרגל הימני
@@ -245,7 +250,7 @@
         שמירת פרטי כרטיס האשראי מאפשרת ביצוע תשלומים באופן מהיר ללא צורך בהזנת האשראי בכל ביצוע תשלום. פרטי האשראי נשמרים בצורה מאובטחת תוך הקפדה על הנהלים המחמירים ביותר
     </div>
       <div class="buttons step-buttons">
-        <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
+        <a href="javascript:void(0)" (click)="popUpSubject == null" id="closePopup" class="btn cancel" name="button">סגירה</a>
       </div>
     </div>
   </div>

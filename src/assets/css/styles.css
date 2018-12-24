@@ -1044,7 +1044,7 @@ ul.user-tab li.current{color:#0074ff;}
 .flex-direction-nav .flex-prev{left:0px;}
 
 .servicesUserContent{margin-top:0px;}
-.servicesUserContent .box-wrapper {position:relative; margin-top:-74px;}
+.servicesUserContent .box-wrapper {position:relative; margin-top:-70px;}
 .share-sec{display:none;}
 .infoheck{cursor:pointer;}
 .infoheck:hover + .share-sec{display:block;}

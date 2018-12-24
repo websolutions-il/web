@@ -1,5 +1,5 @@
 .validationMesseg{
-    width: 80%; 
+    width: 100%; 
     font-size: 80%;
     padding-top: 5px;
     padding-bottom: 10px;
@@ -7,7 +7,7 @@
 }
 input[type="text"],input[type="email"]
 {
-    width: 80%;
+    width: 100%;
 }
 /* app-b2m-table input[type="text"] {
     border-bottom:none;
@@ -24,4 +24,18 @@ input[type="text"],input[type="email"]
 }
 .padding-top{
     padding-top: 10%;
+}
+.my_details_left_side {
+    padding-bottom: 0px;
+    padding-right: 0px;
+    font-weight: 400;
+}
+.form_2 {
+    width: 30%;
+    margin: 10% auto;
+}
+@media(max-width:768px){
+    .form_2 {
+        width: 80%;
+    }
 }

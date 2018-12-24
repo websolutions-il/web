@@ -6,16 +6,17 @@
 
 <section class="user-content hideBefore">
 
-  <div class="fh8co-main container-fluid background2">
+  <div class="fh8co-main background2">
 
     <div class="row form_pages">
 
-      <div class="form_section_1">
+        <app-user-side-menu></app-user-side-menu>
 
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current my_details_left_side">
         <div class="col-md-12 col-sm-12">
 
-          <div *ngIf="showAddB2m" class="form_2 new_form">
-          
+
+          <div *ngIf="showAddB2m" class="form_2 new_form">          
        
             <h2 class="counter_number">חשבונית במייל</h2>
 
@@ -39,9 +40,9 @@
 
             </div>
 
-            <div class="form2">
+            <div class="form2" style="float: left;">
               
-              <p style="margin-left: -60%;">
+              <p>
                 <a href="javascript:void(0)" (click)="insertUserToB2M()" class="custom_sub_btn btn1" style="font-family: 'Heebo', sans-serif" title="send">הצטרף</a>
               </p>
 
@@ -51,6 +52,13 @@
           <div *ngIf="showB2mTbl" class="wrap-b2m-tbl" [ngClass]="!showAddB2m ? 'padding-top' : ''">
               <app-b2m-table (getItems)="checkRegisterCompeny($event)"></app-b2m-table>
           </div>
+
+
+
+
+
+
+          
         </div>
 
       </div>

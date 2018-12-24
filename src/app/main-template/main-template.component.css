@@ -1,3 +1,6 @@
+.overlay{
+  display: block;
+}
 
 .headerForPageWithoutReg{
   height: 125px;
@@ -11,6 +14,29 @@
     margin: auto;
     background-color: #080808;
 }
+
+.popup h2 {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 0;
+  color: #0000c6;
+  font-family: 'heebolight';
+}
+.popup .content .text{
+  font-family: 'heebolight';
+  color: #979694;
+  font-size: 27px;
+
+}
+.popup .timer{
+  border: 1px solid blue;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0px 0px 10px 0px;
+}
 @media (max-width: 767px){
   .headerForPageWithoutReg{
     height: auto;
@@ -21,6 +47,10 @@
   }
 
 }
+
+
+
+
 
 /* loader */
 .cs-loader {

@@ -119,13 +119,15 @@
     <!-- <li *ngIf="isMyDocuments" class="staticMenu"  (click)="setLastComponent('myDocuments')"><a href="javascript:void(0)">{{'myDocuments'| lang}}</a></li> -->
 
   </ul>
-  <a class="whatsapp" (click)="popUpSubject = 'whatsapp-msg'" >
+  <a class="whatsapp" class="cursorPointer" (click)="popUpSubject = 'whatsapp-msg'" >
     <img src="assets/img/whatsapp.png" style="height: 65px;">
   </a>
   <!-- </div> -->
 </div>
 
 
+<!-- אם מחזירים את הפופאפ הזה, לבדוק שוב את הפופאפ של הוואצאפ -->
+<!-- 
 <div *ngIf="popUpSubject" id="popup" class="overlay">
   <div class="popup">
     <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
@@ -160,4 +162,36 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+<div *ngIf="popUpSubject == 'whatsapp-msg'" id="popup" class="overlay-WA">
+    <div class="box-WA">  
+      <a class="close" (click)="popUpSubject = null">&times;</a>
+      <h2 class="title-WA" >קבלת שירות בווטסאפ</h2>  
+      <img src="assets/img/whatsapp-big.png" class="topImg" alt="">
+      <div class="content"> 
+        <div>
+            אין כמו לקבל שירות בוואטסאפ! אנחנו לרשותך לתמיכה טכנית בפלטפורמת
+
+          </div>
+          <img src="assets/img/mast-logo2.png" class="middleImg" alt="">
+          <div>
+              בנושאים אחרים אנא פנו באמצעות 
+           <a [routerLink]=" '/user/' +cityIdFromURL + '/forms'"> 
+              טופס ייעודי בעמוד הטפסים.</a>    
+
+          </div>
+          <div>
+              פניות שאינן לתמיכה טכנית לא ייענו בו במקום ולא יועברו לגורם מטפל אחר
+
+          </div>
+        <div class="wa-btn">
+            <a href="javascript:void(0)"  class="cancel" name="button"
+            target="_blank" href="https://api.whatsapp.com/send?phone=972504400500">עבור ל-Whatsapp</a>
+           <br>  <br>  <br>
+            <a style="margin-top: 10px;" href="javascript:void(0)" (click)="popUpSubject = null" class="cancel" name="button">בטל</a>
+        </div>
+      </div>
+    </div>
+  </div>

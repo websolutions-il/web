@@ -37336,6 +37336,8 @@
     <Content Include="src\app\page-template\fast-mast\fast-mast.component.html" />
     <Content Include="src\app\page-template\home\home.component.css" />
     <Content Include="src\app\page-template\home\home.component.html" />
+    <Content Include="src\app\page-template\life-belt\life-belt.component.css" />
+    <Content Include="src\app\page-template\life-belt\life-belt.component.html" />
     <Content Include="src\app\page-template\magic-citizens\magic-citizens.component.css" />
     <Content Include="src\app\page-template\magic-citizens\magic-citizens.component.html" />
     <Content Include="src\app\page-template\manager-log-in\manager-log-in.component.css" />
@@ -43665,6 +43667,7 @@
     <TypeScriptCompile Include="src\app\page-template\content\content.component.ts" />
     <TypeScriptCompile Include="src\app\page-template\fast-mast\fast-mast.component.ts" />
     <TypeScriptCompile Include="src\app\page-template\home\home.component.ts" />
+    <TypeScriptCompile Include="src\app\page-template\life-belt\life-belt.component.ts" />
     <TypeScriptCompile Include="src\app\page-template\magic-citizens\magic-citizens.component.ts" />
     <TypeScriptCompile Include="src\app\page-template\manager-log-in\manager-log-in.component.ts" />
     <TypeScriptCompile Include="src\app\page-template\manager-speech\manager-speech.component.ts" />
