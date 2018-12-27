@@ -350,7 +350,7 @@ export class RegestritionLogInComponent implements AfterViewInit {
     this.validEmailFun();
     this.validPhoneFun();
     this.validTZFun();
-    this.cityList.validCitiNameFun()
+    this.cityList.validCitiNameFun();
 
     if (this.isValidFirstNameMesseg != null || this.isValidLastNameMesseg != null ||
       this.isValidEmailMesseg != null || this.isValidPhoneMesseg != null ||
