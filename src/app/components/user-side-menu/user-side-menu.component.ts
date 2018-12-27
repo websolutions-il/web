@@ -118,10 +118,10 @@ export class UserSideMenuComponent implements AfterViewInit {
     this.selectedCityId = id;
     if (this.valid.validItemInListFun(this.commonService.cityList, name, "AppName"))
     return false;
-    this.popUpSubject = "approve-regulation-add-asset";
+   // this.popUpSubject = "approve-regulation-add-asset";
+   this.insertAsset();
   }
   insertAsset() {   
-
     let compId = this.selectedCityId;
     let data = this.EwaPost.BuildDataStructure('1b0d4655-c5a0-42b1-870e-122d6785135b',
       [{ Name: "@company_id", Value: compId },
@@ -132,7 +132,7 @@ export class UserSideMenuComponent implements AfterViewInit {
       if (res[0].ADD_SSO == 0) {
         return false;
       }
-      this.popUpSubject = "add-asset";
+     // this.popUpSubject = "add-asset";
    
       let exists = this.commonService.sideMenuCityList.filter(x=>x.company_id == compId);
       if(exists.length == 0)

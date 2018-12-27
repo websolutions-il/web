@@ -28,11 +28,10 @@ export class GeneralComponent implements OnInit {
         this.appointmentsService.isLogInUser = isLogIn;
       }
     );
-
     this.route.params.subscribe((params: Params) => {    
-      this.appointmentsService.currentCityID= params['city'];
+      this.appointmentsService.currentCityID= params['city'];      
      });
-  
+     this.appointmentsService.isEdit = false;
      if(this.commonService.cityModel.Id!=this.appointmentsService.currentCityID)
      this.commonService.getCityDetailFromUmbraco(this.appointmentsService.currentCityID,"otherServices" ,"זימון תורים");  
      else
@@ -43,6 +42,7 @@ export class GeneralComponent implements OnInit {
    
     if(this.appointmentsService.activeStep == null 
       || this.appointmentsService.activeStep == 'six')
+
        this.appointmentsService.activeStep ="one";
 // טסט
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppointmentsService } from '../../../services/appointments.service';
-import { FullActionInputParams, ActionInputParams, InputParams } from '../../../../Models/ParamsModel';
+import { FullActionInputParams, ActionInputParams, InputParams, EvaDataStructure } from '../../../../Models/ParamsModel';
 import { GetJsonService } from '../../../services/get-json.service';
 import { Router } from '@angular/router';
 import { CommonService } from '../../../services/common.service';
@@ -13,12 +13,8 @@ declare var $: any;
   styleUrls: ['./step-tow.component.css']
 })
 export class StepTowComponent implements OnInit, AfterViewInit {
-  actionName: string;
-  FullActionInputParams: FullActionInputParams;
-  dataToSend: any = new Array<ActionInputParams>();
-  singleDataObj: any = new ActionInputParams();
-  params: any = new Array<InputParams>();
-  param: InputParams;
+ 
+  EwaPost: EvaDataStructure = new EvaDataStructure();
 
   constructor(private router: Router, private jsonService: GetJsonService,
     public appointmentsService: AppointmentsService, public commonService:CommonService) {
@@ -85,18 +81,11 @@ export class StepTowComponent implements OnInit, AfterViewInit {
       (this.appointmentsService.isLogInUser ? "position: absolute; right: 23%;" : "right: 0px");
     this.commonService.showLoader = true;
 
-    this.actionName = '70b58072-a212-4320-9257-14b5186af466';
-    this.dataToSend = new Array<ActionInputParams>();
-    this.params = new Array<InputParams>();
-    this.param = new InputParams('', this.appointmentsService.selected_sub_department.UnitId); //,"612") //
-    this.params.push(this.param);
-    this.param = new InputParams("action", "GetAvailableDates");
-    this.params.push(this.param);
-
-    this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
-    this.dataToSend.push(this.singleDataObj);
-    this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'PayLogic','PayLogic.Qflow')
-    this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
+    let data = this.EwaPost.BuildDataStructure('70b58072-a212-4320-9257-14b5186af466',
+    [{Name: "unitId", Value : this.appointmentsService.selected_sub_department.UnitId},
+    {Name: "action", Value : "GetAvailableDates"}],
+    'PayLogic','PayLogic.Qflow')
+    this.jsonService.sendData(data).subscribe(res => {
       this.commonService.showLoader = false;
       this.appointmentsService.availableDateTimes = JSON.parse(res);
       let isAvailableDates = this.appointmentsService.availableDateTimes.filter(a => a.Id != 0);

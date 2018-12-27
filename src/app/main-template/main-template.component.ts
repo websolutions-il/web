@@ -40,9 +40,11 @@ export class MainTemplateComponent implements AfterViewInit {
 ngAfterViewInit(){ 
   setTimeout(() => {
     let referrer = document.referrer;
+    console.log(referrer)
 //    referrer = "234"
     if(referrer != "" && !referrer.includes("google") 
-    && this.router.url != "/")
+    && !referrer.includes("mast") && !referrer.includes("localhost")
+     && this.router.url != "/")
     this.popUpSubject = "firstMsg";  
     var interval = setInterval(()=> { 
       this.stopPopUpTimer-- ;

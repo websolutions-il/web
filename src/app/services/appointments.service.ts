@@ -12,6 +12,8 @@ export class AppointmentsService {
   //general
    public isLogInUser:boolean;
    public activeStep:string;
+   public isEdit:boolean = false;
+   public editItem:any;
   // step one
    public cityName:string;
    public cityLogo:string;

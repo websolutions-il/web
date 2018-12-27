@@ -1,7 +1,7 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter } from '@angular/core';
 import { INgxMyDpOptions, IMyDateModel, IMyDateRange, IMyInputFieldChanged, IMyCalendarViewChanged, IMyMarkedDate, IMyMarkedDates, IMyDate, IMyDefaultMonth } from 'ngx-mydatepicker';
 import { AppointmentsService } from '../../../services/appointments.service';
-import { InputParams, ActionInputParams, FullActionInputParams } from '../../../../Models/ParamsModel';
+import { InputParams, ActionInputParams, FullActionInputParams, EvaDataStructure } from '../../../../Models/ParamsModel';
 import { GetJsonService } from '../../../services/get-json.service';
 import { on } from 'cluster';
 import { CommonService } from '../../../services/common.service';
@@ -14,13 +14,17 @@ declare var $: any;
   styleUrls: ['./step-five.component.css']
 })
 export class StepFiveComponent implements OnInit, AfterViewInit {
-  actionName: string;
-  FullActionInputParams: FullActionInputParams;
-  dataToSend: any = new Array<ActionInputParams>();
-  singleDataObj: any = new ActionInputParams();;
-  params: any = new Array<InputParams>();
-  param: InputParams;
+  // actionName: string;
+  // FullActionInputParams: FullActionInputParams;
+  // dataToSend: any = new Array<ActionInputParams>();
+  // singleDataObj: any = new ActionInputParams();;
+  // params: any = new Array<InputParams>();
+  // param: InputParams;
+  //ewaPost: EvaDataStructure = new EvaDataStructure();
 
+  @Input() isEdit : boolean = false;
+  @Output() endEditing = new EventEmitter();
+  @Output() goBack = new EventEmitter();
   onInit: boolean;
   availableDateTimes: any = new Array();
   availableDates: any = new Array<IMyDate>();
@@ -120,7 +124,6 @@ export class StepFiveComponent implements OnInit, AfterViewInit {
       this.availableTime.push(h + ":" + m);
 
     });
-    console.log(this.availableTime)
   }
   setAvailableDates() {
     // טסט
@@ -171,6 +174,8 @@ export class StepFiveComponent implements OnInit, AfterViewInit {
   
   //  });   
   }
+
+ 
 
   setCssDatePicker(){
    // var a = $(".ngxmdp .disabled");

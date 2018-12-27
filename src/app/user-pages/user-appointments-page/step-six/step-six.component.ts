@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppointmentsService } from '../../../services/appointments.service';
 import { Router } from '@angular/router';
 import { InputParams, ActionInputParams, FullActionInputParams } from '../../../../Models/ParamsModel';
@@ -11,6 +11,9 @@ import { CommonService } from '../../../services/common.service';
   styleUrls: ['./step-six.component.css']
 })
 export class StepSixComponent implements OnInit {
+
+  @Input() isEdit: boolean;
+  @Output() goBack = new EventEmitter();
 
   isSuccess: boolean;
   isError: boolean;
@@ -55,9 +58,17 @@ export class StepSixComponent implements OnInit {
     this.param = new InputParams("cityName", this.commonService.cityModel.name);
     this.params.push(this.param);//9
     this.param = new InputParams("cityId", this.appointmentsService.currentCityID);
-    this.params.push(this.param);//10    
+    this.params.push(this.param);//10      
+    this.param = new InputParams("isEdit", this.appointmentsService.isEdit);
+    this.params.push(this.param);//11  
+
+    if(this.appointmentsService.isEdit){
+    this.param = new InputParams("processId", this.appointmentsService.editItem.ProcessId);
+    this.params.push(this.param);//12  
+    }
+
     this.param = new InputParams("action", "SaveAppointmentsDate");
-    this.params.push(this.param);//11
+    this.params.push(this.param);//13
 
     this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
     this.dataToSend.push(this.singleDataObj);
@@ -68,7 +79,7 @@ export class StepSixComponent implements OnInit {
       res = JSON.parse(res);
       if (res == "OK") {
         this.isSuccess = true;  
-        this.sendDetailsToVIPlus(); 
+       // this.sendDetailsToVIPlus(); 
       }
       else { // "ERROR" / "EXISTS"
         this.isError = true;
@@ -77,6 +88,10 @@ export class StepSixComponent implements OnInit {
    
     }, err => {
     });
+  }
+
+  editAppointmentsDate(){
+
   }
 
   sendDetailsToVIPlus()

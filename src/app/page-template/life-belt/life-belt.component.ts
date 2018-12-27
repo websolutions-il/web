@@ -39,11 +39,13 @@ export class LifeBeltComponent implements OnInit {
   }
 
  // formType = 947
+ // טופס אימות נכס של מוקד בית שמש
+ // clientId = 9999
   insertRequestToStutosNetForm() {
     let data = this.EwaPost.BuildDataStructure(
       '5CEE6734-186C-4AF1-B972-AB2453E1CAE9',
       [
-        {Name : "@ClientId", Value : this.currentCityID},
+        {Name : "@ClientId", Value : "9999"},
         {Name : "@PageName", Value : "סתם"},
         {Name : "@GuidRequest", Value : this.commonService.guid()},
         {Name : "@PageUid", Value : "63e53692-1e03-4dec-8895-14e15761538c"},
@@ -68,7 +70,7 @@ export class LifeBeltComponent implements OnInit {
         {Name : "@IsApprovedRegistration", Value : "1"},
         {Name : "@TZ", Value : this.commonService.userDetails[0].UserName}],
       'MastApi_KeepItCity', 'insertRequestToStutosNetForm');
-    this.jsonService.sendData(data).subscribe(res => {
+        this.jsonService.sendData(data).subscribe(res => {
         if(res[0].Column1)
           {
           this.popUpSubject = "successFormRequest"

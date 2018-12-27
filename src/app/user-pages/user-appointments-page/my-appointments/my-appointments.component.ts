@@ -3,6 +3,8 @@ import { EvaDataStructure } from '../../../../Models/ParamsModel';
 import { CommonService } from '../../../services/common.service';
 import { GetJsonService } from '../../../services/get-json.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { AppointmentsService } from '../../../services/appointments.service';
+import { User } from '../../../../Models/UserModel';
 
 @Component({
   selector: 'app-my-appointments',
@@ -12,15 +14,27 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 export class MyAppointmentsComponent implements OnInit {
   EwaPost: EvaDataStructure = new EvaDataStructure();
   phone:string;
-  unitId:string;
   itemsList: any [];
   isAppointmentsExists:boolean = true;
+  step:string;
+
   constructor(public commonService:CommonService,private jsonService:GetJsonService,
-    private route: ActivatedRoute, private router: Router) {
-      this.route.params.subscribe((params: Params) => {    
-       this.GetQflowId(params['city']);
+    private route: ActivatedRoute, private router: Router,public appointmentsService:AppointmentsService,) {
+      this.route.params.subscribe((params: Params) => {  
+        this.appointmentsService.currentCityID = params['city'];
+       this.GetQflowId(this.appointmentsService.currentCityID);
        });
-   }
+       this.commonService.isLogInUserReceivedSource.first().subscribe(
+        (isLogIn) => {
+          this.appointmentsService.isLogInUser = isLogIn;
+        }
+      );
+       this.appointmentsService.userDetails = new User();
+       if(this.commonService.cityModel.Id != this.appointmentsService.currentCityID)
+           this.commonService.getCityDetailFromUmbraco(this.appointmentsService.currentCityID,"other");
+ 
+     this.appointmentsService.isEdit = true;
+      }
 
   ngOnInit() {
   }
@@ -31,36 +45,46 @@ export class MyAppointmentsComponent implements OnInit {
       [{Name : "@ClientId", Value : city }],
       "MastApi_KeepItCity","GetQflowId" );
       this.jsonService.sendData(data).subscribe(res => { 
-      this.unitId =  res.filter(x=> x.IsService)[0].UnitId;
-   
+        this.appointmentsService.selected_sub_department = {UnitId : "", UnitName: ""};
+        this.appointmentsService.selected_sub_department.UnitId 
+          = res.filter(x=> x.IsService)[0].UnitId;   
+
       if(this.commonService.isLogInUser)
       {
-        this.commonService.userDetailsReceivedSource.first().subscribe(ud=> {
+        this.commonService.userDetailsReceivedSource.first().subscribe(ud=> {          
+          this.appointmentsService.userDetails.FirstName = ud[0].FirstName;
+          this.appointmentsService.userDetails.LastName = ud[0].LastName;
+          this.appointmentsService.userDetails.UserName = ud[0].UserName;          
           this.getAppointments(ud[0].Phone);
         });
-      }
-      
+      }      
      }, err => {            
     });
   
   }
-  getAppointments(phone){
+  getAppointments(phone){      
       let data = this.EwaPost.BuildDataStructure(
         '70b58072-a212-4320-9257-14b5186af466',
         [{Name : "phone", Value : phone },
-          {Name : "sub_department", Value : this.unitId },
+          {Name : "sub_department", Value : this.appointmentsService.selected_sub_department.UnitId },
           {Name : "action", Value : "GetCustumerAppointments"}],
         "PayLogic","PayLogic.Qflow");
       
       this.jsonService.sendData(data).subscribe(res => {   
          let $res = JSON.parse(res)
-         if($res.Name == "Record not found" || $res.length == 0) 
+         console.log($res)
+         if($res.Name == "Record not found" || $res[0].length == 0) 
          {
            this.isAppointmentsExists = false;
            return false;
          }
-           this.itemsList = $res;
+           this.itemsList = $res[0];
            this.isAppointmentsExists = true;
+           this.appointmentsService.userDetails.Phone = phone;
+           this.appointmentsService.userDetails.FirstName = $res[1].FirstName;
+           this.appointmentsService.userDetails.LastName = $res[1].LastName;
+           this.appointmentsService.userDetails.Email = $res[1].EMail;
+         //  this.appointmentsService.userDetails.FirstName = $res[1].FirstName;
 
       }, err => { });
     }
@@ -72,17 +96,46 @@ export class MyAppointmentsComponent implements OnInit {
           {Name : "action", Value : "DeleteAppointments"}],
         "PayLogic","PayLogic.Qflow");
       
-      this.jsonService.sendData(data).subscribe(res => {  
+      this.jsonService.sendData(data).subscribe(res => {          
         let $res = JSON.parse(res)
-        if(res =="OK"){
+        console.log($res);
+        if($res =="OK"){
         const index = $res.indexOf(appointments);
         this.itemsList.splice(index);
         if(this.itemsList.length == 0)
-          this.isAppointmentsExists = false;
+        this.itemsList = null;
+        //  this.isAppointmentsExists = false;
         }
         else
         alert("הפעולה נכשלה");
       }, err => { });
     }
 
+    editAppointments(item){
+      console.log(item);
+      this.commonService.styleLoader = 
+      (this.appointmentsService.isLogInUser ? "position: absolute; right: 23%;" : "right: 0px");
+    this.commonService.showLoader = true;
+    this.appointmentsService.editItem = item;
+    this.appointmentsService.selected_sub_department.UnitName = item.ServiceName;
+
+    let data = this.EwaPost.BuildDataStructure('70b58072-a212-4320-9257-14b5186af466',
+        // במידה ויהיו יותר שירותים תחת יוניט אחד.
+        // לא יהיה נכון לשלוח את הפרמטר הזה
+        // אלא יהיה חייב לקבל את המזהה של השירות מתוך רשימת התורים של המשתמש
+        // ואותו לשלוח. כיום הפונקציה לא מחזירה מזהה רשות
+    [{Name: "unitId", Value : this.appointmentsService.selected_sub_department.UnitId},
+     {Name: "action", Value : "GetAvailableDates"}],
+    'PayLogic','PayLogic.Qflow')
+     this.jsonService.sendData(data).subscribe(res => {
+        this.commonService.showLoader = false;
+        this.appointmentsService.availableDateTimes = JSON.parse(res);
+        let isAvailableDates = this.appointmentsService.availableDateTimes.filter(a => a.Id != 0);   
+         if(isAvailableDates.length > 0)            
+           this.step = 'five';  
+    }, err => {  });
+    }
+
+
+    
   }

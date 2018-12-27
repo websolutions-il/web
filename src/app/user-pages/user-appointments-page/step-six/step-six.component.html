@@ -1,6 +1,6 @@
     <section id="planning_section" class="planning_section">
       <div class="row">
-          <div class="col-sm-12">
+          <div *ngIf="!isEdit" class="col-sm-12">
               <div class="breadcrumb_container text-center">
                   <div class="progress center-block">
                       <div class="progress-bar pull-right progress-bar-success active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 99%">
@@ -25,15 +25,17 @@
                 <h3>מזמין התור:</h3>
                 <ul>
                     <li>שם מלא: {{appointmentsService.userDetails.FirstName + ' ' + appointmentsService.userDetails.LastName}}</li>
-                    <li>ת.ז: {{appointmentsService.userDetails.UserName}}</li>
+                    <li *ngIf="appointmentsService.userDetails.UserName"
+                    >ת.ז: {{appointmentsService.userDetails.UserName}}</li>
                     <li>טל: {{appointmentsService.userDetails.Phone}}</li>
                     <li>אימייל: {{appointmentsService.userDetails.Email}}</li>
                 </ul>
               </div>
-              <div  class="rezervation_details">
+              <div class="rezervation_details">
                 <h3>פרטי התור:</h3>
                 <ul>
-                    <li>תחום השירות: {{appointmentsService.selected_department.UnitName}}</li>
+                    <li *ngIf="appointmentsService.selected_department">
+                        תחום השירות: {{appointmentsService.selected_department.UnitName}}</li>
                     <li>מחלקה: {{appointmentsService.selected_sub_department.UnitName}}</li>
                     <li>תאריך:  {{appointmentsService.selected_date}}</li>
                     <li>שעה: {{appointmentsService.selected_time}} </li>
@@ -44,10 +46,11 @@
             
 
             <div class="buttons step-buttons text-left">
-                <a href="javascript:void(0)" (click)="appointmentsService.changeStep('five')" class="btn cancel" name="button">חזור</a>
+                <a *ngIf="!isEdit"  href="javascript:void(0)" (click)="appointmentsService.changeStep('five')" class="btn cancel" name="button">חזור</a>
+                <a *ngIf="isEdit" href="javascript:void(0)" (click)="goBack.emit()" class="btn cancel" name="button">חזור</a>
                 <a href="javascript:void(0)" (click)="SaveAppointmentsDate()" class="btn submit">קבע תור <span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
             </div>
-
+           
           </div>
 
           <div *ngIf="isSuccess" class="col-sm-12 text-center">                         

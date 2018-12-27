@@ -125,7 +125,6 @@ function appointmentsUserDetails() {
 
     $('.selectholder .selectdropdown span').click(function (e) {
         selectedPrefix = e.target.innerHTML;
-        console.log(selectedPrefix);
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
         var value = $(this).text();

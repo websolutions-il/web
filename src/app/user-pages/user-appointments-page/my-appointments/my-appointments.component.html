@@ -3,33 +3,101 @@
     <h1>התורים שלי</h1>
   </div>
   <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
-  <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
-    <section class="user-content">
-      <div class="fh8co-main container-fluid">
+  <div [ngClass]="appointmentsService.isLogInUser ? 'container_user_div' : ''">
+      <section  [ngClass]="appointmentsService.isLogInUser ? 'user-content' : 'content-bx'">
+          <div [ngClass]="appointmentsService.isLogInUser ? 'fh8co-main container-fluid' : 'container' ">
         <div class="row">     
-          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
-          <section class="content-bx">  
+          <app-user-side-menu *ngIf="appointmentsService.isLogInUser"></app-user-side-menu>
+          <!-- <section class="content-bx">  
             <div class="container">  
-              <div class="row">   
-                <div *ngIf="!commonService.isLogInUser">
+              <div class="row">    -->
+               <div id="tab-2" [ngClass]="appointmentsService.isLogInUser ? 'col-md-9 col-sm-9' : 'col-md-12 col-sm-12'" class="padding-0 right_part table_part tab-content current">
+                <div *ngIf="!step">
+                <!-- <div *ngIf="!appointmentsService.isLogInUser">
                     <input type="text" [(ngModel)]="phone">  
                     <input type="button" value="send" (click)="getAppointments(phone)">          
-                </div>  
-                <div *ngIf="itemsList">
-                   <div *ngFor="let item of itemsList">
-                      <div>{{item.ServiceName}}</div>
-                      <div>{{item.AppointmentDate | date: 'shortDate'}}</div>                      
-                      <div>{{item.AppointmentDate | date: 'hh:mm'}}</div>                      
-                      <input type="button" value="delete" (click)="deleteAppointments(item)">  
-                   </div>
-                </div>  
+                </div>   -->
+
+
+                <div *ngIf="!appointmentsService.isLogInUser">
+                <div class="form1">
+                    <input *ngIf="!isReqUserName" [(ngModel)]="phone" name="Email"  type="text" placeholder="הזן מספר נייד">
+                    <a href="javascript:void(0)" (click)="getAppointments(phone)" class="custom_sub_btn btn1"  title="send">חפש</a>
+                  </div>                       
+                 </div>
+
+
+
+
+
+                <table *ngIf="itemsList" class="table delete_list" style="margin-top:50px">
+                    <thead>
+                      <tr>
+                        <th>שם השירות</th>
+                        <th>תאריך</th>
+                        <th>שעה</th>
+                        <th>ביטול</th>
+                        <th>שינוי מועד</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of itemsList">
+                        <td>
+                          <span>{{item.ServiceName}}</span>
+                        </td>
+                        <td>
+                          <span>{{item.AppointmentDate | date: 'shortDate'}}</span>
+                        </td>
+                        <td>
+                           <span>{{item.AppointmentDate | date: 'hh:mm'}}</span>
+                        </td>
+                        <td class="main_erase">
+                          <span>
+                            <a (click)="deleteAppointments(item)" id="delete_icon" class="delete_icon" href="javascript:void(0)">
+                              <i class="fa fa-trash-o erase" aria-hidden="true"></i>
+                            </a>   
+                          </span>
+                        </td>
+                        <td class="main_erase">
+                            <span>
+                              <a (click)="editAppointments(item)" id="delete_icon" class="delete_icon" href="javascript:void(0)">
+                                  <img src="assets/img/edit.png" style="width: 16px;">
+                              </a>   
+                            </span>
+                          </td>
+                      </tr>   
+                
+                    </tbody>
+                  </table>
+                
+                
+                              
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div *ngIf="!isAppointmentsExists">
                   אין תורים זמינים להצגה
                 </div>       
-                        
               </div>
+                <div *ngIf="step">
+                    <app-step-five (goBack)="step = null" (endEditing)="step = 'six'" [isEdit]="true" *ngIf="step =='five'"></app-step-five>
+                    <app-step-six  (goBack)="step ='five'" [isEdit]="true" *ngIf="step =='six'"></app-step-six>
+                </div>
               </div>
-          </section>
+
+              <!-- </div>
+              </div>
+          </section> -->
   
         </div>
       </div>
