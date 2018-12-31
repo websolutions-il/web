@@ -1,0 +1,47 @@
+.validationMesseg{
+    /* color: red;     
+    font-size: 80%; */
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+    /* border-bottom: 1px solid #000A90;  */
+    
+}
+#streetName{
+    padding: 0px!important;
+    margin-top: 4px;
+    border-bottom: none!important;
+    border-left: 1px solid #0000c6!important;
+    border-bottom: 1px solid #0000c5;
+    border-top: none;
+    border-left: none;
+    border-right: none;   
+    background: none;
+    padding: 2%;
+    color: #808080;
+}  
+select{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    color: #0000c6;
+}
+textarea::-webkit-input-placeholder {
+    color: #0000c6;
+    }
+    
+    textarea:-moz-placeholder { /* Firefox 18- */
+        color: #0000c6; 
+    }
+    
+    textarea::-moz-placeholder {  /* Firefox 19+ */
+        color: #0000c6; 
+    }
+    
+    textarea:-ms-input-placeholder {
+        color: #0000c6;
+    }
+
+    .mat-option.mat-active, .mat-option:hover {
+        background-color: #0000c5;
+        color: white;
+    }

@@ -1,0 +1,667 @@
+<div *ngIf="isArab">
+  <div class="lets_start">
+    <h1>القدس - רנה קאסן</h1>
+  </div>
+  <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+  <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+    <section class="user-content">
+      <div class="fh8co-main container-fluid">
+        <div class="row">
+          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+
+          <div class="wrap_header" [ngClass]="commonService.isLogInUser ? 'marg-reg' : ''">
+            <img class="showMobile mobile-logo" [src]="commonService.cityModel.logo">
+            <img class="hideMobile desctop-logo" src="assets/img/rne-logo.PNG">
+          </div>
+
+          <div *ngIf="isPageActive">
+
+            <div *ngIf="!isIframe" [ngClass]="commonService.isLogInUser ? 'col-sm-9 col-md-9' : 'col-sm-10 col-md-10 mrg-right'">
+
+              <h2 class="h2-header"> التسجيل في برنامج نيتسانيم </h2>
+
+              <div class="box" [ngClass]="commonService.isLogInUser ? 'user-box' : ''">
+
+                <!-- column 1 -->
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">الوالد/ ة: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+                      </div>
+                      <div class="col-sm-7">
+                        <select [(ngModel)]="summerCapmModel.parentType">
+                          <option value="" selected disabled hidden>اختيار</option>
+                          <option value="1">الأب</option>
+                          <option value="2">الأم</option>
+                          <option value="3">الوصي</option>
+                        </select>
+                        <div *ngIf="isValidParentTypeMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form"> رقم هوية الوالد / ة: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.TZ">
+                          <div *ngIf="isValidTZMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form"> اسم العائلة: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.LastName">
+                          <div *ngIf="isValidLastNameMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">الاسم االشخصي للوالد / ة: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.FirstName">
+                          <div *ngIf="isValidFirstNameMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+
+
+
+                <!-- column 2 -->
+                <div class="col-sm-4">
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">رقم هويه الولد: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.TZChild">
+                          <div *ngIf="isValidTZChildMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">البريد الاكتروني: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.Email">
+                          <div *ngIf="isValidEmailMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">مصادقة البريد الاكتروني: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" id="pasteEmail" [(ngModel)]="pasteEmail">
+                          <div *ngIf="isValidPasteEmailMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">ملاحظات: </label>
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.notes">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <!-- column 3 -->
+                <div class="col-sm-4 column-3">
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">رقم الهاتف النقال : </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.Phone">
+                          <div *ngIf="isValidPhoneMesseg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">رقم الهاتف: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.phone2">
+                          <div *ngIf="isValidPhone2Messeg" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">قواعد / شروط الخدمه: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <div class="form-group rememberMe">
+                            <label for="regulations">
+                              <input checked="checked" type="checkbox" [(ngModel)]="isValidRegulations" name="תקנון" id="regulations" /> اوافق على شروط الاستخدام
+                              <a title="regulations" target="_blank" [href]="jsonService.ORIGIN +'/content/תקנון/164'">قواعد / شروط الخدمه</a>
+                            </label>
+                            <div *ngIf="isValidRegulationsMesseg" id="alert_RegulationsForLogInUser" class="validationMesseg">ادخلت بيانات غير صحيحة</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="wrap_input">
+                          <div class="form-group col-sm-7">
+                            <a href="javascript:void(0)" (click)="action()" class="submitBtn loginbtn1">التالي</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="footer-messeg">ملاحظة : لا يمكن الدفع ببطاقات American Express وبطاقات Deiract</div>
+
+              </div>
+
+            </div>
+
+
+            <section *ngIf="isIframe" class="content-bx">
+              <div class="container">
+                <div class="row">
+                  <div id="container_iframe" [ngClass]="commonService.isLogInUser ? 'col-sm-9' : 'col-sm-12'">
+                    <div>
+                      <iframe *ngIf="iframeSrc" id="frameDemo" [src]="iframeSrc | safe"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+
+
+          <div *ngIf="!isPageActive" class="no-active" [ngClass]="commonService.isLogInUser ? 'col-sm-9 col-md-9' : 'col-sm-10 col-md-10 mrg-right'">
+            انتهى التسجيل لبرنامج نيتسانيم لسنه 2019
+            <br>
+            <br> نتمنى لكم سنة دراسية مثمرة
+            <br>
+            <br> للاستفسار عن برنامج نيتسانيم، يرجى الاتصال بمركز الخدمة على رقم : 5822070-02
+            <br> ساعات الاستجابه عبر الهاتف
+            <br> ايم الاحد - الاربعاء في الساعات : 9:00-15:00
+            <br> يوم الخميس في الساعات : 9:00-13:00
+            <br>
+            <br> يمكنكم التواصل بنا عبر البريد الإلكتروني
+            <a href="mailto:pniyot@renecassin.org.il">pniyot@renecassin.org.il</a>
+            وسوف يتواصل بك أحد ممثلينا في أقرب وقت ممكن
+
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+  </div>
+
+
+  <div id="popup" class="overlay">
+    <div class="popup">
+      <h2>عزيزي المستخدم!</h2>
+      <a class="close" (click)="closePopup()">&times;</a>
+      <div class="content">
+        <div *ngIf="!isDebt">
+          لم يتم التعرف على هوية التلميذ /ة الذي أدخلته في النظام. يرجى النقر فوق الزر "رجوع" للعودة إلى الشاشة السابقة لإدخال بطاقة
+          هوية صالحة للتلميذ /ة . </div>
+        <div *ngIf="isDebt">
+          وفقا لسجلاتنا هناك رصيد من الديون لم يتم تسويته بعد ,يتعين عليك الاتصال بنا وترتيب دينك للجمعية. يرجى الملاحظة : تعتمد المشاركة
+          في البرنامج على السداد الفوري للديون. لتسوية الديون يمكنك الاتصال بنا عن طريق الهاتف :
+          <a href="tel:025822070">025822070 </a>
+          او البريد الاكتروني :
+          <a href="mailto:pniyot@renecassin.org.il">pniyot@renecassin.org.il</a>
+          وسوف يتواصل بك أحد ممثلينا في أقرب وقت ممكن
+        </div>
+        <div class="buttons step-buttons">
+          <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button"> {{!isDebt ? 'الرجوع' : 'اغلاق' }} </a>
+          <a *ngIf="!isDebt" href="javascript:void(0)" (click)="continueWithoutTZ()" id="closePopup" class="btn cancel" name="button">اكمل</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div *ngIf="!isArab">
+  <div class="lets_start">
+    <h1>ירושלים – רנה קאסן</h1>
+  </div>
+  <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+  <div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+    <section class="user-content">
+      <div class="fh8co-main container-fluid">
+        <div class="row">
+          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+
+          <div class="wrap_header" [ngClass]="commonService.isLogInUser ? 'marg-reg' : ''">
+            <img class="showMobile mobile-logo" [src]="commonService.cityModel.logo">
+            <img class="hideMobile desctop-logo" src="assets/img/rne-logo.PNG">
+          </div>
+
+          <div *ngIf="isPageActive">
+
+            <div *ngIf="!isIframe" [ngClass]="commonService.isLogInUser ? 'col-sm-9 col-md-9' : 'col-sm-10 col-md-10 mrg-right'">
+
+              <h2 class="h2-header"> רישום לתוכנית ניצנים תשע"ט </h2>
+
+              <div class="box" [ngClass]="commonService.isLogInUser ? 'user-box' : ''">
+
+                <!-- column 1 -->
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">הורה: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+                      </div>
+                      <div class="col-sm-7">
+                        <select [(ngModel)]="summerCapmModel.parentType">
+                          <option value="" selected disabled hidden>בחר</option>
+                          <option value="1">אב</option>
+                          <option value="2">אם</option>
+                          <option value="3">אפוטרופוס</option>
+                        </select>
+                        <div *ngIf="isValidParentTypeMesseg" class="validationMesseg">{{isValidParentTypeMesseg | lang }}</div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form"> מס' זהות הורה: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.TZ">
+                          <div *ngIf="isValidTZMesseg" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form"> שם משפחה הורה: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.LastName">
+                          <div *ngIf="isValidLastNameMesseg" class="validationMesseg">{{isValidLastNameMesseg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">שם פרטי הורה: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.FirstName">
+                          <div *ngIf="isValidFirstNameMesseg" class="validationMesseg">{{isValidFirstNameMesseg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                </div>
+
+
+
+                <!-- column 2 -->
+                <div class="col-sm-4">
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">ת.ז. ילד: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.TZChild">
+                          <div *ngIf="isValidTZChildMesseg" class="validationMesseg">{{isValidTZChildMesseg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">דוא"ל: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.Email">
+                          <div *ngIf="isValidEmailMesseg" class="validationMesseg">{{isValidEmailMesseg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">אימות דוא"ל: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" id="pasteEmail" [(ngModel)]="pasteEmail">
+                          <div *ngIf="isValidPasteEmailMesseg" class="validationMesseg">כתובת אימייל אינה תואמת</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">הערות: </label>
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.notes">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+
+                <!-- column 3 -->
+                <div class="col-sm-4 column-3">
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">טלפון נייד : </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.user.Phone">
+                          <div *ngIf="isValidPhoneMesseg" class="validationMesseg">{{isValidPhoneMesseg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">טלפון נוסף: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <input type="text" [(ngModel)]="summerCapmModel.phone2">
+                          <div *ngIf="isValidPhone2Messeg" class="validationMesseg">{{isValidPhone2Messeg | lang }}</div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-5">
+                        <label class="label_form">תקנון: </label>
+                        <img id="ParentTypeReqImg" class="RequiredImg" src="/assets/img/star-camp.png">
+
+                      </div>
+                      <div class="col-sm-7">
+                        <div class="wrap_input">
+                          <div class="form-group rememberMe">
+                            <label for="regulations">
+                              <input checked="checked" type="checkbox" [(ngModel)]="isValidRegulations" name="תקנון" id="regulations" /> מאשר תנאי השימוש בכפוף ל-
+                              <a title="regulations" target="_blank" href="https://www.mast.co.il/content/תקנון">{{'regulations'| lang }}</a>
+                            </label>
+                            <div *ngIf="isValidRegulationsMesseg" id="alert_RegulationsForLogInUser" class="validationMesseg">{{'isValidRegulations' | lang }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="wrap_input">
+                          <div class="form-group col-sm-7">
+                            <a href="javascript:void(0)" (click)="action()" class="submitBtn loginbtn1">הבא</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="footer-messeg">שימו לב - לא ניתן לשלם בכרטיס אשראי מסוג אמריקן אקספרס ולא בכרטיסי דיירקט</div>
+
+              </div>
+
+            </div>
+
+
+            <section *ngIf="isIframe" class="content-bx">
+              <div class="container">
+                <div class="row">
+                  <div id="container_iframe" [ngClass]="commonService.isLogInUser ? 'col-sm-9' : 'col-sm-12'">
+                    <div>
+                      <iframe *ngIf="iframeSrc" id="frameDemo" [src]="iframeSrc | safe"></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+
+
+
+          <div *ngIf="!isPageActive" class="no-active" [ngClass]="commonService.isLogInUser ? 'col-sm-9 col-md-9' : 'col-sm-10 col-md-10 mrg-right'">
+            הרשמה לתכנית ניצנים תשע"ט הסתיימה!
+            <br>
+            <br> אנו מודים לכם ומאחלים שנת לימודים פורייה!
+            <br>
+            <br> לפניות בנושא תוכנית ניצנים ניתן לפנות למוקד השירות בטלפון 02-5822070
+            <br> שעות מענה -
+            <br> ימים א' - ד' - בין השעות 9:00-15:00
+            <br> ימי ה' - בין השעות 9:00-13:00
+            <br>
+            <br> לנוחיותכם ניתן לפנות אלינו גם במייל בכתובת
+            <a href="mailto:pniyot@renecassin.org.il">pniyot@renecassin.org.il</a>
+            ואחד מנציגנו יצור עמכם קשר בהקדם.
+
+          </div>
+
+
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+  </div>
+
+
+  <div id="popup" class="overlay">
+    <div class="popup">
+      <h2>לקוחות יקרים!</h2>
+      <a class="close" (click)="closePopup()">&times;</a>
+      <div class="content">
+        <div *ngIf="!isDebt">
+          תעודת הזהות של הילד שהזנת לא זוהתה במערכת. אנא לחצו על כפתור חזור לחזרה למסך הקודם להזנת תעודת זהות תקינה של הילד כולל ספרת
+          ביקורת או המשך לביצוע רישום
+        </div>
+        <div *ngIf="isDebt">
+          על פי רישומנו קיימת יתרת חוב שטרם סולקה, על מנת להמשיך את הרישום הנך נדרש לפנות אלינו ולהסדיר את חובך לאגודה. לתשומת לבך
+          – השתתפות בתוכנית מותנית בסילוק החוב לאלתר. להסדרת החוב ניתן לפנות אלינו בטלפון
+          <a href="tel:025822070">025822070 </a>
+          או במייל
+          <a href="mailto:pniyot@renecassin.org.il">pniyot@renecassin.org.il</a>
+          ואחד מנציגנו יצור עמך קשר בהקדם
+        </div>
+        <div class="buttons step-buttons">
+          <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button"> {{!isDebt ? 'חזור' : 'סגור' }} </a>
+          <a *ngIf="!isDebt" href="javascript:void(0)" (click)="continueWithoutTZ()" id="closePopup" class="btn cancel" name="button">המשך</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

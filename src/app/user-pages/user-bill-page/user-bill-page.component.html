@@ -1,0 +1,32 @@
+<div class="lets_start">
+    <h1>{{'services'| lang}}</h1>
+  </div>
+  
+  <div class="container_user_div">
+    <section class="user-content">
+      <div class="fh8co-main container-fluid">
+        <div class="row">     
+          <app-user-side-menu></app-user-side-menu>
+  
+  
+          <section class="content-bx">  
+              <div class="container">  
+                <div class="row">  
+                  <div id="container_iframe" class="col-xs-10">  
+                    <div >  
+                      <h1 style="color:#0000c6">{{'payBills'| lang}} - {{commonService.cityModel.name}}  </h1>
+                        <p style="color:#0000c6; padding-bottom:0px;" id="long-description" class="articles_list">{{'paymentsAreaMesseg'| lang}}
+                        </p>  
+                      <iframe *ngIf="iframeSrc!=''" id="frameDemo" [src]="iframeSrc | safe" style="position:relative; top:0px;  left:0px; right:0px; width: 100%; min-height: 1300px;  border: none; margin:0; padding:0; overflow: hidden; z-index:0; margin-top:0px; margin-right:0px;"></iframe>
+                      </div>
+                    </div>  
+                </div>
+                </div>
+                 </section>
+          
+        
+  
+        </div>
+      </div>
+    </section>
+  </div>

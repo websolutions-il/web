@@ -1,0 +1,153 @@
+#userDetailsDiv{
+    font-size: 22px;
+    border: 5px solid #b1a4a4;
+    padding: 12px;
+    border-radius: 30px;
+    width: 38%;
+    box-shadow: 8px -1px 6px 3px silver;
+    margin-bottom: 2%;
+
+}
+#userDetailsDiv label{
+    color: #7f7b7b;
+}
+#userDetailsDiv span{
+    font-size: 18px;
+}
+
+#userDetailsDiv span:not(:last-child):after{
+    content: " | ";
+    color: silver;
+}
+table tr th{
+    text-align: center;
+}
+.table.table-striped{
+    text-align: center;
+    border: 5px solid #aaa0a0;
+    box-shadow: 4px -3px 11px 5px silver;
+    width: 80%;
+}
+
+.table-striped th{
+    display: block;
+}
+
+.fh8co-main .img-responsive{
+    padding-top: 40px;
+}
+
+
+
+
+
+  /* popup */
+  .overlay {
+    display: none;
+    z-index: 10000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    opacity: 1;
+  }
+  
+  .popup {
+    text-align: center;
+    height: 90%;
+    margin: 70px auto;
+    padding: 50px;
+    background: #fff;
+    border-radius: 5px;
+    width: 95%;
+    position: relative;
+    box-shadow: 0px -1px 31px 5px;
+    transition: transform 2s;
+  }
+  
+
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color:#6d6df2;
+  }
+ 
+  .popup .content {
+    max-height: 60%;
+    font-size: 25px;
+  }
+  .close{
+    opacity: 1;
+  }
+  #closePopup{
+    font-weight: bold;
+    border-radius: 15px;
+  }
+
+  .popup svg{
+      margin-top: 11%;
+  }
+  .right_text {
+      padding: 5%;     
+  }
+  .btn_zoom{
+      display: none;
+  }
+
+@media (max-width: 767px){
+    #userDetailsDiv{
+        width: 95%;
+        margin-top: 35%;
+        margin-right: 3%;
+    }
+     .articles_table{
+         display: block;
+     }    
+.table-striped{
+     width: 800px;
+    overflow: scroll;
+}  
+.popup{
+    margin: 5% auto;
+}
+
+.popup svg{
+    width: 208%;
+    margin-top: 67%;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    margin-right: -25%;
+}
+
+
+.popup.zoom svg{  
+    height: 933px;
+    width: 909px;
+}
+.popup.zoom .content {
+    max-height: 100%;
+    overflow: scroll;
+    height: 755px;
+    width: 285px;
+  }
+  .btn_zoom{
+    display: block;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    position: absolute;
+    bottom: 50px;
+    right: 30px;
+
+  }
+ .btn_zoom img{
+    width: 38px;
+ }
+  
+}

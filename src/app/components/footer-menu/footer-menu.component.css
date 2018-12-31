@@ -1,0 +1,3 @@
+.footer_links > .linkList:not(:last-child):after {
+    content: "  |";
+}

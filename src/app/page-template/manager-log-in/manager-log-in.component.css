@@ -1,0 +1,9 @@
+.gray_bg .right_from{
+    float: none;
+    margin-right: 40%;
+}
+@media(max-width:676px){
+    .gray_bg .right_from{     
+        margin-right: 10%;
+    } 
+}

@@ -1,0 +1,179 @@
+<div class="lets_start">
+  <h1>צהרונים</h1>
+</div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+        <!-- get details form -->
+        <div class="form_section_2" [ngClass]="commonService.isLogInUser ? 'margin-top-form' : ''">
+
+          <div [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9' : 'col-md-12 col-sm-12'">
+            <div class="form_2">
+              <!-- שדרות -->
+              <h2 *ngIf="currentCityId == '35'">תשלום רישום / הזנה לגני ילדים ובתי ספר</h2>
+              <!-- לוד -->
+              <h2 *ngIf="currentCityId == '161'"> הרשמה ניצנים - טרום חובה</h2>
+              <h2 *ngIf="currentCityId == '160'"> הרשמה יוח"א - גני ילדים</h2>
+              <h2 *ngIf="currentCityId == '162'"> הרשמה ניצנים - בתי ספר כיתות א'-ג'</h2>
+
+              <fieldset *ngIf="step == 'add-details'" class="field1 login_form_box_1 current form_section_1" style="display: block; margin-top: 25px;">
+                <P *ngIf="currentCityId != '35'" style="margin-bottom: 30px;">שימו לב - ת.ז. של תלמיד שאינו בקבוצת הגיל לא תופיע בתוצאות החיפוש</P>
+                <h3> פרטים אישיים</h3>
+                <div class="form-group">
+                  <!-- (focusout)="validTZFun()" -->
+                  <input type="tel" required id="TZ"  [(ngModel)]="TZChild" name="* תעודת זהות " class="form-control TZ" placeholder="* זהות תלמיד" style="border-top: 1px solid #0000c6" />
+                  <div *ngIf="isValidTZMesseg" id="VTZD" class="validationMesseg">{{isValidTZMesseg | lang }}</div>
+                  <input *ngIf="currentCityId != '35'" [(ngModel)]="arnonaUserName" (focusout)="validUserNameFun()" id="UserName" class="form-control payerNumber"
+                         name="UserName" type="text" placeholder="* מספר משלם ארנונה">
+                  <div *ngIf="isValidUserNameMesseg" class="validationMesseg">{{isValidUserNameMesseg | lang }}</div>
+
+                </div>
+                <div class="form-group">
+                  <a *ngIf="currentCityId != '35'" href="javascript:void(0)" (click)="getAfternoonChildsDetails()" class="submitBtn btn1 clickregister register_btn1 cursorPointer" style="margin-bottom: 57px;" title="שלח">המשך</a>
+                  <a *ngIf="currentCityId == '35'" href="javascript:void(0)" (click)="getSderotStudentsDetails()" class="submitBtn btn1 clickregister register_btn1 cursorPointer" style="margin-bottom: 57px;" title="שלח">איתור</a>
+                </div>
+              </fieldset>
+              <!-- confiem details form -->
+              <fieldset *ngIf="step == 'confirm'" class="field1 login_form_box_1 current form_section_1 confirm_form">
+                <h3>פרטים אישיים</h3>
+                <div *ngIf="currentCityId != '35'" class="form-group">
+                  <div class="form-control" style="border-top: 1px solid #0000c6">
+                    <span class="con-title">שם הילד: </span>
+                    <span class="con-val">{{childName}}</span>
+                  </div>
+                  <div class="form-control">
+                    <span class="con-title">שם מוסד: </span>
+                    <span class="con-val">{{instituteName}}</span>
+                  </div>
+                  <div class="form-control payerNumber">
+                    <span class="con-title">שם האב: </span>
+                    <span class="con-val">{{fatherName}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">ת.ז אב: </span>
+                    <span class="con-val">{{fatherTZ}}</span>
+                  </div>
+                  <div class="form-control payerNumber">
+                    <span class="con-title">שם האם: </span>
+                    <span class="con-val">{{motherName}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">ת.ז אם: </span>
+                    <span class="con-val">{{motherTZ}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">כתובת: </span>
+                    <span class="con-val">{{address}}</span>
+                  </div>
+                </div>
+                <div *ngIf="currentCityId == '35'" class="form-group">
+                  <div class="form-control" style="border-top: 1px solid #0000c6">
+                    <span class="con-title">מס"ד: </span>
+                    <span class="con-val">{{ID}}</span>
+                  </div>
+                  <div class="form-control">
+                    <span class="con-title">זהות תלמיד: </span>
+                    <span class="con-val">{{StudentID}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">כתובת: </span>
+                    <span class="con-val">{{Address}}</span>
+                  </div>
+                  <div class="form-control payerNumber">
+                    <span class="con-title">זיהוי משלם: </span>
+                    <span class="con-val">{{PayerId}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">תאריך כניסה: </span>
+                    <span class="con-val">{{DateEntrance}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">גיל לימוד: </span>
+                    <span class="con-val">{{StudentAge}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">מוסד: </span>
+                    <span class="con-val">{{School}}</span>
+                  </div>
+                  <div class="form-control TZ">
+                    <span class="con-title">סוג שרות: </span>
+                    <span class="con-val">{{ServiceType}}</span>
+                  </div>
+
+                </div>
+
+                <div class="form-group">
+                  <a *ngIf="currentCityId != '35'" href="javascript:void(0)" (click)="goToPayment()" class="submitBtn btn1 clickregister register_btn1 cursorPointer" style="margin-bottom: 57px;" title="send">המשך</a>
+                  <a *ngIf="currentCityId == '35'" href="javascript:void(0)" (click)="goToForm()" class="submitBtn btn1 clickregister register_btn1 cursorPointer" style="margin-bottom: 57px;" title="send">המשך</a>
+                  <a href="javascript:void(0)" (click)="backStep('add-details')" class="submitBtn btn1 clickregister register_btn1 cursorPointer" style="margin-bottom: 57px; margin-left: 30px;" title="send">חזרה</a>
+                </div>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+
+        <section *ngIf="step == 'pay'" class="content-bx">
+          <div class="container">
+            <div class="row">
+              <div id="container_iframe" class="col-xs-10">
+                <div>
+                  <h1 style="color:#0000c6"> {{paymentName}} - {{'Payments'| lang}} </h1>
+                  <iframe *ngIf="iframeSrc!=''" id="frameDemo" [src]="iframeSrc | safe" style="position:relative; top:0px;  left:0px; right:0px; width: 100%; border: none; margin:0; padding:0; overflow: hidden; z-index:0; min-height: 1400px;margin-top:0px; margin-right:0px;"></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 text-center" style="padding-bottom: 2%; float: none;">
+            <p>התשלום באתר זה מאובטח באמצעות SSL</p>
+            <img src="assets/img/ssl.png" title="" alt="" class="img">
+            <img src="assets/img/pcj.png" title="" alt="" class="img" style="margin-left: 0;">
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="popup" class="overlay">
+  <div class="popup">
+    <h2>לקוחות יקרים!</h2>
+    <a class="close" (click)="closePopup()">&times;</a>
+    <div class="content">
+      <div *ngIf="currentCityId == '160'">
+        לא ניתן לבצע רישום על תעודת הזהות שהוזנה . אנא פנו למחלקת הגנים בעירייה
+      </div>
+      <div *ngIf="currentCityId == '161'">
+        ת.ז. לא קיימת - לא ניתן לבצע רישום על תעודת הזהות שהוזנה. אנא פנו למחלקת החינוך בעירייה. נא ללחוץ
+        <a [routerLink]="commonService.isLogInUser ? '/user/81/form/A823FC0B-3011-4F3B-A8E0-F7A988028E32'
+                             : '/81/form/A823FC0B-3011-4F3B-A8E0-F7A988028E32' ">כאן</a>
+        כדי למלא טופס דיגיטלי
+      </div>
+      <div *ngIf="currentCityId == '162'">
+        ת.ז. לא קיימת - לא ניתן לבצע רישום על תעודת הזהות שהוזנה. אנא פנו למחלקת החינוך בעירייה. נא ללחוץ
+        <a [routerLink]="commonService.isLogInUser ? '/user/81/form/17D9B78D-62B5-4ACE-B41E-B33B15503BAB'
+                             : '/81/form/17D9B78D-62B5-4ACE-B41E-B33B15503BAB' ">כאן</a>
+        כדי למלא טופס דיגיטלי
+      </div>
+      <div *ngIf="currentCityId == '35' && isAlredyPay == false">
+        תושב יקר, פרטי התלמיד לא אותרו, ניתן ליצור עמנו קשר בטופס דיגיטלי חכם ואנו נחזור אליך.
+        נא ללחוץ
+        <a [routerLink]="commonService.isLogInUser ? '/user/35/form/de0553b8-88fc-45bf-b9bf-7ecc5f859d8e'
+                               : '/35/form/de0553b8-88fc-45bf-b9bf-7ecc5f859d8e' ">כאן</a>
+        למילוי טופס
+      </div>
+
+      <div *ngIf="currentCityId == '35' && isAlredyPay == true">
+          נא שימו לב, עבור ת.ז זו התשלום כבר בוצע.
+      </div>
+
+      <div class="buttons step-buttons">
+        <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגירה</a>
+      </div>
+    </div>
+  </div>
+</div>

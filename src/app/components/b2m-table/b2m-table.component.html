@@ -1,0 +1,115 @@
+<table class="table delete_list">
+    <thead>
+      <tr>
+        <th>דוא”ל</th>
+        <th>רשות</th>
+        <th>הסרה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b2m of b2mList index as i">
+        <td>
+          <span>
+              <app-editable-input #edList
+              [inputValue]="b2m.PayerEmail"         
+              (saveData)="prevUpdate($event, b2m, i , 'UPDATE')">
+            </app-editable-input>
+            <!-- <a class="edit_icon edit_content" href="javascript:;">
+              <span>{{b2m.PayerEmail}}</span> 
+            </a> -->
+          </span>
+        </td>
+        <td>
+          <span>{{b2m.AppName}}</span>
+        </td>
+        <td class="main_erase">
+          <span>
+            <a id="delete_icon" class="delete_icon" href="javascript:void(0)">
+              <i (click)="prevUpdate('not-req', b2m, i ,'DELETE')" class="fa fa-trash-o erase" aria-hidden="true"></i>
+            </a>     
+            <div *ngIf="invalidMailMesseg || (showDeleteMesseg && currentEditingIndex == i)" id="delte_section" class="delte_section">
+                <div>
+                  <div class="title">
+                    <a (click)="closePopup()" id="close_delete_info" class="close_delete_info" href="javascript:void(0);">
+                      <img src="assets/img/close.png" />
+                    </a>
+                    <h1 *ngIf="showDeleteMesseg">שים לב</h1>
+                  </div>
+                  <div *ngIf="showDeleteMesseg" class="delete_content">
+                    <div class="delete_container">
+                      <p>שם לב , ביטול השירות יפסיק את קבלת החשבונות בדוא'ל האם לבטל ?</p>            
+                      <input (click)="closePopup()" type="button" value="לא"  />
+                      <input (click)="updateEmailB2M()" type="button" value="כן" />
+                    </div>
+                  </div>
+                  <div *ngIf="invalidMailMesseg" class="delete_content">
+                      <p>{{invalidMailMesseg | lang}}</p> 
+                      <input (click)="closePopup()" type="button" value="סגור" />
+                  </div>
+                </div>
+              </div>     
+          </span>
+        </td>
+      </tr>   
+
+    </tbody>
+  </table>
+
+
+  
+
+
+
+<!-- 
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col" id="tbl25">#</th>
+        <th scope="col" id="tbl26">מייל</th>
+        <th scope="col" id="tbl27">רשות</th>
+        <th scope="col" id="tbl28">הסרה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b2m of b2mList index as i">
+        <th scope="col" id="tbl32" headers="tbl25">1</th>
+        <td scope="row" headers="tbl26 tbl32">
+         <app-editable-input #edList
+          [inputValue]="b2m.PayerEmail"         
+          (saveData)="prevUpdate($event, b2m, i , 'UPDATE')">
+        </app-editable-input>
+        </td>
+        <td scope="row" headers="tbl27 tbl32">{{b2m.AppName}}</td>
+        <td scope="row" headers="tbl28 tbl32">  
+           <i (click)="prevUpdate('not-req', b2m, i ,'DELETE')" class="fa fa-trash-o erase cursorPointer" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div *ngIf="invalidMailMesseg || showDeleteMesseg" id="popup" class="overlay">
+      <div class="popup">
+        <a class="close" (click)="closePopup()">&times;</a>
+        <div class="content">
+           <div *ngIf="invalidMailMesseg">
+               כתובת המייל אינה חוקית, אנא נסו שנית.
+          </div>
+          <div *ngIf="showDeleteMesseg">
+              האם הנכם בטוחים שאתם רוצים להיות מוסרים משירות שוברים במייל
+         </div>
+          <div *ngIf="invalidMailMesseg" class="buttons step-buttons">
+            <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">סגור</a>
+          </div>
+          <div *ngIf="showDeleteMesseg">             
+                <div class="buttons step-buttons">
+                  <a href="javascript:void(0)" (click)="closePopup()" id="closePopup" class="btn cancel" name="button">ביטול</a>
+                  <a href="javascript:void(0)" (click)="updateEmailB2M()" id="closePopup" class="btn cancel" name="button">המשך</a>
+                </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+     -->

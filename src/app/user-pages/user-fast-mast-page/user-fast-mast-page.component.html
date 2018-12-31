@@ -1,0 +1,104 @@
+<div class="lets_start">
+  <h1>{{'services'| lang}}</h1>
+</div>
+
+<div class="container_user_div">
+<section class="user-content">
+  <div class="fh8co-main container-fluid">
+    <div class="row">
+
+    
+      <app-user-side-menu></app-user-side-menu>
+      
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
+          <div class="box-wrapper">
+                  <div class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 padding-0 pull-right border-right border-bottom d-none">
+                          <div class="img-grid">
+                                  <img [src]="commonService.cityModel.logo" alt="{{commonService.cityModel.name}} לוגו" title="{{commonService.cityModel.name}} לוגו" class="img-responsive" style="max-height: 80%;">
+                                  <span style="font-size:22px;" id="stamForClick" class="fh5co-meta">{{'whichServicesYouWantToGet'| lang}}</span>
+  
+                          </div>
+                  </div>
+                 
+  
+   <!-- ********bolck method******* -->
+  
+            <!-- parents -->
+            <!-- <div *ngFor="let parent of parent_blocks" [ngStyle]="{'order': parent.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer">
+                  <div class="img-grid">
+                    <img [src]= "parent.logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                    <span class="fh5co-meta">{{parent.caption}}</span>
+                    <a href="javascript:void(0)" [routerLink]="['/user', currentCityID ,'services' ,parent.id]"  [ngStyle]="{'background-image': 'url(' + parent.background + ')'}" rel="nofollow" class="transition">
+                      <div>
+                        <h2 class="fh5co-title">
+                          <img [src]= "parent.background_logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                        </h2>
+                        <span class="fh5co-meta">{{parent.caption}}</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+       -->
+                <!-- external_blocks -->
+                <div *ngFor="let external of external_blocks" [ngStyle]="{'order': external.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer ">
+                  <div class="img-grid">
+                    <img [src]="external.logo" title="{{external.caption}}" alt="{{external.caption}}" class="img-responsive">
+                    <span class="fh5co-meta">{{external.caption}}</span>
+                    <a href="javascript:void(0)" (click)="external_blockFun(external)" rel="nofollow" tabindex="40" [target]="external.openLinkInNewWindow== 1 ? '_blank' : ''" class="transition"
+                      [ngStyle]="{'background-image': 'url(' + external.background + ')'}">
+                      <div>
+                        <h2 class="fh5co-title">
+                          <img [src]="external.background_logo" title="{{external.caption}}" alt="{{external.caption}}" class="img-responsive">
+                        </h2>
+                        <span class="fh5co-meta">{{external.caption}}</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+      
+                <!-- internal -->
+                <div *ngFor="let internal of intetnal_blocks" [ngStyle]="{'order': internal.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer ">
+                  <div class="img-grid">
+                    <img [src]= "internal.logo" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
+                    <span class="fh5co-meta">{{internal.caption}}</span>
+                    <a href="javascript:void(0)" [routerLink]="internal.link"  [ngStyle]="{'background-image': 'url(' + internal.background_logo + ')'}" rel="nofollow" class="transition">
+                      <div>
+                        <h2 class="fh5co-title">
+                          <img [src]= "internal.background" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
+                        </h2>
+                        <span class="fh5co-meta">{{internal.caption}}</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+      
+                 <!-- content -->
+                 <!-- <div *ngFor="let content of content_page_blocks" [ngStyle]="{'order': content.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer ">
+                  <div class="img-grid">
+                    <img [src]= "content.logo" alt="{{content.caption}}" title="{{content.caption}}" class="img-responsive">
+                    <span class="fh5co-meta">{{content.caption}}</span>
+                    <a href="javascript:void(0)" [routerLink]="['/',currentCityID ,'city-content', content.id]"   [ngStyle]="{'background-image': 'url(' + content.background + ')'}" rel="nofollow" class="transition">
+                      <div>
+                        <h2 class="fh5co-title">
+                          <img [src]= "content.background_logo" title="{{content.caption}}" alt="{{content.caption}}" class="img-responsive">
+                        </h2>
+                        <span class="fh5co-meta">{{content.caption}}</span>
+                      </div>
+                    </a>
+                  </div>
+                </div> -->
+  
+               
+  
+  
+  
+          </div>
+  
+  
+  </div>
+  
+  
+    </div>
+  </div>
+</section>
+</div>

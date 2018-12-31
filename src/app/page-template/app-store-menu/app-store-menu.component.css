@@ -1,0 +1,38 @@
+.content-wel{padding: 50px 0}
+
+.content-wel h2 {
+    font-family: "Heebothin",sans-serif; font-size: 60px;  font-weight: normal; margin-top: 0px;  text-align: center; color: #0000C6; width: 100%; display: inline-block; line-height: 54px;
+}
+.content-wel p {
+    font-family: "Heebothin",sans-serif;
+    font-size: 18px;  font-weight: normal; margin-top: 0px;  text-align: center; color: #0000C6; width: 100%; display: inline-block;
+}
+
+ul.app_btn {
+    list-style-type: none;
+    padding:  0;
+    margin:  0;
+    text-align: center;
+    margin-top: 40px;
+}
+
+ul.app_btn li a.btn {
+    border: 1px solid #0000C6;
+    margin-bottom: 24px;
+    color: #0000C6;
+    font-size: 20px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+ul.app_btn li a.btn.blue {
+    background:  #0000C6;
+    color: #fff !important;
+    border: 1px solid #fff;
+    box-shadow: 0px 1px 4px #666;
+    padding: 23px 24px;
+}
+ul.app_btn li a.btn img {
+    width: 203px;
+}
+

@@ -1,0 +1,11 @@
+<div class="wraper">
+    <input type="text" [attr.disabled]="disabledInput ? '' : null" [ngClass]="[ disabledInput ? 'uneditable' : 'editable']" [(ngModel)]="inputValue"
+        #input>
+    <!-- <i (click)="enableEditing()" *ngIf="disabledInput" class="glyphicon glyphicon-pencil cursorPointer" aria-hidden="true"></i>
+    <i (click)="disableEditing()" *ngIf="!disabledInput" class="glyphicon glyphicon glyphicon-ok cursorPointer" aria-hidden="true"></i> -->
+    <div class="field_action">
+            <span (click)="enableEditing()" *ngIf="disabledInput" class="valuechange  editvalue cursorPointer"> <img src="assets/img/edit.png"></span>
+            <span (click)="disableEditing()" *ngIf="!disabledInput" class="valuechange savevalue cursorPointer"><img src="assets/img/check_green.png"></span>
+   </div>
+
+</div>

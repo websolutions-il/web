@@ -1,0 +1,16 @@
+/* .row{
+    margin-top: -54px;
+} */
+#topestText{
+    margin-top: -5px;
+    font-size: 27px;
+    border: 4px double #0000c5;
+}
+#topText{
+    font-size: 25px;
+    margin-top: -15px;
+}
+#contBtn{
+    margin-bottom: 16px;
+    margin-top: -12px;
+}

@@ -1,0 +1,41 @@
+.validationMesseg{
+    width: 100%; 
+    font-size: 80%;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;    
+}
+input[type="text"],input[type="email"]
+{
+    width: 100%;
+}
+/* app-b2m-table input[type="text"] {
+    border-bottom:none;
+    margin-top: 0px;
+    width: 84%;
+    padding: 0%;
+
+} */
+.wrap-b2m-tbl{
+    width: 500px;
+    max-width: 100%; 
+    padding-bottom: 5%;
+    margin: 0 auto;
+}
+.padding-top{
+    padding-top: 10%;
+}
+.my_details_left_side {
+    padding-bottom: 0px;
+    padding-right: 0px;
+    font-weight: 400;
+}
+.form_2 {
+    width: 30%;
+    margin: 10% auto;
+}
+@media(max-width:768px){
+    .form_2 {
+        width: 80%;
+    }
+}

@@ -1,0 +1,23 @@
+.zoom-out-form-it{
+    /* transform: scale(0.50); */
+    transform: scale(0.65);
+    transform-origin: top right;
+    /* height: 117vh; */
+    height: 100vh;
+    /* width: 200%; */
+    width: 153%;
+    position: relative;
+    top:0px;
+}
+.popuppayshow{
+    height: 50vh;
+}
+@media (max-width:767px){
+    th{
+        text-align: center !important;
+    }
+.incomplete{
+    top: 91%;
+}
+
+}

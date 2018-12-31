@@ -1,0 +1,82 @@
+<div class="lets_start">
+  <h1>וטרינריה</h1>
+</div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+<section class="user-content">
+  <div class="fh8co-main container-fluid">
+    <div class="row">
+      <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+      <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
+        <div class="box-wrapper">
+          <div class="new-container">
+            <div class="page-pagination">
+              <ul>
+                <li>
+                  <a [routerLink]="(commonService.isLogInUser ? '/user/' : '/')+currentCityID+'/services'" href="javascript:void(0)">{{commonService.cityModel.name}} </a>
+                </li>
+                <li>
+                  <span> המחלקה הוטרינרית </span>
+                </li>
+              </ul>
+            </div>
+            <!--option tabs menu-->
+            <div class="option-tabs">
+              <ul>
+                <li>
+                  <a (click)="veterinariaService.changeStep('my-pets')" href="javascript:void(0)" [ngClass]="{'active': veterinariaService.activeStep == 'my-pets' }">
+                    <i class="tabsicon myanimal-icon"></i>
+                    <h4>בעלי החיים שלי</h4>
+                  </a>
+                </li>
+                <li >
+                  <a (click)="veterinariaService.changeStep('vaccines')" href="javascript:void(0)" [ngClass]="{'active' : veterinariaService.activeStep == 'vaccines' }">
+                    <i class="tabsicon vaccinations-icon"></i>
+                    <h4>חיסונים , אגרות ותשלומים </h4>
+                  </a>
+                </li>
+                 <li>
+                  <img class="soon-img" src="assets/img/soon-icon.png" alt="">
+                  <a href="javascript:void(0)" [ngClass]="{'active' : veterinariaService.activeStep == 'forms' }">
+                    <i class="tabsicon digitalform-icon"></i>
+                    <h4>טפסים דיגיטליים</h4>
+                  </a>
+                </li> 
+               <li>
+                  <img class="soon-img" src="assets/img/soon-icon.png" alt="">
+                  <a href="javascript:void(0)">
+                    <i class="tabsicon cameras-icon"></i>
+                    <h4>מצלמות הסגר</h4>
+                  </a>
+                </li> 
+                 <li>
+                  <img class="soon-img" src="assets/img/soon-icon.png" alt="">
+                  <a href="javascript:void(0)">
+                    <i class="tabsicon schedule-icon"></i>
+                    <h4>זימון תור למחלקה הוטרינרית</h4>
+                  </a>
+                </li> 
+              </ul>
+            </div>
+            <div *ngIf="commonService.isLogInUser" id="servicesAreaDiv"[ngSwitch]="veterinariaService.activeStep">
+              <app-user-my-pets *ngSwitchCase="'my-pets'"></app-user-my-pets>
+              <app-user-add-pet *ngSwitchCase="'add-pet'"></app-user-add-pet>
+              <app-user-vertrinaria-forms *ngSwitchCase="'forms'"></app-user-vertrinaria-forms>
+              <app-user-vaccines *ngSwitchCase="'vaccines'"></app-user-vaccines>
+              <app-user-vaccines-payments *ngSwitchCase="'pay'"></app-user-vaccines-payments>
+            </div>
+            <div *ngIf="!commonService.isLogInUser" class="content_section wrap_move">
+              <h2 class="content_section_heading">&emsp; &emsp; <a href="javascript:void(0)" (click)="veterinariaService.changeStep('my-pets')" class="pets-btn"> <img src="assets/img/dog.png">הוסף בעל חיים </a></h2>
+            </div>
+            <div *ngIf="isError">
+              לא נצאו בעלי חיים
+            </div>
+          </div>
+          <!--new steps end-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

@@ -1,0 +1,31 @@
+.validationMesseg{
+    /* color: red;     
+    font-size: 80%; */
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+    /* border-bottom: 1px solid #000A90;  */
+    
+}
+
+.cssForTelInput{
+    border: 1px solid;
+    border-left: none;
+    border-right: none;
+    background: transparent;
+    width: 100%;
+}
+
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #808080;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #808080;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #808080;
+}

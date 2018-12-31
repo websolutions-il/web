@@ -1,0 +1,227 @@
+           <!--selected tab text-->
+           <div class="content_section wrap_move">
+              <h2 class="content_section_heading">בעלי החיים שלי <a href="javascript:void(0)" (click)="veterinariaService.changeStep('add-pet')"  class="pets-btn"> <img src="assets/img/dog.png">הוסף בעל חיים </a></h2>
+          
+              <div class="message-show" *ngFor="let pet of veterinariaService.petsList index as i" >
+                 <img src="assets/img/bulb-icon.png"> שים לב ! בהתאם להנחיות המחלקה הווטרינרית, יש לחסן את   <b>{{pet.name}}</b> בחיסון נגד כלבת עד לתאריך {{pet.last_vaccine | AddYear}}<a href="javascript:void(0)" (click)="goToVaccines(pet)"> לרשימת חיסונים  <img src="assets/img/arrow_prv.png" style="width:14px; margin-left:0px; margin-right:10px;"></a> 
+              </div>
+              
+              <!--pets card-->
+              <div *ngIf="veterinariaService.petsList" class="pets_card">
+                 <ul>
+                    <li *ngFor="let pet of veterinariaService.petsList index as i" > 
+                       <div class="petimg-outer">
+                         <div class="petimg" [id]="'petImg'+i">
+                           <img [src]="pet.photo_url">
+                        </div>
+                        <a href="javascript:void(0)" (click)="openFileDialog(i)" class="upload_imgbtn"><img src="assets/img/cam-icon.png"></a>
+
+                      </div>
+                       <input type="file" (change)="uploadFile($event , i , pet)" style="display: none" [id]="'imgFile'+i">
+                      
+                       <h3 class="petname">{{pet.name}}</h3>
+                       <h5 class="petdate">{{pet.birthday}}</h5>                                       
+                       <div class="pets-field chip_number">
+                          <label>מספר שבב</label>
+                          <p><img src="assets/img/chip.png">{{pet.chip}}</p>
+                       </div>
+                       <div class="pets-field">
+                          <label>חיסון אחרון</label>
+                          <p>{{pet.last_vaccine}}</p>
+                       </div>
+                       <div class="pets-field">
+                        <label>חיסון הבא</label>
+                        <p>{{pet.last_vaccine | AddYear}}</p>
+                     </div>
+                     <div class="pets-field">
+                      <label>סטטוס </label>
+                      <p>{{pet.license_status}}</p>
+                   </div>
+                       <div class="pets-field">
+                          <label>חיה מסוג</label>
+                          <p>{{pet.type}} - {{pet.breed}} <span class="genders"><img src="assets/img/female.png">{{pet.gender}} </span></p>
+                       </div>  
+                  
+                       <div *ngIf="pet.licenses[pet.licenses.length-1].paid!='כן'" class="makepayment">
+                          <a href="javascript:void(0)" (click)="goToPayment(pet.licenses[pet.licenses.length-1].payment_url)" class="paymentbtn"> &nbsp; &nbsp; &nbsp; ביצוע תשלומים  &nbsp; &nbsp; &nbsp; </a>
+                        </div>
+                        <div class="makepayment">
+                          <a href="javascript:void(0)" (click)="goToVaccines(pet)" class="paymentbtn silverBtn"> חיסונים אגרות ותשלומים</a>
+                        </div>
+                    
+                        <!-- <div class="edit-other-details">
+                          <a href="#" class="otherdetails_edit" data-toggle="modal" data-target="#myModal1"><img src="assets/img/pencil-edit.png">עריכה ופרטים נוספים</a>
+                       </div> -->
+  
+  
+                       <!-- Modal -->
+                       <div class="modal fade pet_modal" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                         <div class="modal-dialog modal-lg" role="document">
+                           <div class="modal-content">
+                             <div class="modal-header">
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                               <h4 class="modal-title text-center" id="myModalLabel">פרטי בעל החיים</h4>
+                             </div>
+                             <div class="modal-body">
+                                <form>
+                                  <div class="change_photo_pet">
+                                      <div class="updated_petimg">
+                                         <div class="petimg_circle">
+                                            <img id="" class="petImgEdit imgPet" src="assets/img/dog_big.jpg">
+                                         </div>
+
+
+
+
+                                        </div>
+                                   </div>
+                                   <div class="chipNumber_edit">
+                                      <div class="pet_chip">
+                                         <img src="assets/img/chip.png">מספר שבב: <input type="number" placeholder="" value="1234567890">
+                                      </div>
+                                   </div>
+                                   <div class="pets_information">
+                                      <div class="row_part">
+                                         <div class="form-group col-sm-6 pull-right">
+                                            <label>שם החיה</label>
+                                            <input type="text" class="form-control" name="Animal Name" placeholder="שם החיה" value="מופסה ">
+                                         </div>
+                                         <div class="form-group col-sm-6 pull-right">
+                                            <label>תאריך לידה</label>
+                                            <input type="text" class="form-control" name="Date of birth" placeholder="תאריך לידה " value="12  /  05  /  2015 ">
+                                         </div>
+                                      </div>
+                                      <div class="row_part">
+                                         <div class="form-group col-sm-3 pull-right">
+                                            <label>חיה </label>
+                                            <select class="form-control">
+                                               <option>כלב  </option>
+                                            </select>
+                                         </div>
+                                         <div class="form-group col-sm-3 pull-right">
+                                            <label>מסוג </label>
+                                            <select class="form-control"> 
+                                               <option>פיטבול  </option>
+                                            </select>
+                                         </div>
+                                         <div class="form-group col-sm-3 pull-right">
+                                            <label>מין </label>
+                                            <select class="form-control"> 
+                                               <option> זכר  </option>
+                                            </select>
+                                         </div>
+                                      </div>
+                                   </div>               
+                                </form>
+                                <h3 class="section_modal_heading">רשימת חיסונים</h3>
+                                <div class="table-container modal_table" id="content-1">
+                                   <div class="table-responsive" id="SkrollThis"> 
+                                      <table class="table sticky-header" > 
+                                         <thead> 
+                                            <tr> 
+                                               <th>סוג החיה</th> 
+                                               <th>שם החיה</th> 
+                                               <th>שם החיסון</th> 
+                                               <th>תאריך החיסון</th> 
+                                               <th>עלות החיסון</th> 
+                                               <th></th>
+                                            </tr> 
+                                         </thead> 
+                                         <tbody> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, פיטבול, זכר</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label>מופסה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label>חיסון נגד תולעת הפארק ותילוע</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 24.5.2018</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 890 </td> 
+                                               <td><a href="#" class="tablebtns paynow">שלם עכשיו </a></td> 
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, פיטבול, זכר</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label>מופסה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון משושה</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2017</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 200 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td> 
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, פיטבול, זכר</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label>מופסה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון כלבת</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2016</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 300 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td>  
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, רועה גרמני</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> סימבה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון נגד תולעת הפארק ותילוע</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 24.5.2018</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 890 </td> 
+                                               <td><a href="#" class="tablebtns paynow">שלם עכשיו </a></td> 
+                                            </tr>
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, רועה גרמני</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> סימבה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון משושה</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2017</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 200 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td> 
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> חתול, סיאמי</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> קליאופטרה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון כלבת</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2016</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 300 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td> 
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, פיטבול, זכר</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label>מופסה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון כלבת</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2016</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 300 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td>  
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, רועה גרמני</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> סימבה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון נגד תולעת הפארק ותילוע</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 24.5.2018</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 890 </td> 
+                                               <td><a href="#" class="tablebtns paynow">שלם עכשיו </a></td> 
+                                            </tr>
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> כלב, רועה גרמני</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> סימבה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון משושה</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2017</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 200 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td> 
+                                            </tr> 
+                                            <tr> 
+                                               <td scope="row"><label class="for_smallscreen" for="Type of animal">סוג החיה</label> חתול, סיאמי</td> 
+                                               <td><label class="for_smallscreen" for="Name of the animal">שם החיה</label> קליאופטרה</td> 
+                                               <td><label class="for_smallscreen" for="Name of vaccination">שם החיסון</label> חיסון כלבת</td> 
+                                               <td><label class="for_smallscreen" for="Date of vaccination">תאריך החיסון</label> 12.3.2016</td> 
+                                               <td><label class="for_smallscreen" for="The cost of vaccination">עלות החיסון</label> ₪ 300 </td> 
+                                               <td><a href="#" class="tablebtns paidup"> שולם  </a></td> 
+                                            </tr>  
+                                            
+                                         </tbody> 
+                                      </table> 
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="modal-footer closebtn-footer text-center">
+                               <a href="javascript:void(0)" class="closebtn-modal" data-dismiss="modal">סגור </a>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                    </li>
+                   
+                 </ul>
+              </div>
+           </div>

@@ -1,0 +1,150 @@
+<div class="lets_start">
+  <h1>שוברים תקופתיים </h1>
+</div>
+
+<div class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+        <app-user-side-menu></app-user-side-menu>
+
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content right_part table_part current">
+          <div *ngIf="isVerifyAsset" class="box-wrapper">
+            <div class="">
+              <div class="">
+                <div class="col-md-6 col-sm-6 pull-left">
+                  <div class="lef_img">
+                  </div>
+                </div>
+                <div class="col-md-6 col-sm-6 pull-right hideMobile">
+                  <div class="right_text">
+                    <h3 id="main">שוברים תקופתיים - {{commonService.cityModel.name}}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="articles_table">
+              <div class="">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col" id="listnumber">#</th>
+                      <th scope="col" id="tbl79500226-6">{{'date'| lang}}</th>
+                      <th scope="col" id="tbl79500226-8">{{'voucherNumber'| lang}}</th>
+                      <th scope="col" id="tbl79500226-9">סכום השובר</th>
+                      <th scope="col" id="tbl79500226-10">{{'status'| lang}}</th>
+                      <th scope="col" id="tbl79500226-12">{{'watchTheVoucher'| lang}}</th>
+                      <th scope="col" id="tbl79500226-13">{{'payment'| lang}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let bill of billsListToView">
+                      <th scope="col" scope="row" id="tbl79500226-52" headers="tbl79500226-5">3</th>
+                      <td  scope="row" headers="tbl79500226-6 tbl79500226-52">{{bill.CreateDate | date: 'dd.MM.yyyy'}}</td>
+                      <!-- <td *ngIf="!bill.pdf_link" scope="row" headers="tbl79500226-6 tbl79500226-52">{{bill.CreateDate}}</td> -->
+                      <td scope="row" headers="tbl79500226-6 tbl79500226-52">{{bill.stub_code}}</td>
+                      <td scope="row" headers="tbl79500226-6 tbl79500226-52">{{bill.total_price}}</td>
+                      <td *ngIf=" bill.status !=2" scope="row" headers="tbl79500226-6 tbl79500226-52">לא לתשלום</td>
+                      <td *ngIf="bill.status ==2" scope="row" headers="tbl79500226-6 tbl79500226-52">לתשלום</td>
+                      <td class="voucher" scope="row" headers="tbl79500226-12 tbl79500226-52">
+                        <div *ngIf="bill.img_link" class="table_files">
+                          <a (click)="popUpScript(bill)" class="iconfiles cursorPointer">
+                            <em class="fa fa-file-text-o" aria-hidden="true"></em>
+                          </a>
+                          <div [id]="bill.stub_code" class="popuppayshow" style="display:none;">
+                            <a class="b-close cursorPointer" (click)="closePopUp($event)">x</a>
+                            <a *ngIf="bill.status == 2" (click)="goToPaymentPage($event, bill.stub_code)" class="incomplete cursorPointer ">שלם</a>
+                            <a *ngIf="bill.pdf_link" (click)="downloadFormitPdf(bill.pdf_link)" [style.left]="bill.status == 2 ? '100px' : '15px'" class="incomplete cursorPointer ">הורד</a>
+                            <div *ngIf="bill.status == 2 || bill.pdf_link" style="border-bottom: 1px solid blue; height:60px;"></div>
+
+                            <img *ngIf="!bill.pdf_link" class="img-responsive" alt="" [src]="bill.img_link">
+                            <iframe *ngIf="bill.pdf_link" [src]="bill.img_link | safe" class="front bill-img zoom-out-form-it" frameborder="0"></iframe>
+
+                          </div>
+
+                        </div>
+                      </td>
+
+                      <td scope="row" headers="tbl79500226-13 tbl79500226-52">
+                        <a *ngIf="bill.status ==2" class="cursorPointer" (click)="goToPaymentPage($event, bill.stub_code)">
+                          <em class="fa fa-credit-card" aria-hidden="true"></em>
+                        </a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+            <div class="articles_table_mobile">
+              <div class="">
+                <!-- <ul class="table_nav">
+                  <li>
+                    <em class="fa fa-check" aria-hidden="true"></em> לא לתשלום &nbsp;</li>
+                  <li>
+                    <em class="fa fa-times" aria-hidden="true"></em> לתשלום &nbsp;</li>
+                </ul> -->
+                <table class="table table-striped" style="text-align: center;">
+                  <thead>
+                    <tr>
+                      <th scope="col" id="tbl5">#</th>
+                      <th scope="col" id="tbl6">{{'date'| lang}}</th>
+                      <th scope="col" id="tbl8">{{'voucherNumber'| lang}}</th>
+                      <th scope="col" id="tbl9">סכום השובר</th>
+                      <!-- <th scope="col" colspan="1" id="tbl10">{{'status'| lang}}</th> -->
+                      <th scope="col" id="tbl11">
+                        <em class="fa fa-eye" aria-hidden="true"></em>
+                      </th>
+                      <th scope="col" id="tbl12">{{'payment'| lang}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+
+                    <tr *ngFor="let bill of billsListToView">
+                      <th scope="col" id="tbl51" headers="tbl5">3</th>
+                      <td  scope="row" headers="tbl6 tbl51">{{bill.CreateDate | date: 'dd.MM.yyyy'}}</td>
+                      <!-- <td *ngIf="!bill.pdf_link" scope="row" headers="tbl6 tbl51">{{bill.CreateDate}}</td> -->
+                      <td scope="row" headers="tbl8 tbl51">{{bill.stub_code}}</td>
+                      <td scope="row" headers="tbl9 tbl51">{{bill.total_price}}</td>
+                      <!-- <td *ngIf="bill.status ==2" scope="row" headers="tbl10 tbl51">
+                        <em class="fa fa-times" aria-hidden="true"></em>
+                      </td>
+                      <td *ngIf="bill.status !=2" scope="row" headers="tbl10 tbl51">
+                        <em class="fa fa-check" aria-hidden="true"></em>
+                      </td> -->
+                      <td scope="row" headers="tbl11 tbl51" class="voucher">
+                        <div *ngIf="bill.img_link" class="table_files">
+                          <a (click)="popUpScript(bill)" class="iconfiles">
+                            <em class="fa fa-file-text-o" aria-hidden="true"></em>
+                            <div id="{{bill.stub_code}}mobile" class="popuppayshow" style="display:none; position: absolute;  height: 450px; width: 287px; right: -256px; top: -300px;">
+                              <a class="b-close cursorPointer" (click)="closePopUp($event)">x</a>
+                              <iframe *ngIf="bill.pdf_link" [src]="bill.img_link | safe" class="front bill-img zoom-out-form-it" frameborder="0"></iframe>
+                              <img *ngIf="!bill.pdf_link" class="img-responsive" alt="" [src]="bill.img_link">
+                              <a *ngIf="bill.status == 2" (click)="goToPaymentPage($event, bill.stub_code)" class="incomplete cursorPointer">שלם</a>
+                            </div>
+                          </a>
+                        </div>
+                      </td>
+                      <td scope="row" headers="tbl12 tbl51">
+                        <a *ngIf="bill.status ==2" (click)="goToPaymentPage($event, bill.stub_code)">
+                          <em class="fa fa-credit-card" aria-hidden="true"></em>
+                        </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+          </div>
+
+          <app-user-verification-asset-page *ngIf="!isVerifyAsset">  </app-user-verification-asset-page>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>

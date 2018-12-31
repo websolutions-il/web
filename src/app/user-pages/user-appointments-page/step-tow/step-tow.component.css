@@ -1,0 +1,20 @@
+
+.heighetCube{
+    height:35vh;
+}
+.list_container{
+    height: 300px;
+}
+
+@media(max-width:767px)
+{
+    .heighetCube{
+        height: 41vh;
+     }  
+}
+
+*:focus{
+    border: inherit !important;
+}
+
+  

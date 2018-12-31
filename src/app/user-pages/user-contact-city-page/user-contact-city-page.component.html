@@ -1,0 +1,97 @@
+<div class="lets_start">
+  <h1>ספר טלפונים</h1>
+</div>
+
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+        <div id="tab-2" [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'" style="padding:4% 6% 0 0;">
+
+          <div class="box-wrapper">
+            <div class="col-md-5 col-sm-5 text-center ramatLogo">
+              <img [src]="commonService.cityModel.logo">
+            </div>
+
+            <div class="col-md-7 col-sm-7 pull-right">
+              <div class="pageHeadingSec">
+                <h2 class="blue_bg_title"> ספר טלפונים - {{commonService.cityModel.name}}</h2>
+                <div class="tblsearch">
+                  <input type="text" (keyup)="filterContacts(searchContact)" [(ngModel)]="searchContact" name="inputSearch" class="form-contorl"
+                    placeholder="חיפוש">
+                  <button class="searchBtntbl">
+                    <img src="assets/img/search_col.png">
+                  </button>
+                </div>
+              </div>
+
+              <div class="cityTableData">
+
+                <div *ngFor="let cat of categoryList index as i; first as isFirst" class="table_contact_city">
+                  <h2>{{cat.CategorieName}}</h2>
+                  <table class="table table-striped contact_city_table">
+                    <thead>
+                      <tr>
+                        <th>
+                          <span>שם</span>
+                        </th>
+                        <!-- <th><span>עיר</span></th> -->
+                        <th>
+                          <span>מספר טלפון</span>
+                          <img src="assets/img/icons.png">
+                        </th>
+                        <th>
+                          <span>דואר אלקטרוני</span>
+                          <img src="assets/img/icons2.png">
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let contact of filteredContactList  | searchfilter: 'Type' : cat.Type;  index as j; isContactFirst as first;">
+                        <td>
+                          <span> {{contact.DepartmentName}}</span>
+                        </td>
+                        <!-- <td><span>מים</span></td> -->
+                        <td>
+                          <span>{{contact.Phone}}
+                            <img class="arrowTble" src="assets/img/arrow_prv.png">
+                          </span>
+                        </td>
+                        <td>
+                          <a [href]="'mailto:'+contact.Email">
+                            <span>{{contact.Email}}</span>
+                          </a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+
+              </div>
+
+
+
+
+
+
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+</div>

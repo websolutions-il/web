@@ -1,0 +1,69 @@
+<div class="lets_start">
+
+  <h1>חשבונית במייל</h1>
+
+</div>
+
+<section class="user-content hideBefore">
+
+  <div class="fh8co-main background2">
+
+    <div class="row form_pages">
+
+        <app-user-side-menu></app-user-side-menu>
+
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current my_details_left_side">
+        <div class="col-md-12 col-sm-12">
+
+
+          <div *ngIf="showAddB2m" class="form_2 new_form">          
+       
+            <h2 class="counter_number">חשבונית במייל</h2>
+
+            <h3>הרשמה</h3>
+
+            <p>
+              לרישום לשירות  יש למלא את כתובת הדואר האלקטרוני  שאליה יישלחו השוברים.
+              <br>במידה ונתקלת בבעיה ניתן להירשם  גם במוקד הטלפוני באמצעות נציג שירות  
+            </p>
+           
+            <div class="form1">
+              <input  *ngIf="!isReqUserName" [(ngModel)]="user.Email" name="Email" class="email_address" (focusout)="validEmailFun()" type="email" placeholder="* דואר אלקטרוני"  style="border-top: 1px solid #0000c5;">
+              <div *ngIf="isValidEmailMesseg" class="validationMesseg">{{isValidEmailMesseg | lang }}</div>
+             <div *ngIf="isReqUserName">
+              <div>אנא הזן גם מספר משלם</div>
+              <input [(ngModel)]="user.UserName" (focusout)="validUserNameFun()" name="UserName" class="payerNumber" type="text" placeholder="* מספר משלם"  style="border-top: 1px solid #0000c5;">
+              <div *ngIf="isValidUserNameMesseg" class="validationMesseg">{{isValidUserNameMesseg | lang }}</div>
+            </div>
+             
+              <div *ngIf="isResultMesseg" class="validationMesseg res">{{resultMesseg}}</div>
+
+            </div>
+
+            <div class="form2" style="float: left;">              
+              <p>
+                <a href="javascript:void(0)" (click)="insertUserToB2M()" class="custom_sub_btn btn1" style="font-family: 'Heebo', sans-serif" title="send">הצטרף</a>
+              </p>
+
+            </div>
+
+          </div>
+          <div *ngIf="showB2mTbl" class="wrap-b2m-tbl" [ngClass]="!showAddB2m ? 'padding-top' : ''">
+              <app-b2m-table (getItems)="checkRegisterCompeny($event)"></app-b2m-table>
+          </div>
+
+
+
+
+
+
+          
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

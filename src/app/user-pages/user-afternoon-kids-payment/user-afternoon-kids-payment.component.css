@@ -1,0 +1,38 @@
+.validationMesseg{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height:90%;
+}
+
+.confirm_form div{
+   border-radius: 0px; 
+}
+.con-val{
+  color: #0000c5;
+}
+.margin-top-form{
+    margin-top: 3%;
+}
+h3,h2{
+  color: #0000c6;
+}
+.form_2 h2{
+    width: 600px;
+}
+.form-control{
+    border-bottom: 1px solid #0000c5;
+    margin-top: 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 100%;
+    background: none;
+    padding: 2%;
+    color: #808080;
+}
+@media(max-width : 676px){
+    .form_2 h2{
+        width: 300px;
+    }
+}
+

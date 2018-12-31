@@ -1,0 +1,23 @@
+<div *ngIf="questions.length > 0">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+   
+      <div *ngFor="let question of questions" class="form-row">
+        <app-question [question]="question" [form]="form"></app-question>
+      </div>
+
+      <div *ngIf="isCaptcha" class="form-group homecapcha">
+        <!-- (getCode)="this.recaptchaCode = $event" -->
+        <div #captcha nbRecaptcha class="g-recaptcha"></div>
+        <div *ngIf="isCaptchaNotValid" >אנא אשר שאינך רובוט</div>
+     </div>
+
+      <div class="form-row">
+        <!-- <button type="submit" [disabled]="!form.valid">Save</button> -->
+        <button type="submit">Check</button>
+      </div>
+    </form>
+   
+    <div *ngIf="payLoad" class="form-row">
+      <strong>Saved the following values</strong><br>{{payLoad}}
+    </div>
+  </div>

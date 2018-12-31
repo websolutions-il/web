@@ -1,0 +1,257 @@
+<div class="lets_start">
+  <h1>{{'services'| lang}}</h1>
+</div>
+
+<div class="container_user_div">
+  <section class="user-content">
+    <div class="fh8co-main container-fluid">
+      <div class="row">
+        <app-user-side-menu></app-user-side-menu>
+
+
+
+        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current my_details_left_side">
+
+            <h2>הפרטים שלי</h2>
+            <div class="box-wrapper">
+  
+              <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 pull-right">
+  
+                <div class="right_table">
+  
+                    <app-user-my-details-page></app-user-my-details-page>
+
+
+                  <div class="bottom_section">
+                    <div class="col-md-6 col-sm-12 col-xs-12 pull-right">
+                      <div class="add_permission">
+                        <a href="javascript:;">
+                          <img (click)="showToolTip1 = !showToolTip1" class="tooltip_btn" src="assets/img/information-blue.png" />
+                          <span>מספר טלפון משני</span>
+                        </a>
+                        <div *ngIf="showToolTip1" class="tooltip_info tooltip_paragraph">
+                          <img (click)="showToolTip1 = false" class="close_tooltip" src="assets/img/close.png" />
+                          <p>הוספת מספר טלפון משני מאפשר הזדהות לחשבון באמצעות מספר טלפון נוסף. שימו לב ! עם הוספת מספר הטלפון הנייד הנוסף מחזיק הטלפון הנייד יוכל לבצע את כל הפעולות בחשבון המשתמש.</p>
+                        </div>
+                        <div class="edit_delete contact_list">
+                          <input type="hidden" value="0" class="contact_list_count">
+                        </div>
+                        <div class="edit_delete contact_add_form">
+                          <div class="input_edit">
+                            <a *ngIf="isInsertAnotherPhoneButton" (click)="insertOrDeleteAnotherPhone('insert')" class="add add_contact_list" href="javascript:void(0);">הוסף</a>
+                            <a *ngIf="!isInsertAnotherPhoneButton"  (click)="insertOrDeleteAnotherPhone('delete')" id="delete_icon5" class="delete_icon" style="font-size: 20px;width: 80px;float: left;" href="javascript:void(0)">
+                                <i class="fa fa-trash-o erase" aria-hidden="true"></i>
+                            </a>                   
+                            <div class="text_edit">
+                              <input type="text" [(ngModel)]="phoneInsertAnotherPhone" 
+                              [disabled]="!isInsertAnotherPhoneButton" id="new_contact" 
+                              placeholder="הזן מספר טלפון נייד">
+                              <div *ngIf="isValidPhoneMesseg" class="validationMesseg"> {{isValidPhoneMesseg | lang }}</div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+  
+                      <div class="add_permission">
+                        <a href="javascript:;" class="">
+                          <img (click)="showToolTip2 = !showToolTip2" class="tooltip_btn2" src="assets/img/information-blue.png" />
+                          <span>הוספת רשות/תאגיד</span>
+                        </a>
+                        <div *ngIf="showToolTip2" class="tooltip_info2 tooltip_paragraph">
+                          <img (click)="showToolTip2 = false" class="close_tooltip2" src="assets/img/close.png" />
+                          <p>הוספת רשות\תאגיד מאפשרת לכם מעבר קל ונוח בין הרשויות שתרצו לקבל עבורם שירות.
+<br>
+לאחר הוספת הרשות\תאגיד ניתן להחליף לרשות הרצויה באמצעות הסרגל בפינה הימנית
+
+                          </p>
+                        </div>
+                        <div class="edit_delete">
+                          <a class="add" (click)="insertAsset()" href="javascript:void(0);">הוסף</a>
+                          <div class="select_box">
+                              <app-city-drop-down [page]="'manag'"></app-city-drop-down>
+                          </div>
+                        </div>
+                      </div>
+  
+                    </div>
+  
+                  </div>
+                </div>
+  
+              </div>
+  
+              <div class="col-lg-5 col-md-12 col-sm-12  col-xs-12">
+  
+                <div class="left_table">
+                  <h3>רישום לשירות חשבונית במייל</h3>
+             <div *ngIf="isCityInB2M">
+                  <app-b2m-table *ngIf="isExistsItemsForB2M" (getItems)="isExistsItemsB2M($event)"></app-b2m-table>
+                  <div *ngIf="!isExistsItemsForB2M">
+                     <div class="add_permission">
+                      <div class="edit_delete bottom_section" style="border: none">
+                        <span>לא קיימים חשבונות בשירות</span>                
+                        <a class="add" [routerLink]="'/user/'+currentCityID+'/bill-in-mail'" href="javascript:void(0);" style="float: none; margin: 9px;">הירשם כעת</a>                      
+                     </div>
+                    </div>
+                </div>
+              </div>
+              <div *ngIf="!isCityInB2M" style="padding: 6px;">
+                  אין שירות חשבונית במייל לרשות
+                  {{commonService.cityModel.name}}
+              </div>
+                </div>
+  
+              </div>
+  
+           
+
+              <div class="col-lg-7 col-md-12 col-sm-12 col-xs-12 pull-right credit_details">
+  
+                <div class="right_table">
+                  <h3>פרטי אשראי
+                    <img src="assets/img/lock-ico.png" />
+                  </h3>
+                  <div class="credit_info">
+                    <img src="assets/img/information-gray.png" />
+                    <div class="inner_paragraph">
+                      <p>שמירת פרטי כרטיס האשראי מאפשרת ביצוע תשלומים באופן מהיר ללא צורך בהזנת האשראי בכל ביצוע תשלום. </p>
+                      <p>פרטי האשראי נשמרים בצורה מאובטחת תוך הקפדה על הנהלים המחמירים ביותר.</p>
+                    </div>
+                    <div class="card_icon text-center">
+                      <img src="assets/img/card-ico.png" />
+                          <span>{{(!isCreditDetails ? ' אין ' : '') + 'פרטי אשראי שמורים במערכת' }} </span>                      
+                          <a [routerLink]="'/user/' + currentCityID + '/change-credit-details'" href="javascript:void(0)">{{(isCreditDetails ? 'ערוך פרטי ' : 'הוסף ') + 'כרטיס אשראי'}}</a>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>  
+          </div>
+
+
+        <!-- <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
+
+          <div class="box-wrapper proper_page">
+
+            <div class="col-md-6 col-sm-6 box_wrapper_left">
+
+
+              <div class="left_table_2">
+                <div class="textheading">רישום לשירות חשבונית במייל</div>
+                <app-b2m-table *ngIf="isExistsItemsForB2M" (getItems)="isExistsItemsB2M($event)"></app-b2m-table>
+
+                <div *ngIf="!isExistsItemsForB2M" class="client-name">
+                  <a href="javascript:void(0)" [routerLink]="'/user/'+currentCityID + '/bill-in-mail'" class="create_propertyBtn cursorPointer"
+                    style="margin-left:0px">הירשם כעת לשרות</a>
+                </div>
+
+               <div>
+                <div class="textheading" style="width: inherit">{{'creditDetail'| lang}}</div>
+                <img  class="tooltip-credit-icon" src="/assets/assets/assets/img/info.png" (click)="openToolTip($event)" (mouseenter) ="openToolTip($event)" (mouseleave)="closeToolTip()" alt="">
+              </div>
+                <div *ngIf="isCreditDetails">
+                  <img src="/assets/assets/assets/img/check.png" class="img-credit" alt="">
+                  <label class="lable-credit"> פרטי אשראי שמורים במערכת </label>
+                  <a href="javascript:void(0)" [routerLink]="'/user/' + currentCityID + '/change-credit-details'" class="btn-credit addAssetBtn create_propertyBtn cursorPointer">עריכת פרטי אשראי </a>
+                </div>
+
+                <div *ngIf="!isCreditDetails">
+                  <label class="lable-credit"> אין פרטי אשראי שמורים במערכת </label>
+                  <a href="javascript:void(0)" [routerLink]="'/user/' + currentCityID + '/change-credit-details'" class="btn-credit addAssetBtn create_propertyBtn cursorPointer">הוספת כרטיס אשראי </a>
+           
+                  </div>
+              
+               
+
+              </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6 box_wrapper_right">
+              <div class="textheading">פרטים אישיים</div>
+
+              <app-user-my-details-page></app-user-my-details-page>
+
+
+
+              <div id="wrap_insertAnotherPhone">
+                <div class="bordre_box" style="padding: 2%;">
+                  <div class="insertAnotherPhoneDialog " id="insertAnotherPhoneDialog">
+
+                    <label class="addAssetLable"> מספר טלפון משני</label>
+
+                    <input required type="tel" class="addAssetInput" id="phoneInsertAnotherPhoneID" [disabled]="!isInsertAnotherPhoneButton"
+                      [(ngModel)]="phoneInsertAnotherPhone" placeholder="{{'phone'| lang}}" (focusout)="validPhoneFun()">
+
+                    <a href="javascript:void(0)" *ngIf="isInsertAnotherPhoneButton" (click)="sendSmsForInsertAnotherPhone('insert')" class="addAssetBtn create_propertyBtn cursorPointer"
+                      style="margin-left:0px; padding-bottom: 5px;">{{'insert'| lang}}</a>
+                    <a href="javascript:void(0)" *ngIf="!isInsertAnotherPhoneButton" class="addAssetBtn" (click)="sendSmsForInsertAnotherPhone('delete')">
+                      <i class="fa fa-trash-o erase cursorPointer" aria-hidden="true"></i>
+                    </a>
+                    <div *ngIf="isValidPhoneMesseg" class="validationMesseg"> {{isValidPhoneMesseg | lang }}</div>
+
+                  </div>
+
+                  <div id="smsCodeInsertAnotherPhoneDialog" class="smsCodeInsertAnotherPhoneDialog" style="display: none;">
+                    <label> הזן את הקוד שנשלח ב sms</label>
+                    <input type="tel" id="smsCodeInsertAnotherPhoneID" [(ngModel)]="smsCodeInsertAnotherPhone" placeholder="{{'insertTheCode'| lang}}">
+
+
+                    <a href="javascript:void(0)" (click)="insertOrDeleteAnotherPhone()" class="create_propertyBtn cursorPointer" style="margin-left:0px; float: none;">{{'send'| lang}} </a>
+
+                    <div class="validationMesseg" *ngIf="smsCodeIncorrectMesseg" style="clear: both">{{'codeDontCorrect'| lang }}</div>
+
+                  </div>
+                  <div id="loadingDivInsertAnotherPhoneDialog" style="display: none; color: #0000c5; font-size: 30px;">{{'loading'| lang }}</div>
+                </div>
+              </div>
+
+
+              <div id="addAseetDialog">
+                <div class="wrap_addAsset bordre_box">
+                  <label class="addAssetLable"> הוספת רשות</label>
+                  <app-city-drop-down class="addAssetInput"></app-city-drop-down>
+                  <a href="javascript:void(0)" (click)="insertAsset()" class="addAssetBtn create_propertyBtn cursorPointer" style="margin-left:0px">הוסף</a>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div> -->
+
+
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- <div class="credit-tool-tip" 
+[ngStyle]="{'visibility': showToolTip, 'left': leftToolTip , 'top': topToolTip }">
+שמירת פרטי כרטיס האשראי מאפשרת ביצוע תשלומים באופן מהיר ללא צורך בהזנת האשראי בכל ביצוע תשלום. פרטי האשראי נשמרים בצורה מאובטחת תוך הקפדה על הנהלים המחמירים ביותר
+</div> -->
+
+<div *ngIf="popUpSubject" id="popup" class="overlay">
+  <div class="popup">
+    <h2 *ngIf="popUpSubject == 'add-asset'">הרישום בוצע בהצלחה !</h2>
+    <a class="close" (click)="popUpSubject == null">&times;</a>
+    <div class="content">
+      <div *ngIf="popUpSubject == 'add-asset'">
+      ניתן להחליף לרשות הרצוייה באמצעות כפתור החלף שבסרגל הימני
+    </div>
+    <div *ngIf="popUpSubject == 'credit'">
+        שמירת פרטי כרטיס האשראי מאפשרת ביצוע תשלומים באופן מהיר ללא צורך בהזנת האשראי בכל ביצוע תשלום. פרטי האשראי נשמרים בצורה מאובטחת תוך הקפדה על הנהלים המחמירים ביותר
+    </div>
+      <div class="buttons step-buttons">
+        <a href="javascript:void(0)" (click)="popUpSubject == null" id="closePopup" class="btn cancel" name="button">סגירה</a>
+      </div>
+    </div>
+  </div>
+</div>

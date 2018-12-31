@@ -1,0 +1,78 @@
+<!-- <section class="content-bx">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h2 class="lets_start_web">{{'letsStart'| lang}}</h2>
+        <div class="auto_search_outer">
+          <div class="auto_search">
+            <input type="button" class="search-auto">
+            <span></span>
+
+            <form style="display: inline">
+              <label class="label_accessibility" for="corporation">{{'chooseSity'| lang}}</label>
+              <input tabindex="4" id="searchCorInput" [(ngModel)]="selectedCity" class="txt_searchbx" mdInput placeholder="{{'chooseSity'| lang}}"
+                aria-label="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+              <md-autocomplete #auto="mdAutocomplete">
+                <md-option (onSelectionChange)="goToServicesPage(state.MgarId)" class="optionColor" *ngFor="let state of filteredStates | async"
+                  [value]="state.AppName">
+                  <span>{{ state.AppName }}</span>
+                </md-option>
+              </md-autocomplete>
+            </form>
+
+            <img class="loaction_icon" src="assets/img/map_location.png" alt="icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section> -->
+
+
+<section class="content-bx">
+    <!-- <img src="assets/img/responsive-icon2_v1.png" class="responsive-img" alt=""> -->
+
+           <div class="container">
+  
+              <div class="row">
+  
+                 <div class="col-xs-12">
+  
+                    <h2 class="lets_start_web">בואו נתחיל!</h2>
+  
+                    <div class="auto_search_outer">
+  
+                       <div class="auto_search">
+  
+                          <img id="testhide" class="loaction_icon" src="assets/img/map_location.png" title="מיקום" alt="מיקום" longdesc="מיקום" />
+  
+                          <label class="label_accessibility" for="corporation">בחרו רשות/ תאגיד מים</label> 
+  
+                          <input id="searchCorInput"  autocomplete='off' (click)="openSearchList()" (focusout)="closeSearchList($event)" (focus)="openSearchList()"  [(ngModel)]="selecetdCityNew" (keyup)="filterCityList(selecetdCityNew)" type="text" name="text" class="txt_searchbx mainContentForFocus"  placeholder="בחרו רשות/ תאגיד מים" />
+  
+                          <input (click)="magnifyingGlassEvent($event)" (focusout)="closeSearchList($event)" type="button" tabindex="-1" class="search-auto" value="search button" /> 
+  
+                          <span></span>
+  
+                          <div id="content-1" (focusout)="closeSearchList($event)" style="display: none;" class="searchResult">
+  
+                             <ul id="SkrollThis" >  
+                                <li *ngFor="let city of filteredCityList" >
+                                  <a href="javascript:void(0)" (click)="goToServicesPage(city.MgarId)" class="cursorPointer activeCity city-list-item" [title]="city.AppName">{{city.AppName}}</a>
+                                </li>  
+                             </ul>
+  
+                          </div>
+  
+                       </div>
+  
+                    </div>
+  
+                 </div>
+  
+              </div>
+  
+           </div>
+  
+        </section>

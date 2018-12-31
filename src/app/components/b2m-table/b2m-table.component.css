@@ -1,0 +1,15 @@
+.overlay {
+    display: block;
+}
+.delte_section{
+    display: block;
+}
+.delete_list .main_erase a:hover+.delte_section{
+    display: block;
+}
+.delete_list .delte_section{
+    background: rgba(255, 255, 255, 0.38);
+}
+.delete_content p{
+    text-align: center;
+}

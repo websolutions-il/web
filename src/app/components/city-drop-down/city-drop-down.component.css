@@ -1,0 +1,114 @@
+
+/* home */
+.wrap_home input{
+    width: 100%;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    font-size: 16px;
+    height: auto;
+    padding: 10px 0;
+    border-radius: 0px;
+}
+.wrap_home  i.fa.fa-chevron-down {
+    float: left;
+    position: absolute;
+    font-size: 24px;
+    margin-top: -33px;
+    left: 19px;
+    /* top: unset; */
+}
+
+.wrap_home .validationMesseg{
+    padding: 5px 0px 5px 0px;
+}
+
+/* mang cor */
+.wrap_managCor input::placeholder{
+    color: rgb(128, 128, 128);
+}
+.wrap_managCor i.fa.fa-chevron-down{
+    display: none;
+    top: 0px;
+    float: left;
+    margin-top: -30px;
+    margin-left: -20px;
+    position: relative;
+}
+.wrap_managCor input{
+    background: url(/assets/img/chevron-left.png) no-repeat 7px center;
+}
+
+.wrap_managCor .validationMesseg{   
+
+    width: 100%;
+}
+
+/* registration page */
+
+.wrap_registration input{
+    width: 100%;
+    font-size: 18px;
+    padding: 6px 12px;
+    height: 54px;
+    background-color: rgba(255,255,255,.15);
+}
+.wrap_registration i.fa.fa-chevron-down{
+    float: left;
+    position: absolute;
+    font-size: 24px;
+    margin-top: -38px;
+    left: 57%;
+    width: 0px;
+    /* top: unset; */
+}
+.wrap_registration .validationMesseg{
+    padding-top: 5px;
+    padding-bottom: 10px;
+    line-height: 90%;  
+}
+
+
+
+
+
+.hide{
+    display: none;
+}
+
+.mat-option {
+    font-size: 19px;
+    border-bottom: 1px solid #0000c5;
+    color: #0000c5;
+}
+
+.mat-option.mat-active, .mat-option:hover {
+    background-color: #0000c5;
+    color: white;
+}
+.borderBotoomClass  {
+    border-bottom: 1px solid #0000c5; 
+}
+
+
+@media(max-width:768px){
+    .validationMesseg{
+               width: 67%;
+    }
+    .wrap_registration i.fa.fa-chevron-down{
+        left: 28%;
+    }
+}
+@media screen and (max-width: 480px){
+    .wrap_home  i.fa.fa-chevron-down {
+        left: 23%;
+     }
+
+     .wrap_registration i.fa.fa-chevron-down{
+        left: 27%;
+    }
+    .wrap_managCor input{
+        max-width: 100%;
+    }
+   
+  }
