@@ -137,6 +137,7 @@ setBlockLists(blocks)
   }
   internal_blockFun(link)
   {
+    console.log(link)
     this.router.navigate([link+"/"+this.fast_Mast.code])
   }
     

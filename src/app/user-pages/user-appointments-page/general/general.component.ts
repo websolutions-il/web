@@ -44,6 +44,7 @@ export class GeneralComponent implements OnInit {
       || this.appointmentsService.activeStep == 'six')
 
        this.appointmentsService.activeStep ="one";
+       
 // טסט
   }
 

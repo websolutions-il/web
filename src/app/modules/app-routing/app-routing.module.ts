@@ -105,6 +105,8 @@ import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.compo
     { path: 'user/:city/call-106', component: User106CallPageComponent },
     { path: 'user/:city/prev-106-call', component: UserPrevious106CallPageComponent },   
     { path: 'assets/MastImages/SharedFiles/:id/:idd/:idf' , redirectTo: 'not-found' }, // דף לא נמצא לטובת מסמך שלא קיים
+    { path: 'assets/arnona_images/:id/:idd' , redirectTo: 'not-found' }, // דף לא נמצא לטובת מסמך שלא קיים
+
     { path: 'undefined' , redirectTo: 'not-found' }, // דף לא נמצא לטובת מסמך שלא קיים
     { path: 'user/:city/my-documents', component: UserMyDocumentsPageComponent },
     { path: 'user/:city/appointments', component: GeneralComponent }, // appointments page

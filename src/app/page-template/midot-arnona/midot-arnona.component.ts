@@ -98,17 +98,16 @@ GetUserDetailByFastMastCode()
   }
 
   showPdf(link)
-  { // link= 'assets/Responsive_V12.pdf' //for test
-    if (this.isMobileUser) {
-      document.getElementById("openLinkInNewWindow").setAttribute("href",link)
-      document.getElementById("openLinkInNewWindow").click();
-      
-    //  window.open(link);
-    }
-   else{
+  { 
+  // link= 'assets/Responsive_V12.pdf' //for test
+  //   if (this.isMobileUser) {
+  //     document.getElementById("openLinkInNewWindow").setAttribute("href",link)
+  //     document.getElementById("openLinkInNewWindow").click();
+  //   }
+  //  else{
     this.iframeLink = link;
     $(".iframe_wrap").show();
-   }
+   //}
   }
 
   closePdfDoc()

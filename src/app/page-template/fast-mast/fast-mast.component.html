@@ -62,7 +62,7 @@
             <div class="img-grid">
               <img [src]= "internal.logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
               <span class="fh5co-meta">{{internal.caption}}</span>
-              <a href="javascript:void(0)"(click)="internal_blockFun(internal.link)" [ngStyle]="{'background-image': 'url(' + internal.background + ')'}"  rel="nofollow" class="transition">
+              <a href="javascript:void(0)" (click)="internal_blockFun(internal.link_unloged)" [ngStyle]="{'background-image': 'url(' + internal.background + ')'}"  rel="nofollow" class="transition">
                 <!--  [routerLink]="[internal.link,'/', fast_Mast.code]" -->
                 <div>
                   <h2 class="fh5co-title">

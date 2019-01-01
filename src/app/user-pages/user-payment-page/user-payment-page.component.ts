@@ -25,14 +25,16 @@ export class UserPaymentPageComponent implements OnInit {
   iframeSrc: string = '';
    
 
-  constructor(private router: Router, private jsonService: GetJsonService, public commonService: CommonService, private route: ActivatedRoute) {
+  constructor(private router: Router, private jsonService: GetJsonService,
+     public commonService: CommonService, private route: ActivatedRoute) {
     this.route.params.subscribe((params: Params) => {
       this.currentCityId = (params['child'] ? params['child'] : params['city']);
-      if (this.currentCityId.toString() == "9999") {
-        this.router.navigate(['']);
-      }
+    
     });
 
+    if (this.currentCityId.toString() == "9999") {
+      this.router.navigate(['']);
+    }
      this.commonService.isLogInUserReceivedSource.first().subscribe(
       (isLogIn) => {      
         if (isLogIn) {

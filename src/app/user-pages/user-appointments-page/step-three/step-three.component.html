@@ -1,6 +1,6 @@
 <section id="planning_section" class="planning_section">
 
-    <div class="row" >
+    <div class="row">
         <div class="col-sm-12">
             <div class="breadcrumb_container text-center">
                 <div class="progress center-block">
@@ -47,11 +47,11 @@
                         <li>{{appointmentsService.selected_sub_department.UnitName}} </li>
                     </ul>
                 </div>
-              
+
                 <div class="page-title" id="topestText">
                     <span>לפני שנמשיך לקביעת התור, יש לנו שירות שיכול לחסוך לכם הגעה לסניף</span>
                 </div>
-                
+
 
                 <div class="page-title" id="topText">
                     <span>{{topContinueText}}</span>
@@ -59,15 +59,14 @@
 
 
                 <div class="selection_btn" id="contBtn">
-                    <a *ngIf="appointmentsService.selected_sub_department.isExternalLink"
-                    [href]="appointmentsService.selected_sub_department.Link" target="_blank"
-                     class="btn btn_postive">
+                    <a *ngIf="appointmentsService.selected_sub_department.isExternalLink" [href]="appointmentsService.selected_sub_department.Link"
+                        target="_blank" class="btn btn_postive">
                         <div class="selectedImg">
                             <img src="assets/img/user-12.png" class="infog3" alt="">
                             <img src="assets/img/user-12-h.png" class="hover_view">
                         </div>
                         <span>כן</span>
-                       {{continueText}}
+                        {{continueText}}
                     </a>
 
                     <a *ngIf="!appointmentsService.selected_sub_department.isExternalLink" href="javascript:void(0)" [routerLink]="appointmentsService.selected_sub_department.Link"
